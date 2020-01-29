@@ -1,5 +1,5 @@
 <?php
-    include_once("module/tablets/model/TabletsDAO.php");
+    include_once("module/admin/module/tablets/model/TabletsDAO.php");
 
     function validate_tablet_php($op){
         $tabletdataupdate = new TabletsDAO();

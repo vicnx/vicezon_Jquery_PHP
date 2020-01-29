@@ -1,12 +1,12 @@
 <?php
 
-   $path = $_SERVER['DOCUMENT_ROOT'] . '/Vicezon/';
+   $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
    include($path . "module/admin/module/tablets/model/TabletsDAO.php");
    include($path . "model/Browser.class.php");
    include($path . "module/admin/module/tablets/model/dummiestablets.php");
     // session_start();
     switch($_GET['op']){
-        case 'readmodal':
+        case 'readmodal';
                 $tabletdao = new TabletsDAO();
                 $fdaoread = $tabletdao->select_one_tablet($_GET['idproduct']);
                 $tablet=get_object_vars($fdaoread);
@@ -31,8 +31,6 @@
             }
             break;
         case 'list';
-        //echo"hola";
-        echo "  dentro list";
             try{
                 $tabletdao = new TabletsDAO();
                 $fdaolist = $tabletdao->select_all_tablets();
@@ -51,7 +49,7 @@
             }
             break;
         case 'create';
-            include("module/tablets/model/vtabletsphp.php");
+            include("module/admin/module/tablets/model/vtabletsphp.php");
             $valid=true;
             if(!empty($_POST)){ //Para que no cree una linea vacia
                 if(isset($_POST)){
@@ -79,7 +77,7 @@
                     }
                 }
             }
-            include("module/tablets/view/create_tablet.php");
+            include("module/admin/module/tablets/view/create_tablet.php");
             break;
         case 'read';
             try{

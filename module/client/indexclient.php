@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<?php
-			include("module/home/inc/home_top_page.php");
+			include("module/client/view/inc/client_top_page.php");
 			session_start();
 		?>
 	</head>
@@ -11,7 +11,7 @@
 			<?php include("module/client/view/inc/client_menu.php"); ?>
 		</div>
 		<div class="wrapper">  	
-			<?php include("module/client/view/inc/header.php"); ?>
+			<?php include("module/client/view/inc/client_header.php"); ?>
 
 			<?php include("module/client/view/inc/client_pages.php"); ?>  
 			<!-- FOOTER		 -->

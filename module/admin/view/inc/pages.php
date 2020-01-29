@@ -1,7 +1,6 @@
 <div class="contenido">
 	<div class="pages">
 <?php
-echo $_GET['page'];
 	if (isset($_GET['page'])) {
 		switch($_GET['page']){
 			case "dashboard";

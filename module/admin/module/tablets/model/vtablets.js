@@ -190,7 +190,7 @@ $(document).ready(function() {
 		console.log(id);
 		$.ajax({ 
             type: 'GET', 
-			url: '/var/www/html/Vicezon/module/admin/module/tablets/controller/controller_tablets.php?op=readmodal', 
+			url: '/vicezon/module/admin/module/tablets/controller/controller_tablets.php?op=readmodal', 
 			dataType: 'json',
 			data:{'idproduct':id},//idproduct es lo que guardamos para coger en el get LUEGO EL GET TIENE QUE SER ASI ($_GET['idproduct']); y el id ES EL ATRIBUTO
             success: function (data) { 

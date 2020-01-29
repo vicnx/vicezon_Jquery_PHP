@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>WebDesign</title>
+<title>ViceZon</title>
 
 <!-- MATERIAL Bootstrap-->
 <!-- Font Awesome -->
@@ -7,17 +7,17 @@
 <!-- Google Fonts Roboto -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="view/MBBootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="module/client/view/libraries/MBBootstrap/css/bootstrap.min.css">
 <!-- Material Design Bootstrap -->
-<link rel="stylesheet" href="view/MBBootstrap/css/mdb.min.css">
+<link rel="stylesheet" href="module/client/view/libraries/MBBootstrap/css/mdb.min.css">
 <!-- jQuery -->
-<script type="text/javascript" src="view/MBBootstrap/js/jquery.min.js"></script>
+<script type="text/javascript" src="module/client/view/libraries/MBBootstrap/js/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="view/MBBootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="module/client/view/libraries/MBBootstrap/js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="view/MBBootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="module/client/view/libraries/MBBootstrap/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="view/MBBootstrap/js/mdb.min.js"></script>
+<script type="text/javascript" src="module/client/view/libraries/MBBootstrap/js/mdb.min.js"></script>
 
 <!-- CSS PROPIO -->
-<link rel="stylesheet" href="module\home\css\home_style.css">
+<link rel="stylesheet" href="module/client/view/css/client_style.css">

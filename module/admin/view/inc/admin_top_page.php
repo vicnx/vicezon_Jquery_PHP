@@ -1,22 +1,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Vicezon</title>
 	<!-- JQUERY -->	
-	<script type="text/javascript" src="module/admin/view/Jquery/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="module/admin/view/Jqueryjquery-ui.js"></script>
-	<link href="view/Jquery/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+	<script type="text/javascript" src="module/admin/view/libraries/Jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="module/admin/view/libraries/Jquery/jquery-ui.js"></script>
+	<link href="module/admin/view/libraries/Jquery/jquery-ui.css" rel="stylesheet" type="text/css"/> 
 
 
 	<!-- MATERIAL Bootstrap-->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" href="module/admin/view/MBBootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="module/admin/view/libraries/MBBootstrap/css/bootstrap.min.css">
 	<!-- Material Design Bootstrap -->
-	<link rel="stylesheet" href="module/admin/view/MBBootstrap/css/mdb.min.css">
+	<link rel="stylesheet" href="module/admin/view/libraries/MBBootstrap/css/mdb.min.css">
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="module/admin/view/MBBootstrap/js/popper.min.js"></script>
+	<script type="text/javascript" src="module/admin/view/libraries/MBBootstrap/js/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="module/admin/view/MBBootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="module/admin/view/libraries/MBBootstrap/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="module/admin/view/MBBootstrap/js/mdb.min.js"></script>
+	<script type="text/javascript" src="module/admin/view/libraries/MBBootstrap/js/mdb.min.js"></script>
 
 
 
@@ -49,12 +51,8 @@
 
 
 	<!-- DATA TABLES ORDER sin INTERNET -->
-	<script src="module/admin/view/DataTables/datatables.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="module/admin/view/DataTables/datatables.min.css"/>
-
-
-	<!-- Font awesome -->
-	<link href="module/admin/view/FontAwesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+	<script src="module/admin/view/libraries/DataTables/datatables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="module/admin/view/libraries/DataTables/datatables.min.css"/>
 	
 
 	<!-- MENU SIDEBAR -->

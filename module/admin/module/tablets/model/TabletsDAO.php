@@ -1,9 +1,8 @@
 <?php
-    $path = $_SERVER['DOCUMENT_ROOT'] . '/Vicezon/';
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
     include($path . "model/ConnectionBD.php");
 class TabletsDAO{
     function save($data){
-
         $conn= new connection();
         //echo "dentro funcion save";
         $colores="";
