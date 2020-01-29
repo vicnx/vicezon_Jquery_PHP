@@ -133,7 +133,7 @@
             }
             break;
         case'update';
-            include("module/tablets/model/vtabletsphp.php");
+            include("module/admin/module/tablets/model/vtabletsphp.php");
             if(!empty($_POST)){
                 if(isset($_POST)){
                     $valid=validate_tablet_php("update");
@@ -174,7 +174,7 @@
                 Browser::redirect($callback);
                 die;
             }else{
-                include("module/tablets/view/update_tablet.php");
+                include("module/admin/module/tablets/view/update_tablet.php");
             }
             break;
 

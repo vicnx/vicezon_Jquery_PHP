@@ -1,7 +1,6 @@
 <div class="d-flex justify-content-center">
 	<form method="post" name="formtablets" id="formtablets"autocomplete="off">
 		<?php
-
 		if($error!=""){
 			print "<br><p class='alert alert-danger'>".$error."</p>";
 		}

@@ -2,15 +2,13 @@
     include_once("module/admin/module/tablets/model/TabletsDAO.php");
 
     function validate_tablet_php($op){
-        $tabletdataupdate = new TabletsDAO();
-        $fdaoupdatetablet = $tabletdataupdate->select_one_tablet($_GET['id']);
-        $tablet=get_object_vars($fdaoupdatetablet);
         $error="";
         $nombre=$_POST['nombre'];
         $price=$_POST['price'];
         $marca=$_POST['marca'];
         $fpublic=$_POST['fpublic'];
         $sim=$_POST['sim'];
+        $rating=['rating'];
        if($op =="create"){
         //echo $nombre;
         if(FindNameTablet($nombre)){
@@ -32,14 +30,17 @@
         }
        }
        if($op == "update"){
+        $tabletdataupdate = new TabletsDAO();
+        $fdaoupdatetablet = $tabletdataupdate->select_one_tablet($_GET['id']);
+        $tablet=get_object_vars($fdaoupdatetablet);
            if($nombre==$tablet['nombre']){
-                $datos = array('nombre'=>$nombre,'price'=>$price,'marca'=>$marca,'fpublic'=>$fpublic,'sim'=>$sim);
+                $datos = array('nombre'=>$nombre,'price'=>$price,'marca'=>$marca,'fpublic'=>$fpublic,'sim'=>$sim,'rating'=>$rating);
                 return $return=array('check'=>false,'error'=>$error,'datos'=>$datos);
            }else if(FindNameTablet($nombre)){
                 $error="This tablet already exists!";
                 return $return=array('check'=>true,'error'=>$error);
            }else{
-                $datos = array('nombre'=>$nombre,'price'=>$price,'marca'=>$marca,'fpublic'=>$fpublic,'sim'=>$sim);
+                $datos = array('nombre'=>$nombre,'price'=>$price,'marca'=>$marca,'fpublic'=>$fpublic,'sim'=>$sim,'rating'=>$rating);
                 return $return=array('check'=>false,'error'=>$error,'datos'=>$datos);
            }
        }
