@@ -2,18 +2,6 @@
     <div class="carousel-tablets">
         <h2>TOP TABLETS</h2>
         <div id="top-tablets" class="owl-carousel owl-theme">
-                <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
-            <div class="item"><img src="http://placehold.it/150x150"></div>
         </div>
     </div>
     <div class="lroem">

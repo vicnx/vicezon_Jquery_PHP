@@ -15,8 +15,9 @@ class TabletsDAO{
 
         }
         $sim=$data['sim'];
-        $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim)
-        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim')";
+        $rating=$data['rating'];
+        $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim, rating)
+        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','$rating')";
         $res=$conn->exec($sql);
         $conn = null;
         return $res;

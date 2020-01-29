@@ -1,6 +1,5 @@
 <?php
-
-   $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
+    $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
    include($path . "module/admin/module/tablets/model/TabletsDAO.php");
    include($path . "model/Browser.class.php");
    include($path . "module/admin/module/tablets/model/dummiestablets.php");

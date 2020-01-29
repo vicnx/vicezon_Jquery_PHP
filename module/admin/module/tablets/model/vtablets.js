@@ -198,7 +198,7 @@ $(document).ready(function() {
 					window.location.href='index.php?page=503';
 				}else{
 					$("#details").html(
-						'<h2>DETAILS OF '+data.nombre +'</h2><hr class="style1"></hr><label>ID: <label id="idproduct">'+data.idproduct+'</label> </label></br><label>Name: <label id="nombre">'+data.nombre+'</label> </label></br><label>Price: <label id="price">'+data.price+'</label> </label></br><label>Brand: <label id="marca">'+data.marca+'</label> </label></br><label>Data publish: <label id="fpublic">'+data.fpublic+'</label> </label></br><label>Colours: <label id="colores">'+data.colores+'</label> </label></br><label>Have Sim?: <label id="sim">'+data.sim+'</label> </label></br><hr class="style1"></hr><a class="btn btn-danger" href="#" rel="modal:close">Close</a>'
+						'<h2>DETAILS OF '+data.nombre +'</h2><hr class="style1"></hr><label>ID: <label id="idproduct">'+data.idproduct+'</label> </label></br><label>Name: <label id="nombre">'+data.nombre+'</label> </label></br><label>Price: <label id="price">'+data.price+'</label> </label></br><label>Brand: <label id="marca">'+data.marca+'</label> </label></br><label>Data publish: <label id="fpublic">'+data.fpublic+'</label> </label></br><label>Colours: <label id="colores">'+data.colores+'</label> </label></br><label>Have Sim?: <label id="sim">'+data.sim+'</label> </label></br><label>Rating: <label id="rating">'+data.rating+'</label> </label></br><hr class="style1"></hr><a class="btn btn-danger" href="#" rel="modal:close">Close</a>'
 					);
 
 					var details_userArray = $("#details");

@@ -19,6 +19,8 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="module/client/view/libraries/MBBootstrap/js/mdb.min.js"></script>
 
+<!-- LANG -->
+<script src="module/client/view/js/lang.js"></script>
 
 <!-- CAROUSEL -->
 <link rel="stylesheet" href="module/client/view/libraries/OwlCarousel/dist/assets/owl.carousel.css">
@@ -28,3 +30,4 @@
 <!--PROPIO -->
 <link rel="stylesheet" href="module/client/view/css/client_style.css">
 <script type="text/javascript" src="module/client/module/home/controller/chome.js"></script>
+
