@@ -5,6 +5,10 @@
    include($path . "module/admin/module/tablets/model/dummiestablets.php");
     // session_start();
     switch($_GET['op']){
+        case'changerank':
+            // $rank=changerank(); CONTINUAR POR AQUI
+            echo json_encode("success");
+            break;
         case 'readmodal';
                 $tabletdao = new TabletsDAO();
                 $fdaoread = $tabletdao->select_one_tablet($_GET['idproduct']);

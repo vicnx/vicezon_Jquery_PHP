@@ -31,7 +31,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right bg-dark"
                 aria-labelledby="navbarDropdownMenuLink-333">
-                <a class="dropdown-item" href="#">Login</a>
+                <a id="login" class="dropdown-item" href="#">Login</a>
                 <a class="dropdown-item" href="#">Register</a>
                 <a class="nav-link" href="index.php">Admin Panel</a>
             </div>

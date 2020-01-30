@@ -1,8 +1,11 @@
 <div id="contenido">
     <div class="carousel-tablets">
-        <h2>TOP TABLETS</h2>
+        <h1>TOP TABLETS</h1>
         <div id="top-tablets" class="owl-carousel owl-theme">
         </div>
+    </div>
+    <div class= "top-brands">
+
     </div>
     <div class="lroem">
         <h2>Lorem ipsum dolor sit amet.</h2>

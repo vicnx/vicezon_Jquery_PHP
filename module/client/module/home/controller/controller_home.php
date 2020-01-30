@@ -7,6 +7,9 @@ switch($_GET['op']){
         echo json_encode($query);
         exit;
         break;
-
+    case 'changerank':
+        $rank=changerank();
+        echo json_encode("success");
+        break;
 }
 ?>

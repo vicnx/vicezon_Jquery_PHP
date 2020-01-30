@@ -35,5 +35,8 @@
             <li>
                 <a href="index.php?page=services" data-tr="Services"></a>
             </li>
+            <li>
+                <a id="loginc" href="" data-tr="">Vista cliente</a>
+            </li>
         </ul>
     </div>

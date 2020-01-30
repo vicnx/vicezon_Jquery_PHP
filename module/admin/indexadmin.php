@@ -3,7 +3,6 @@
 	<head>
 		<?php
 			include("view/inc/admin_top_page.php");
-			session_start();
 		?>
 	</head>
 	<body>
@@ -14,7 +13,6 @@
 			<?php include("module/admin/view/inc/top-bar.php"); ?>   	
 
 			<?php include("module/admin/view/inc/pages.php"); ?>  
-			<!-- FOOTER		 -->
 				 	   
 			<?php include("module/admin/view/inc/footer.php"); ?>        
 		</div>
