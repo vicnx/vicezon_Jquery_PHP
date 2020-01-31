@@ -1,12 +1,13 @@
 <?php
     $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
    include($path . "module/admin/module/tablets/model/TabletsDAO.php");
+   include($path . "module/admin/model/AdminDAO.php");
    include($path . "model/Browser.class.php");
    include($path . "module/admin/module/tablets/model/dummiestablets.php");
     // session_start();
     switch($_GET['op']){
         case'changerank':
-            // $rank=changerank(); CONTINUAR POR AQUI
+            $rank=changerank();
             echo json_encode("success");
             break;
         case 'readmodal';
@@ -97,7 +98,7 @@
                 Browser::redirect($callback);
                 die;
             }else{
-                include("module/tablets/view/read_tablet.php");
+                include("module/admin/module/tablets/view/read_tablet.php");
             }
             break;
         case 'delete';

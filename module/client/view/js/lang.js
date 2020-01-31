@@ -11,7 +11,7 @@ function changelang(lang) {
         console.log("dentro else");
         $.ajax({ 
             type: 'POST', 
-            url: 'module/admin/view/json/'+lang+'.json', 
+            url: 'module/client/view/json/'+lang+'.json', 
             dataType: 'json',
             success: function (data) { 
                 for (var x = 0; x < elems.length; x++) {

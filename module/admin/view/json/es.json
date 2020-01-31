@@ -13,6 +13,7 @@
         "<b>Name</b>": "<b>Nombre</b>",
         "<b>Price</b>": "<b>Precio</b>",
         "<b>Option</b>": "<b>Opción</b>",
+        "Logout": "Cerrar sessión",
         "There is no tablet": "No hay ninguna tableta",
 
         "sProcessing":     "Procesando...",

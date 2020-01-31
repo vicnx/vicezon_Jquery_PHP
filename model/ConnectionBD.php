@@ -11,8 +11,7 @@ class connection extends PDO{
             {
             echo "Connection failed: " . $e->getMessage();
             }
-    }
-    
+    }  
 }
 //prueba2
 

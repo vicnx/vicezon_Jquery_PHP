@@ -59,6 +59,7 @@
 	<script src="module/admin/view/js/sidebar.js"></script>
 
 
-	<!-- CSS PROPIO -->
+	<!-- PROPIO -->
 	<link rel="stylesheet" href="module/admin/view/css/style.css">
 	<link rel="stylesheet" href="module/admin/view/css/sidebar.css">
+	<script src="module/admin/view/js/admin_functions.js"></script>

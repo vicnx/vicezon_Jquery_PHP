@@ -13,6 +13,7 @@
         "<b>Name</b>": "<b>Vorname</b>",
         "<b>Price</b>": "<b>Preis</b>",
         "<b>Option</b>": "<b>Option</b>",
+        "Logout": "Abmelden",
         "There is no tablet": "Es gibt keine Tablette",
         "sProcessing": "Verarbeitung...",
         "sLengthMenu": "_MENU_ Datensätze anzeigen",

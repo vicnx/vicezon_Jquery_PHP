@@ -3,6 +3,7 @@
 	<head>
 		<?php
 			include("view/inc/admin_top_page.php");
+			session_start();
 		?>
 	</head>
 	<body>
