@@ -14,11 +14,16 @@
                 $tabletdao = new TabletsDAO();
                 $fdaoread = $tabletdao->select_one_tablet($_GET['idproduct']);
                 $tablet=get_object_vars($fdaoread);
+                $brand = selectbrandbyid($tablet["marca"]);
+                $arraytablets = array(
+                    "tablet" => $tablet,
+                    "brand" => $brand
+                );
             if(!$fdaoread){
                 echo json_encode("error");
                 exit;
             }else{
-                echo json_encode($tablet);
+                echo json_encode($arraytablets);
                 exit;
             }
             break;
@@ -65,6 +70,7 @@
                             $fdaocreate = $tabletdao->save($_POST);
                             $findid = $tabletdao->select_id_tablet_by_nombre($_POST['nombre']); //utilizo esta funcion para encontrar la id
                             //$idproduct = $_GET['id'];
+                            print_r("hole");
                         }catch (Exception $e){
                             $callback="index.php?page=503";
                             Browser::redirect($callback);

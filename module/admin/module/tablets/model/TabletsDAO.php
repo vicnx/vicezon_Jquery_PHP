@@ -17,7 +17,7 @@ class TabletsDAO{
         $sim=$data['sim'];
         $rating=$data['rating'];
         $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim, rating)
-        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','$rating')";
+        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','0')";
         $res=$conn->exec($sql);
         $conn = null;
         return $res;
@@ -136,6 +136,16 @@ class TabletsDAO{
         }else{
             return false;
         }
+    }
+    function selectbrandbyid($idbrand){
+        $conn = new connection();
+        $sql = "SELECT namebrand FROM brands where idbrand='$idbrand'";
+        $query = $conn->query($sql);
+        $conn =null;
+        foreach($query as $row){//realizamos un foreach para guardar la columna idproduct y hacer el return
+            $brand = $row["namebrand"];
+        }
+        return $brand;
     }
 
 ?>

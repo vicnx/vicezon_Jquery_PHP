@@ -16,13 +16,17 @@ function rand_float($st_num=0,$end_num=10,$mul=100){
     if ($st_num>$end_num) return false;
     return mt_rand($st_num*$mul,$end_num*$mul)/$mul;
 }
+function rand_brand($st_num=1,$end_num=10,$mul=1){
+    if ($st_num>$end_num) return false;
+    return mt_rand($st_num*$mul,$end_num*$mul)/$mul;
+}
 function dummies(){
     for ($i=0;$i<20;$i++){
         $data = [
             "nombre" => randomname(),
             "fpublic" => "12/02/2019",
             "price" => rand_int(),
-            "marca" => "Null",
+            "marca" => rand_brand(),
             'colores' => Array ( "Azul:Negro:Blanco:Rojo" ),
             "sim"=> "Yes",
             "rating"=> rand_float()

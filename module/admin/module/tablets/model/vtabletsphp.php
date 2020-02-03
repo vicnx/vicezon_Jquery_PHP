@@ -16,11 +16,9 @@
             $error="This tablet already exists!";
             return $return=array('check'=>true,'error'=>$error);
             $check=true;
-            print_r("el check es: ".$check."<br>");
             var_dump($check);
             // $return $check;
         }else{
-            print_r("No encontrado<br>");
             //echo "nombre no encontrado";
             $datos = array('nombre'=>$nombre,'price'=>$price,'marca'=>$marca,'fpublic'=>$fpublic,'sim'=>$sim);
             return $return=array('check'=>false,'error'=>$error,'datos'=>$datos);
