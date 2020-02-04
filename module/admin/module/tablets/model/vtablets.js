@@ -237,15 +237,17 @@ $(document).ready(function() {
 			}
 		});	
 		$('#brandnew_button').on('click',function(){
-			var brandnew = $("#brandnew_input").val();
-			var fullbrand = 'newbrand='+brandnew;
+			var fullbrand = $("#brandnew_input").val();
 			$.ajax({ 
 				type: 'POST', 
 				url: '/vicezon/module/admin/module/tablets/controller/controller_tablets.php?op=createbrand', 
-				async: true,
-				data: fullbrand,
-				success: function () { 
-					alert("Ha sido ejecutada la acción.");
+				async: false,
+				data: {fullbrand: fullbrand},
+				success: function (data) { 
+					console.log("Ha sido ejecutada la acción."+data);
+					$('#notify_new_brand').html("Se ha añadido la nueva marca: "+data);
+					$("#brandnew_input").val("");
+					$('#notify_new_brand').addClass("alert alert-success");
 				},
 				error: function(){
 					console.log("error");

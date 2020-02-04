@@ -15,6 +15,7 @@
                         <div class="form-group">
                             <input type="brandnew" class="form-control" id="brandnew_input">
                             <a id="brandnew_button" class="btn btn-secondary" data-tr="Create new brand"></a>
+                            <span class="" id="notify_new_brand"><span>
                         </div>
                     </div>
                     <h2 class="pull-left" data-tr="Tablets"></h2>

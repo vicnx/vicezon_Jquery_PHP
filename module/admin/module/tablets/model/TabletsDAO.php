@@ -154,5 +154,12 @@ class TabletsDAO{
         $conn =null;
         return $query;
     }
+    function savebrand($namebrand){
+        $conn= new connection();
+        $sql="INSERT INTO brands (namebrand) VALUES ('$namebrand')";
+        $res=$conn->exec($sql);
+        $conn = null;
+        return $res;
+    }
 
 ?>

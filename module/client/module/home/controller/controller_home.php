@@ -2,6 +2,10 @@
 $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
 include($path . "module/client/module/home/model/homeDAO.php");
 switch($_GET['op']){
+    case 'brands_card':
+        $cards_brand=selectbrands_card();
+        echo json_encode($cards_brand);
+        break;
     case 'toptablets':
         $query=toptablets();
         echo json_encode($query);

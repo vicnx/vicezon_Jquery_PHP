@@ -17,6 +17,26 @@ $(document).ready(function() {
                 console.log("error");
             }
     });	
+    $.ajax({ 
+        type: 'GET', 
+        url: '/vicezon/module/client/module/home/controller/controller_home.php?op=brands_card',
+        async:false, 
+        dataType: 'json',
+        data:{},
+        success: function (data) { 
+                for (var i = 0; i < 6; i++) {
+                    $('#brands-cards-homepage').append(
+                        '<div class="brand-card">'+'<span>'+data[i].namebrand+'</span></div>'
+                    )
+                 }
+
+        },
+        error: function(){
+            console.log("error");
+        }
+});
+
+
     $('.owl-carousel').owlCarousel({
         stagePadding:50,
         loop:true,

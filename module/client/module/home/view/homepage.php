@@ -4,9 +4,14 @@
         <div id="top-tablets" class="owl-carousel owl-theme">
         </div>
     </div>
-    <div class= "top-brands">
-
-    </div>
+    <hr></hr>
+        <div class= "top-brands">
+            <h1 id="best_brands">BEST BRANDS</h1>
+            <div id="brands-cards-homepage">
+            </div>
+        </div>
+    
+    <hr></hr>
     <div class="lroem">
         <h2>Lorem ipsum dolor sit amet.</h2>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aut harum eligendi 

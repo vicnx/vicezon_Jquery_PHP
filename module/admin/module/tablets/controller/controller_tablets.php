@@ -7,10 +7,9 @@
     // session_start();
     switch($_GET['op']){
         case 'createbrand';
-            echo "Hola";
-            $newbrand=$_POST['newbrand'];
-            print_r($newbrand);
-            die;
+            $fullbrand=$_POST['fullbrand'];
+            echo json_encode($fullbrand);
+            savebrand($fullbrand);
             break;
         case 'brands';
             $brands = selectbrands();

@@ -9,6 +9,13 @@ function toptablets(){
     $conn = null;
     return $query->fetchAll(PDO::FETCH_OBJ);
 }
+function selectbrands_card(){
+    $conn = new connection();
+    $sql = "SELECT * FROM brands limit 6";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 
 function changerank(){
     $conn = new connection();
