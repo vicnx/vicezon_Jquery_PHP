@@ -142,10 +142,17 @@ class TabletsDAO{
         $sql = "SELECT namebrand FROM brands where idbrand='$idbrand'";
         $query = $conn->query($sql);
         $conn =null;
-        foreach($query as $row){//realizamos un foreach para guardar la columna idproduct y hacer el return
+        foreach($query as $row){
             $brand = $row["namebrand"];
         }
         return $brand;
+    }
+    function selectbrands(){
+        $conn = new connection();
+        $sql = "SELECT * FROM brands";
+        $query = $conn->query($sql)->fetchAll();
+        $conn =null;
+        return $query;
     }
 
 ?>

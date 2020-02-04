@@ -218,5 +218,39 @@ $(document).ready(function() {
 			}
         });		  
 	});
+		$.ajax({ 
+            type: 'GET', 
+			url: '/vicezon/module/admin/module/tablets/controller/controller_tablets.php?op=brands', 
+			async:false, 
+			dataType: 'json',
+			data:{},//idproduct es lo que guardamos para coger en el get LUEGO EL GET TIENE QUE SER ASI ($_GET['idproduct']); y el id ES EL ATRIBUTO
+            success: function (data) { 
+				for (var x = 0; x < data.length; x++) {
+					console.log(data[x].namebrand);
+					$("#marca").append(
+						'<option value="'+data[x].idbrand+'">'+data[x].namebrand+'</option>'
+					);	
+				}
+			},
+			error: function(){
+				console.log("error");
+			}
+		});	
+		$('#brandnew_button').on('click',function(){
+			var brandnew = $("#brandnew_input").val();
+			var fullbrand = 'newbrand='+brandnew;
+			$.ajax({ 
+				type: 'POST', 
+				url: '/vicezon/module/admin/module/tablets/controller/controller_tablets.php?op=createbrand', 
+				async: true,
+				data: fullbrand,
+				success: function () { 
+					alert("Ha sido ejecutada la acción.");
+				},
+				error: function(){
+					console.log("error");
+				}
+			});		  
+		});  
 });
 

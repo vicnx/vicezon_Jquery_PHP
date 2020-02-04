@@ -10,10 +10,15 @@
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <a href="index.php?page=controller_tablets&op=dummies" class="btn btn-primary float-right" data-tr="Dummies"></a>
-                    <a href="index.php?page=controller_tablets&op=create" class="btn btn-success float-left" data-tr="Create Tablet"></a>
+                    <a href="index.php?page=controller_tablets&op=create" class="btn btn-success float-right" data-tr="Create Tablet"></a>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <input type="brandnew" class="form-control" id="brandnew_input">
+                            <a id="brandnew_button" class="btn btn-secondary" data-tr="Create new brand"></a>
+                        </div>
+                    </div>
                     <h2 class="pull-left" data-tr="Tablets"></h2>
-                    <hr class="style1"></hr>
-                        
+                    <hr class="style1"></hr>                   					                      
                 </div>
                 <table id="Tablets" class='table  table-striped table-light table-bordered'>
                     <thead class='table-dark'>

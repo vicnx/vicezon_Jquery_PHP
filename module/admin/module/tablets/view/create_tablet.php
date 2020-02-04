@@ -37,11 +37,6 @@
 				<div class="form-group col-md-6">
 					<label for="marca">Brand</label>
 					<select name="marca" id="marca" class="form-control">
-						<option value="1">Samsung</option> 
-						<option value="2">Xiaomi</option> 
-						<option value="3">Honor</option>
-						<option value="4">Iphone</option> 
-						<option value="5">Sony</option> 
 					</select>
 				</div>
 			</div>

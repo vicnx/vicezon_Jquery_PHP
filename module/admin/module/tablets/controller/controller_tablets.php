@@ -6,6 +6,17 @@
    include($path . "module/admin/module/tablets/model/dummiestablets.php");
     // session_start();
     switch($_GET['op']){
+        case 'createbrand';
+            echo "Hola";
+            $newbrand=$_POST['newbrand'];
+            print_r($newbrand);
+            die;
+            break;
+        case 'brands';
+            $brands = selectbrands();
+            echo json_encode($brands);
+            exit;
+            break;
         case'changerank':
             $rank=changerank();
             echo json_encode("success");
