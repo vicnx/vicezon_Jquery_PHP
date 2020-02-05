@@ -1,3 +1,4 @@
+// SELECT ADMIN OR CLIENT
 $(document).ready(function() {
     $("#login").on("click",function(){
         $.ajax({ 
@@ -14,4 +15,12 @@ $(document).ready(function() {
             }
         });
     });
+
+    // FUNCTIONES MENU
+    $('#contact').on("click",function(){
+        location.href = "index.php?page=contact";
+    })
+    $('#home').on("click",function(){
+        location.href = "index.php";
+    })
 });

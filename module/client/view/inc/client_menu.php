@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#" data-tr="Home"></a>
+        <a id="home" class="nav-link" data-tr="Home"></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -19,7 +19,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Offers</a>
+        <a id="contact" class="nav-link">Contact</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
