@@ -8,6 +8,10 @@ function randomname(){
     $final=$principiorand . $mediorand;
     return $final;
 }
+function rand_img_int($st_num=1,$end_num=20,$mul=1){
+    if ($st_num>$end_num) return false;
+    return mt_rand($st_num*$mul,$end_num*$mul)/$mul;
+}
 function rand_int($st_num=100,$end_num=9999,$mul=1){
     if ($st_num>$end_num) return false;
     return mt_rand($st_num*$mul,$end_num*$mul)/$mul;
@@ -22,6 +26,7 @@ function rand_brand($st_num=1,$end_num=5,$mul=1){
 }
 function dummies(){
     for ($i=0;$i<20;$i++){
+        $imagen=
         $data = [
             "nombre" => randomname(),
             "fpublic" => "12/02/2019",
@@ -29,7 +34,8 @@ function dummies(){
             "marca" => rand_brand(),
             'colores' => Array ( "Azul:Negro:Blanco:Rojo" ),
             "sim"=> "Yes",
-            "rating"=> rand_float()
+            "rating"=> rand_float(),
+            "imagen"=> "module/admin/module/tablets/view/img/".rand_img_int().".jpg"
         ];
         $tabletdao= new TabletsDAO();
         if(FindNameTablet($data['nombre'])==false){

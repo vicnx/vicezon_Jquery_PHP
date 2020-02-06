@@ -9,7 +9,24 @@ $(document).ready(function() {
             success: function (data) { 
                 for (var i = 0; i < 10; i++) {
                     $('#top-tablets').append(
-                        '<div class="item">'+'<h1>'+(i+1)+'</h1>'+'<h2>'+data[i].nombre+'</h2>'+'</div>'
+                        '<div class="item">'+
+                            '<div class="card">'+
+                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                                '<div class="card-body">'+
+                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                    '<p class="card-text">'+data[i].price+' €</p>'+
+                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                        // '<div class="item">'+
+                        //     '<img src="'+data[i].imagen+'" alt="Smiley face"">'+
+                        //     '<div class="footer_top_tablets">'+
+                        //         '<span id="rating_top_tablets"><i class="fas fa-star"></i> '+data[i].rating+'</span>'+
+                        //         '<span id="number_top_tablets">'+(i+1)+'</span>'+
+                        //         '<span id="name_top_tablets">'+data[i].nombre+'</span>'+
+                        //     '</div>'+
+                        // '</div>'
                     )
                  }
             },
@@ -38,10 +55,10 @@ $(document).ready(function() {
 
 
     $('.owl-carousel').owlCarousel({
-        stagePadding:50,
-        loop:true,
-        margin:10,
-        nav:true,
+        stagePadding:40,
+        loop:false,
+        margin:50,
+        nav:false,
         responsive:{
             400:{
                 items:1,
@@ -55,3 +72,16 @@ $(document).ready(function() {
         }
     })
 })
+
+$(function() {
+    var menu = $("#menunav");
+    $(window).scroll(function() {    
+        var scroll = $(window).scrollTop();
+    
+        if (scroll >= 200) {
+            menu.removeClass('transparent').addClass("bg-dark");
+        } else {
+            menu.removeClass("bg-dark").addClass('transparent');
+        }
+    });
+});

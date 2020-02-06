@@ -5,6 +5,8 @@ class TabletsDAO{
     function save($data){
         $conn= new connection();
         //echo "dentro funcion save";
+        $imagen=$data['imagen'];
+        $rating=$data['rating'];
         $colores="";
         $nombre=$data['nombre'];
         $price=$data['price'];
@@ -16,8 +18,8 @@ class TabletsDAO{
         }
         $sim=$data['sim'];
         $rating=$data['rating'];
-        $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim, rating)
-        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','0')";
+        $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim, rating, imagen)
+        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','$rating','$imagen')";
         $res=$conn->exec($sql);
         $conn = null;
         return $res;

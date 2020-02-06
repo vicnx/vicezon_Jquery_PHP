@@ -15,5 +15,4 @@
             </form>
         </div>
     </div>
-    <div class="bgheader"></div>
 </header>

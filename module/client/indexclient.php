@@ -7,7 +7,7 @@
 			if ((isset($_GET['page'])) && ($_GET['page']=="home") ){
 				include("module/client/module/home/view/inc/home_top_page.php");
 			}else if((isset($_GET['page'])) && ($_GET['page']=="contact") ){
-				include("module/client/module/home/view/inc/contact_top_page.php");
+				include("module/client/module/contact/view/inc/contact_top_page.php");
 			}else{
 				include("module/client/module/home/view/inc/home_top_page.php");
 			}
