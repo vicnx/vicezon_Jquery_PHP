@@ -13,6 +13,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false" data-tr="Products"></a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink-333">
+          <a class="dropdown-item" id="products">Products</a>
           <a class="dropdown-item" href="#">Tablets</a>
           <a class="dropdown-item disabled" href="#">Mobiles</a>
           <a class="dropdown-item disabled" href="#">TVs</a>

@@ -43,7 +43,7 @@ $(document).ready(function() {
         success: function (data) { 
                 for (var i = 0; i < 6; i++) {
                     $('#brands-cards-homepage').append(
-                        '<div class="brand-card">'+'<span>'+data[i].namebrand+'</span></div>'
+                        '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
                     )
                  }
 

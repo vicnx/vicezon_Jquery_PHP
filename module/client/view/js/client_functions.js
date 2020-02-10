@@ -23,4 +23,7 @@ $(document).ready(function() {
     $('#home').on("click",function(){
         location.href = "index.php";
     })
+    $('#products').on("click",function(){
+        location.href = "index.php?page=shop";
+    })
 });
