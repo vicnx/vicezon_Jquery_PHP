@@ -23,7 +23,7 @@
                 <textarea class="text_area_contact input_form"name="message" type="text" placeholder="Write us a message..."></textarea>
             </div>
             <div class="input_boton">
-                <a href="https://www.w3schools.com">SEND</a>
+                <a href="https://www.w3schools.com">SENDe</a>
             </div>
         </form>
     </div>
