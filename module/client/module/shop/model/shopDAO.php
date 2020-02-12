@@ -9,4 +9,11 @@ function select_all_tablets_shop(){ //USE IN LIST DATATABLES FULL
     $conn =null;
     return $query;
 }
+function select_by_brand($id){
+    $conn = new connection();
+    $sql = "SELECT * FROM Tablets Where marca=$id";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>

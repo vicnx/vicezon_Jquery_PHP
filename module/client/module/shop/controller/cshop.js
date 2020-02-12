@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    $(function() {
+function menu(){
+    $(function menu() {
         var menu = $("#menunav");
         $(window).scroll(function() {    
             var scroll = $(window).scrollTop();
@@ -11,6 +11,8 @@ $(document).ready(function() {
             }
         });
     });
+}
+function shop_list_all(){
     $.ajax({ 
         type: 'GET', 
         url: 'module/client/module/shop/controller/controller_shop.php?op=all',
@@ -38,4 +40,12 @@ $(document).ready(function() {
             console.log("error");
         }
     });
+}
+function shop_list_brands(){
+    var brand = localStorage.getItem('brand');
+    console.log(brand)
+}
+$(document).ready(function() {
+    menu();
+    shop_list_all();
 });

@@ -6,5 +6,9 @@ switch($_GET['op']){
         $alltablets=select_all_tablets_shop();
         echo json_encode($alltablets);
         break;
-}
+    case 'listbybrand':
+        
+        // $tablets_by_brand=select_by_brand($_GET['idbrand']);
+        break;
+}   
 ?>

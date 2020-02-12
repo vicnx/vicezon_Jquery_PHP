@@ -1,39 +1,57 @@
-$(document).ready(function() {
-
-        $.ajax({ 
-            type: 'GET', 
-            url: '/vicezon/module/client/module/home/controller/controller_home.php?op=toptablets',
-            async:false, 
-            dataType: 'json',
-            data:{},//idproduct es lo que guardamos para coger en el get LUEGO EL GET TIENE QUE SER ASI ($_GET['idproduct']); y el id ES EL ATRIBUTO
-            success: function (data) { 
-                for (var i = 0; i < 10; i++) {
-                    $('#top-tablets').append(
-                        '<div class="item">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                '</div>'+
+function carousel(){
+    $.ajax({ 
+        type: 'GET', 
+        url: '/vicezon/module/client/module/home/controller/controller_home.php?op=toptablets',
+        async:false, 
+        dataType: 'json',
+        data:{},//idproduct es lo que guardamos para coger en el get LUEGO EL GET TIENE QUE SER ASI ($_GET['idproduct']); y el id ES EL ATRIBUTO
+        success: function (data) { 
+            for (var i = 0; i < 10; i++) {
+                $('#top-tablets').append(
+                    '<div class="item">'+
+                        '<div class="card">'+
+                            '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                            '<div class="card-body">'+
+                                '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                '<p class="card-text">'+data[i].price+' €</p>'+
+                                '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                             '</div>'+
-                        '</div>'
-                        // '<div class="item">'+
-                        //     '<img src="'+data[i].imagen+'" alt="Smiley face"">'+
-                        //     '<div class="footer_top_tablets">'+
-                        //         '<span id="rating_top_tablets"><i class="fas fa-star"></i> '+data[i].rating+'</span>'+
-                        //         '<span id="number_top_tablets">'+(i+1)+'</span>'+
-                        //         '<span id="name_top_tablets">'+data[i].nombre+'</span>'+
-                        //     '</div>'+
-                        // '</div>'
-                    )
-                 }
+                        '</div>'+
+                    '</div>'
+                    // '<div class="item">'+
+                    //     '<img src="'+data[i].imagen+'" alt="Smiley face"">'+
+                    //     '<div class="footer_top_tablets">'+
+                    //         '<span id="rating_top_tablets"><i class="fas fa-star"></i> '+data[i].rating+'</span>'+
+                    //         '<span id="number_top_tablets">'+(i+1)+'</span>'+
+                    //         '<span id="name_top_tablets">'+data[i].nombre+'</span>'+
+                    //     '</div>'+
+                    // '</div>'
+                )
+             }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+    $('.owl-carousel').owlCarousel({
+        stagePadding:40,
+        loop:false,
+        margin:50,
+        nav:false,
+        responsive:{
+            400:{
+                items:1,
             },
-            error: function(){
-                console.log("error");
+            600:{
+                items:3,
+            },
+            1000:{
+                items:5,
             }
-    });	
+        }
+    })	
+}
+function topbrands(){
     $.ajax({ 
         type: 'GET', 
         url: '/vicezon/module/client/module/home/controller/controller_home.php?op=brands_card',
@@ -51,37 +69,43 @@ $(document).ready(function() {
         error: function(){
             console.log("error");
         }
-});
-
-
-    $('.owl-carousel').owlCarousel({
-        stagePadding:40,
-        loop:false,
-        margin:50,
-        nav:false,
-        responsive:{
-            400:{
-                items:1,
-            },
-            600:{
-                items:3,
-            },
-            1000:{
-                items:5,
-            }
-        }
-    })
-})
-
-$(function() {
-    var menu = $("#menunav");
-    $(window).scroll(function() {    
-        var scroll = $(window).scrollTop();
-    
-        if (scroll >= 200) {
-            menu.removeClass('transparent').addClass("bg-dark");
-        } else {
-            menu.removeClass("bg-dark").addClass('transparent');
-        }
     });
-});
+    $('.brand-card').on('click',function() {
+        var idbrand= $(this).attr("id");
+        localStorage.setItem("brand", idbrand);
+        console.log(idbrand);
+        $.ajax({
+            type: 'GET',
+            url: '/vicezon/module/client/module/shop/controller/controller_shop.php?op=listbybrand',
+            async: false,
+            dataType: 'json',
+            data:{},
+            success: function(){
+                console.log("Ajax1 success");
+            },
+            error: function (){
+                console.log("error");
+            }
+        });
+    });
+}
+function menu(){
+    $(function() {
+        var menu = $("#menunav");
+        $(window).scroll(function() {    
+            var scroll = $(window).scrollTop();
+        
+            if (scroll >= 200) {
+                menu.removeClass('transparent').addClass("bg-dark");
+            } else {
+                menu.removeClass("bg-dark").addClass('transparent');
+            }
+        });
+    });
+}
+
+$(document).ready(function() {
+    menu();
+    carousel();
+    topbrands();
+})
