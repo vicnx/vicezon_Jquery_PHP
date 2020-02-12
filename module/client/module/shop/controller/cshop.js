@@ -1,4 +1,16 @@
 $(document).ready(function() {
+    $(function() {
+        var menu = $("#menunav");
+        $(window).scroll(function() {    
+            var scroll = $(window).scrollTop();
+        
+            if (scroll >= 100) {
+                menu.removeClass('transparent').addClass("bg-dark");
+            } else {
+                menu.removeClass("bg-dark").addClass('transparent');
+            }
+        });
+    });
     $.ajax({ 
         type: 'GET', 
         url: 'module/client/module/shop/controller/controller_shop.php?op=all',
@@ -6,9 +18,9 @@ $(document).ready(function() {
         dataType: 'json',
         data:{},
         success: function (data) { 
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < data.length; i++) {
                 $('#list').append(
-                    '<div class="item">'+
+                    '<div class="itemlist">'+
                         '<div class="card">'+
                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                             '<div class="card-body">'+
