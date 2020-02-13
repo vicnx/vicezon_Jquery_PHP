@@ -73,20 +73,7 @@ function topbrands(){
     $('.brand-card').on('click',function() {
         var idbrand= $(this).attr("id");
         localStorage.setItem("brand", idbrand);
-        console.log(idbrand);
-        $.ajax({
-            type: 'GET',
-            url: '/vicezon/module/client/module/shop/controller/controller_shop.php?op=listbybrand',
-            async: false,
-            dataType: 'json',
-            data:{},
-            success: function(){
-                console.log("Ajax1 success");
-            },
-            error: function (){
-                console.log("error");
-            }
-        });
+        window.location.href = "index.php?page=shop&op=listbybrand";
     });
 }
 function menu(){

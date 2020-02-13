@@ -7,8 +7,11 @@ switch($_GET['op']){
         echo json_encode($alltablets);
         break;
     case 'listbybrand':
-        
-        // $tablets_by_brand=select_by_brand($_GET['idbrand']);
+        include("module/client/module/shop/view/shop.php");
+        break;
+    case 'getinfobd':
+        $tablets_by_brand=select_by_brand($_GET['brand']);
+        echo json_encode($tablets_by_brand);
         break;
 }   
 ?>
