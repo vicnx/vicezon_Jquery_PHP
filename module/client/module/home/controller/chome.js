@@ -73,7 +73,7 @@ function topbrands(){
     $('.brand-card').on('click',function() {
         var idbrand= $(this).attr("id");
         localStorage.setItem("brand", idbrand);
-        window.location.href = "index.php?page=shop&op=listbybrand";
+        window.location.href = "index.php?page=shop";
     });
 }
 function menu(){
