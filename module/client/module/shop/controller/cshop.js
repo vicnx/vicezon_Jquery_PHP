@@ -67,7 +67,7 @@ function shop_list_brands(){
             }else{
                 for (var i = 0; i < data.length; i++) {
                     $('#list').append(
-                        '<div class="itemlist">'+
+                        '<div class="itemlist" id"'+CONTINUAR POR AQUI OSTIA PUTA+'">'+
                             '<div class="card">'+
                                 '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                                 '<div class="card-body">'+
@@ -85,6 +85,9 @@ function shop_list_brands(){
             console.log("error");
         }
     });
+}
+function details_item_shop(){
+
 }
 
 $(document).ready(function() {
