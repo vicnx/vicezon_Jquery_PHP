@@ -17,8 +17,12 @@ function shop_general(){
         shop_list_all();
     }else{
         shop_list_brands();
-        localStorage.clear();
     }
+    // if(localStorage.getItem("producto") === null & localStorage.getItem("brand") === null) {
+    //     shop_list_all();
+    // }else if(localStorage.getItem("producto") === null & localStorage.getItem("brand") != null){
+    //     shop_list_brands();
+    // }
 }
 function shop_list_all(){
     $.ajax({ 
@@ -33,7 +37,7 @@ function shop_list_all(){
             }else{
                 for (var i = 0; i < data.length; i++) {
                     $('#list').append(
-                        '<div class="itemlist">'+
+                        '<div class="itemlist"id="'+data[i].idproduct+'">'+
                             '<div class="card">'+
                                 '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                                 '<div class="card-body">'+
@@ -52,6 +56,7 @@ function shop_list_all(){
         }
     });
 }
+
 function shop_list_brands(){
     var brand = localStorage.getItem('brand');
     $.ajax({ 
@@ -67,7 +72,7 @@ function shop_list_brands(){
             }else{
                 for (var i = 0; i < data.length; i++) {
                     $('#list').append(
-                        '<div class="itemlist" id"'+CONTINUAR POR AQUI OSTIA PUTA+'">'+
+                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
                             '<div class="card">'+
                                 '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                                 '<div class="card-body">'+
@@ -86,13 +91,38 @@ function shop_list_brands(){
         }
     });
 }
-function details_item_shop(){
 
+function details_shop(){
+    $(".itemlist").on('click',function(){
+        var idproduct= $(this).attr("id");
+        console.log(idproduct);
+        localStorage.setItem("producto", idproduct);
+        $("#list").html("");
+        $.ajax({ 
+            type: 'GET', 
+            url: 'module/client/module/shop/controller/controller_shop.php?op=details&idproduct='+idproduct,
+            async:false, 
+            dataType: 'json',
+            data:{},
+            success: function (data) { 
+                $('#list').append(
+                    '<img class="details_img" src="'+data[0].imagen+'" alt="picture"">'+
+                    '<span>ID: </span>'+data[0].idproduct+
+                    '<span>NAME: </span>'+data[0].nombre+
+                    '<span>Price: </span>'+data[0].price
+                )
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
+    })
 }
 
 $(document).ready(function() {
     menu();
     shop_general();
+    details_shop();
     // shop_list_all();
     // shop_list_brands();
 });

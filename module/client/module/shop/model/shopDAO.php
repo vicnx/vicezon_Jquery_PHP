@@ -16,4 +16,11 @@ function select_by_brand($id){
     $conn =null;
     return $query;
 }
+function select_one_product($id){
+    $conn = new connection();
+    $sql = "SELECT * FROM Tablets Where idproduct=$id";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>

@@ -22,8 +22,12 @@ $(document).ready(function() {
     })
     $('#home').on("click",function(){
         location.href = "index.php";
+        localStorage.removeItem("brand");
+        localStorage.removeItem("producto");
     })
     $('#products').on("click",function(){
+        localStorage.removeItem("brand");
+        localStorage.removeItem("producto");
         location.href = "index.php?page=shop";
     })
 });
