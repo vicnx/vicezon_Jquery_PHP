@@ -1,3 +1,12 @@
+/* FILTERS */
+.filtersbody{
+    display: flex;
+    flex-direction: column;
+    padding-left: 45px !important;
+}
+.brandtext{
+    text-transform: uppercase;
+}
 /* DETAILS */
 .details_img{
     width: 200px;
@@ -15,12 +24,13 @@
 }
 .filters{
     float: right;
-    background: red;
-    width: 30%;
+    width: 20%;
     margin-right: 20px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .list{
-    width: 63%;
+    width: 80%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -29,7 +39,7 @@
 .itemlist{
     margin-right: 20px;
     margin-bottom: 20px;
-    width: 210px;
+    width: 198px;
     border: 1px solid black;
     cursor: pointer;
 }

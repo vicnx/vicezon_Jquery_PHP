@@ -18,11 +18,6 @@ function shop_general(){
     }else{
         shop_list_brands();
     }
-    // if(localStorage.getItem("producto") === null & localStorage.getItem("brand") === null) {
-    //     shop_list_all();
-    // }else if(localStorage.getItem("producto") === null & localStorage.getItem("brand") != null){
-    //     shop_list_brands();
-    // }
 }
 function shop_list_all(){
     $.ajax({ 
@@ -118,11 +113,36 @@ function details_shop(){
         });
     })
 }
+function filters(){
+    $.ajax({ 
+        type: 'GET', 
+        url: 'module/client/module/shop/controller/controller_shop.php?op=filters_brand',
+        async:false, 
+        dataType: 'json',
+        data:{},
+        success: function (data) { 
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                $('#filters_brand').append(
+                    '<label class="custom-control-label">'+
+                    '<input class="custom-control-input" type="checkbox" value="">'+
+                    '<label class="custom-control-label brandtext">'+data[i].namebrand+'</label>'+
+                    '</label>'
+                )
+             }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+}
+
 
 $(document).ready(function() {
     menu();
     shop_general();
     details_shop();
+    filters();
     // shop_list_all();
     // shop_list_brands();
 });

@@ -17,5 +17,9 @@ switch($_GET['op']){
         $tablet=select_one_product($_GET['idproduct']);
         echo json_encode($tablet);
         break;
+    case 'filters_brand':
+        $brands=selectbrands();
+        echo json_encode($brands);
+        break;
 }   
 ?>

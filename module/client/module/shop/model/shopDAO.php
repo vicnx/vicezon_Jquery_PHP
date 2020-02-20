@@ -23,4 +23,11 @@ function select_one_product($id){
     $conn =null;
     return $query;
 }
+function selectbrands(){
+    $conn = new connection();
+    $sql = "SELECT * FROM brands limit 6";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>
