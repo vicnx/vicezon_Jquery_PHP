@@ -8,7 +8,7 @@ function carousel(){
         success: function (data) { 
             for (var i = 0; i < 10; i++) {
                 $('#top-tablets').append(
-                    '<div class="item">'+
+                    '<div class="item" id='+data[i].idproduct+'>'+
                         '<div class="card">'+
                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                             '<div class="card-body">'+
@@ -49,7 +49,12 @@ function carousel(){
                 items:5,
             }
         }
-    })	
+    })
+    $('.item').on('click',function() {
+        var idproduct= $(this).attr("id");
+        localStorage.setItem("product", idproduct);
+        window.location.href = "index.php?page=shop";
+    });
 }
 function topbrands(){
     $.ajax({ 
