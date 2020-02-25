@@ -10,7 +10,7 @@ switch($_GET['op']){
         include("module/client/module/shop/view/shop.php");
         break;
     case 'getinfobd':
-        $tablets_by_brand=select_by_brand($_GET['brand']);
+        $tablets_by_brand=select_by_brand($_GET['checks']);
         echo json_encode($tablets_by_brand);
         break;
     case 'details':

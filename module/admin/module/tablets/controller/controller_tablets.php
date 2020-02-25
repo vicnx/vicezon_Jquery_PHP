@@ -80,7 +80,7 @@
                             $fdaocreate = $tabletdao->save($_POST);
                             $findid = $tabletdao->select_id_tablet_by_nombre($_POST['nombre']); //utilizo esta funcion para encontrar la id
                             //$idproduct = $_GET['id'];
-                            print_r("hole");
+                            // print_r("hole2");
                         }catch (Exception $e){
                             $callback="index.php?page=503";
                             Browser::redirect($callback);
@@ -91,6 +91,8 @@
                             $callback="index.php?page=controller_tablets&op=list";
                             Browser::redirect($callback);
                             die;
+                        }else{
+                            print_r("NANAI");
                         }
                     }else{
                         $error = "The tablet already exists";

@@ -9,9 +9,9 @@ function select_all_tablets_shop(){ //USE IN LIST DATATABLES FULL
     $conn =null;
     return $query;
 }
-function select_by_brand($id){
+function select_by_brand($checks){
     $conn = new connection();
-    $sql = "SELECT * FROM Tablets Where marca=$id";
+    $sql = "SELECT * FROM Tablets $checks";
     $query = $conn->query($sql)->fetchAll();
     $conn =null;
     return $query;

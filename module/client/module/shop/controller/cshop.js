@@ -142,61 +142,98 @@ function filters(){
     });
 }
 function checkbox_brands_checked(){
-    var brand = localStorage.getItem('filters');
-    $("#list").html("");
-    localStorage.removeItem('brand');
-    $.ajax({ 
-        type: 'GET', 
-        url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand,
-        async:false, 
-        dataType: 'json',
-        data:{},
-        success: function (data) { 
-            console.log(data);
-            if (data.length == 0){
-                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+    var checks=[];
+    var count = 0;
+    var arrayfinal="";
+    $('input').on('click',function(){  
+        var idbrand= $(this).attr("id");
+        console.log(idbrand);
+        if($(this).is(':checked')){
+            if (count==0){
+                checks.push("Where marca = "+idbrand);
+                count=count+1;
             }else{
-                for (var i = 0; i < data.length; i++) {
-                    $('#list').append(
-                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
-                    )
-                 }
+                count=count+1;
+                checks.push(" OR marca = "+idbrand);
             }
-        },
-        error: function(){
-            console.log("error");
+        }else{
+            checks.pop();
+            count=count-1;
         }
-    });
+        console.log("count"+count)
+        console.log(checks);
+        if (!count==0){
+            var arrayfinal = checks.toString();
+            arrayfinal=arrayfinal.replace(/,/g, "");
+            console.log(arrayfinal);
+            $("#list").html("");    
+            $.ajax({ 
+                type: 'GET', 
+                url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+arrayfinal,
+                async:false, 
+                dataType: 'json',
+                data:{},
+                success: function (data) { 
+                    console.log(data);
+                    if (data.length == 0){
+                        $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+                    }else{
+                        for (var i = 0; i < data.length; i++) {
+                            $('#list').append(
+                                '<div class="itemlist" id="'+data[i].idproduct+'">'+
+                                    '<div class="card">'+
+                                        '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                                        '<div class="card-body">'+
+                                            '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                            '<p class="card-text">'+data[i].price+' €</p>'+
+                                            '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                            )
+                         }
+                    }
+                },
+                error: function(){
+                    console.log("error");
+                }
+            });
+        }else if($("input").is(':checked')<1){
+            shop_list_all();
+        }
+        getdetails();
+        // localStorage.setItem("filters", idbrand);
+        // checkbox_brands_checked();
+    })
+    // var brand = localStorage.getItem('filters');
+    // localStorage.removeItem('brand');
+ 
 }
-
+function getdetails(){
+    $(".itemlist").on('click',function(){
+        var idproduct= $(this).attr("id");
+        localStorage.setItem("product", idproduct);
+        details_shop();
+})
+}
 
 $(document).ready(function() {
     menu();
     shop_general();
     // details_shop();
     filters();
+    checkbox_brands_checked();
+    getdetails()
     // shop_list_all();
     // shop_list_brands();
 
     //ONCLICKS
-    $('input').on('click',function(){
-        var idbrand= $(this).attr("id");
-        console.log(idbrand);
-        localStorage.setItem("filters", idbrand);
-        checkbox_brands_checked();
-    })
-    $(".itemlist").on('click',function(){
-            var idproduct= $(this).attr("id");
-            localStorage.setItem("product", idproduct);
-            details_shop();
-    })
+    // $('input').on('click',function(){
+        
+    //         var idbrand= $(this).attr("id");
+    //         console.log(idbrand);
+    //         localStorage.setItem("filters", idbrand);
+    //         checkbox_brands_checked();
+
+    // })
 });

@@ -5,6 +5,28 @@ class TabletsDAO{
     function save($data){
         $conn= new connection();
         //echo "dentro funcion save";
+        $imagen="module/admin/module/tablets/view/img/18.jpg";
+        $rating="2";
+        $colores="";
+        $nombre=$data['nombre'];
+        $price=$data['price'];
+        $marca=$data['marca'];
+        $fpublic=$data['fpublic'];
+        foreach ($data["colores"] as $color){
+            $colores=$colores."$color:";
+
+        }
+        $sim=$data['sim'];
+        $rating="2";
+        $sql="INSERT INTO Tablets (nombre, price, marca, fpublic, colores, sim, rating, imagen)
+        VALUES ('$nombre','$price','$marca','$fpublic','$colores' ,'$sim','$rating','$imagen')";
+        $res=$conn->exec($sql);
+        $conn = null;
+        return $res;
+    }
+    function savedummies($data){
+        $conn= new connection();
+        //echo "dentro funcion save";
         $imagen=$data['imagen'];
         $rating=$data['rating'];
         $colores="";

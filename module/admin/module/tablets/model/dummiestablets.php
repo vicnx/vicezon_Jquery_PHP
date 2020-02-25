@@ -39,7 +39,7 @@ function dummies(){
         ];
         $tabletdao= new TabletsDAO();
         if(FindNameTablet($data['nombre'])==false){
-            $tabletdao->save($data);
+            $tabletdao->savedummies($data);
         }
 
     }
