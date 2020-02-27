@@ -45,6 +45,7 @@ function shop_list_all(){
                                 '<div class="card-body">'+
                                     '<h5 class="card-title">'+data[i].nombre+'</h5>'+
                                     '<p class="card-text">'+data[i].price+' €</p>'+
+                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
                                     '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                                 '</div>'+
                             '</div>'+
@@ -80,6 +81,7 @@ function shop_list_brands(){
                                 '<div class="card-body">'+
                                     '<h5 class="card-title">'+data[i].nombre+'</h5>'+
                                     '<p class="card-text">'+data[i].price+' €</p>'+
+                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
                                     '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                                 '</div>'+
                             '</div>'+
@@ -130,7 +132,7 @@ function filters(){
             for (var i = 0; i < data.length; i++) {
                 $('#filters_brand').append(
                     '<label class="custom-control-label">'+
-                    '<input class="custom-control-input" type="checkbox" value="" name="brands[]" id='+data[i].idbrand+'>'+
+                    '<input class="custom-control-input checkbox_filter" type="checkbox" value="" name="brands" idfilter='+data[i].idbrand+'>'+
                     '<label class="custom-control-label brandtext">'+data[i].namebrand+'</label>'+
                     '</label>'
                 )
@@ -141,35 +143,27 @@ function filters(){
         }
     });
 }
-function checkbox_brands_checked(){
-    var checks=[];
-    var count = 0;
-    var arrayfinal="";
-    $('input').on('click',function(){  
-        var idbrand= $(this).attr("id");
-        console.log(idbrand);
-        if($(this).is(':checked')){
-            if (count==0){
-                checks.push("Where marca = "+idbrand);
-                count=count+1;
-            }else{
-                count=count+1;
-                checks.push(" OR marca = "+idbrand);
-            }
-        }else{
-            checks.pop();
-            count=count-1;
-        }
-        console.log("count"+count)
-        console.log(checks);
-        if (!count==0){
-            var arrayfinal = checks.toString();
-            arrayfinal=arrayfinal.replace(/,/g, "");
-            console.log(arrayfinal);
-            $("#list").html("");    
+function checkbox_filter(){
+    var checked="";
+    var contador1=0;
+    var sentencia="";
+    $('.checkbox_filter').on('click',function(){ 
+        checked="";
+        contador1=0;
+        $(".checkbox_filter:checkbox[name=brands]:checked").each(function() {
+            checked=checked+$(this).attr("idfilter")+",";
+       });
+       checked = checked.slice(0, -1);
+       sentencia="Where marca IN("+checked+")";
+       console.log(sentencia);
+       if(sentencia.length<17){
+        $("#list").html("");
+           shop_list_all();
+       }else{
+        $("#list").html("");    
             $.ajax({ 
                 type: 'GET', 
-                url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+arrayfinal,
+                url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia,
                 async:false, 
                 dataType: 'json',
                 data:{},
@@ -186,29 +180,90 @@ function checkbox_brands_checked(){
                                         '<div class="card-body">'+
                                             '<h5 class="card-title">'+data[i].nombre+'</h5>'+
                                             '<p class="card-text">'+data[i].price+' €</p>'+
+                                            '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
                                             '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'
                             )
-                         }
+                        }
                     }
                 },
                 error: function(){
                     console.log("error");
                 }
             });
-        }else if($("input").is(':checked')<1){
-            shop_list_all();
         }
-        getdetails();
-        // localStorage.setItem("filters", idbrand);
-        // checkbox_brands_checked();
-    })
-    // var brand = localStorage.getItem('filters');
-    // localStorage.removeItem('brand');
- 
+    });    
 }
+//FILTROS CHECK CON ARRAY(Si quitas el check borra el ultimo check que has hecho (no funciona bien))
+// function checkbox_brands_checked(){
+//     var checks=[];
+//     var count = 0;
+//     $('input').on('click',function(){  
+//         var idbrand= $(this).attr("id");
+//         console.log(idbrand);
+//         if($(this).is(':checked')){
+//             if (count==0){
+//                 checks.push("Where marca = "+idbrand);
+//                 count=count+1;
+//             }else{
+//                 count=count+1;
+//                 checks.push(" OR marca = "+idbrand);
+//             }
+//         }else{
+//             checks.pop();
+//             count=count-1;
+//         }
+//         console.log("count"+count)
+//         console.log(checks);
+//         if (!count==0){
+//             var arrayfinal = checks.toString();
+//             arrayfinal=arrayfinal.replace(/,/g, "");
+//             console.log(arrayfinal);
+//             $("#list").html("");    
+//             $.ajax({ 
+//                 type: 'GET', 
+//                 url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+arrayfinal,
+//                 async:false, 
+//                 dataType: 'json',
+//                 data:{},
+//                 success: function (data) { 
+//                     console.log(data);
+//                     if (data.length == 0){
+//                         $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+//                     }else{
+//                         for (var i = 0; i < data.length; i++) {
+//                             $('#list').append(
+//                                 '<div class="itemlist" id="'+data[i].idproduct+'">'+
+//                                     '<div class="card">'+
+//                                         '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+//                                         '<div class="card-body">'+
+//                                             '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+//                                             '<p class="card-text">'+data[i].price+' €</p>'+
+//                                             '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+//                                         '</div>'+
+//                                     '</div>'+
+//                                 '</div>'
+//                             )
+//                          }
+//                     }
+//                 },
+//                 error: function(){
+//                     console.log("error");
+//                 }
+//             });
+//         }else if($("input").is(':checked')<1){
+//             shop_list_all();
+//         }
+//         getdetails();
+//         // localStorage.setItem("filters", idbrand);
+//         // checkbox_brands_checked();
+//     })
+//     // var brand = localStorage.getItem('filters');
+//     // localStorage.removeItem('brand');
+ 
+// }
 function getdetails(){
     $(".itemlist").on('click',function(){
         var idproduct= $(this).attr("id");
@@ -220,20 +275,7 @@ function getdetails(){
 $(document).ready(function() {
     menu();
     shop_general();
-    // details_shop();
     filters();
-    checkbox_brands_checked();
-    getdetails()
-    // shop_list_all();
-    // shop_list_brands();
-
-    //ONCLICKS
-    // $('input').on('click',function(){
-        
-    //         var idbrand= $(this).attr("id");
-    //         console.log(idbrand);
-    //         localStorage.setItem("filters", idbrand);
-    //         checkbox_brands_checked();
-
-    // })
+    checkbox_filter();
+    getdetails();
 });
