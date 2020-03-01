@@ -12,20 +12,20 @@ function menu(){
         });
     });
 }
-function shop_general(){
-    if (localStorage.getItem("brand") === null) {
-        if(localStorage.getItem("product") != null){
-            console.log("product not null");
-            details_shop();
-        }else{
-            console.log("brand null");
-            shop_list_all();
-        }
-    }else if (localStorage.getItem("brand") != null){
-        console.log("brand not null");
-        shop_list_brands();
-    }
-}
+// function shop_general(){
+//     if (localStorage.getItem("brand") === null) {
+//         if(localStorage.getItem("product") != null){
+//             console.log("product not null");
+//             details_shop();
+//         }else{
+//             console.log("brand null");
+//             shop_list_all();
+//         }
+//     }else if (localStorage.getItem("brand") != null){
+//         console.log("brand not null");
+//         shop_list_brands();
+//     }
+// }
 function shop_list_all(){
     console.log("shop list all");
     $.ajax({ 
@@ -99,9 +99,8 @@ function shop_list_brands(){
 }
 
 function details_shop(){
+    //se carga el producto desde localStorage.
     var idproduct=localStorage.getItem("product");
-    // localStorage.removeItem("product");
-    console.log("idproducto local= "+idproduct);
     $("#list").html("");
     $.ajax({ 
         type: 'GET', 
@@ -122,12 +121,14 @@ function details_shop(){
             console.log("error");
         }
     });
+    //este boton lo que hace es borrar el localstorage y actualziar la pagina
     $('#btnvolver').on('click',function() {
         localStorage.removeItem("product");
         window.location.href = "index.php?page=shop";
     });
 }
 function filters(){
+    //aqui introducimos las marcas de base de datos dinamicamente al div
     $.ajax({ 
         type: 'GET', 
         url: 'module/client/module/shop/controller/controller_shop.php?op=filters_brand',
@@ -151,6 +152,7 @@ function filters(){
     });
 }
 function checkbox_filter(){
+    //elimina todas las marcas de localstorage para despues añadirlas
     localStorage.removeItem("brand");
     var checked="";
     var contador1=0;
@@ -159,6 +161,7 @@ function checkbox_filter(){
     contador1=0;
     $(".checkbox_filter:checkbox[name=brands]:checked").each(function() {
         checked=checked+$(this).attr("id")+",";
+        //Añade todas las marcas checkeadas a local storage
         localStorage.setItem("brand", checked);
     });
     checked = checked.slice(0, -1);
@@ -281,20 +284,29 @@ function getdetails(){
 }
 
 function check_checkbox_default_checked(){
+    // esto es una especie de segundo controlador para que funcione correctamente
     var idbrand = localStorage.getItem("brand");
         console.log("product is null")
         if(localStorage.getItem("brand")=== null){
             checkbox_filter();
         }else{
+            //guardamos la string de local storage en una variable
             var brands = localStorage.getItem("brand");
-            brands=brands.slice(0, -1);
+            if(localStorage.getItem("brand").length>1){
+                //le borramos el ultimo caracter si el tamaño de brands es mas de uno (ya que se separan por comas)
+                brands=brands.slice(0, -1);
+            }
+            //le borramos las comas convirtiendola en un array
             brands=brands.split(",");
+            //por cada posicion del array checkeamos en filter ese elemento
             brands.forEach(element => document.getElementById(element).checked = true);
             checkbox_filter();
         }
 }
 
 function check_checkbox_click(){
+    //Onclick elemento del filters, carpa el checkboxfilters
+    //lo cargo en una funciona aparte ya que si no sobrecargaba la pagina
     $('.checkbox_filter').on('click',function(){
         checkbox_filter();
     });
@@ -303,13 +315,15 @@ function check_checkbox_click(){
 
 $(document).ready(function() {
     if (localStorage.getItem("product")===null){
+        //si el product es null en local storage cargamos lo siguiente
         filters();
         check_checkbox_default_checked();
         check_checkbox_click();
     }else{
-        console.log("dentro else document ready");
+        //si no es null cargamos ese producto
         details_shop();
     }
+    //esto se carga siemrpe
     menu();
     getdetails();
 });
