@@ -27,6 +27,7 @@ function shop_general(){
     }
 }
 function shop_list_all(){
+    console.log("shop list all");
     $.ajax({ 
         type: 'GET', 
         url: 'module/client/module/shop/controller/controller_shop.php?op=all',
@@ -34,6 +35,7 @@ function shop_list_all(){
         dataType: 'json',
         data:{},
         success: function (data) { 
+            console.log("dentro shop list all");
             if(data.length == 0){
                 $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
             }else{
@@ -98,7 +100,7 @@ function shop_list_brands(){
 
 function details_shop(){
     var idproduct=localStorage.getItem("product");
-    localStorage.removeItem("product");
+    // localStorage.removeItem("product");
     console.log("idproducto local= "+idproduct);
     $("#list").html("");
     $.ajax({ 
@@ -109,6 +111,7 @@ function details_shop(){
         data:{},
         success: function (data) { 
             $('#list').append(
+                '<a id="btnvolver" class="btn btn-danger" href="#">Volver</a>'+
                 '<img class="details_img" src="'+data[0].imagen+'" alt="picture"">'+
                 '<span>ID: </span>'+data[0].idproduct+
                 '<span>NAME: </span>'+data[0].nombre+
@@ -118,6 +121,10 @@ function details_shop(){
         error: function(){
             console.log("error");
         }
+    });
+    $('#btnvolver').on('click',function() {
+        localStorage.removeItem("product");
+        window.location.href = "index.php?page=shop";
     });
 }
 function filters(){
@@ -144,22 +151,21 @@ function filters(){
     });
 }
 function checkbox_filter(){
+    localStorage.removeItem("brand");
     var checked="";
     var contador1=0;
     var sentencia="";
     checked="";
     contador1=0;
-    $('.checkbox_filter').on('click',function(){
-        checkbox_filter();
-    });
     $(".checkbox_filter:checkbox[name=brands]:checked").each(function() {
         checked=checked+$(this).attr("id")+",";
+        localStorage.setItem("brand", checked);
     });
     checked = checked.slice(0, -1);
     sentencia="Where marca IN("+checked+")";
     console.log(sentencia);
     if(sentencia.length<17){
-    $("#list").html("");
+        $("#list").html("");
         shop_list_all();
     }else{
     $("#list").html("");    
@@ -276,28 +282,34 @@ function getdetails(){
 
 function check_checkbox_default_checked(){
     var idbrand = localStorage.getItem("brand");
-    if (localStorage.getItem("product")===null){
         console.log("product is null")
         if(localStorage.getItem("brand")=== null){
             checkbox_filter();
         }else{
-            document.getElementById(idbrand).checked = true;
+            var brands = localStorage.getItem("brand");
+            brands=brands.slice(0, -1);
+            brands=brands.split(",");
+            brands.forEach(element => document.getElementById(element).checked = true);
             checkbox_filter();
-            document.removeItem();
         }
-    }else{
-        console.log("dentro de else");
-        details_shop();
-    }
+}
 
+function check_checkbox_click(){
+    $('.checkbox_filter').on('click',function(){
+        checkbox_filter();
+    });
 }
 
 
-
 $(document).ready(function() {
+    if (localStorage.getItem("product")===null){
+        filters();
+        check_checkbox_default_checked();
+        check_checkbox_click();
+    }else{
+        console.log("dentro else document ready");
+        details_shop();
+    }
     menu();
-    shop_general();
-    filters();
-    check_checkbox_default_checked();
     getdetails();
 });

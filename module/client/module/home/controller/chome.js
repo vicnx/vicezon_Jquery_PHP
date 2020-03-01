@@ -52,6 +52,7 @@ function carousel(){
     })
     $('.item').on('click',function() {
         var idproduct= $(this).attr("id");
+        console.log("product id= "+idproduct);
         localStorage.setItem("product", idproduct);
         window.location.href = "index.php?page=shop";
     });
@@ -77,6 +78,7 @@ function topbrands(){
     });
     $('.brand-card').on('click',function() {
         var idbrand= $(this).attr("id");
+        console.log(idbrand);
         localStorage.setItem("brand", idbrand);
         window.location.href = "index.php?page=shop";
     });
