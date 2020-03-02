@@ -101,6 +101,7 @@ function shop_list_brands(){
 function details_shop(){
     //se carga el producto desde localStorage.
     var idproduct=localStorage.getItem("product");
+    $('#filters').hide();
     $("#list").html("");
     $.ajax({ 
         type: 'GET', 
@@ -110,11 +111,15 @@ function details_shop(){
         data:{},
         success: function (data) { 
             $('#list').append(
-                '<a id="btnvolver" class="btn btn-danger" href="#">Volver</a>'+
-                '<img class="details_img" src="'+data[0].imagen+'" alt="picture"">'+
-                '<span>ID: </span>'+data[0].idproduct+
-                '<span>NAME: </span>'+data[0].nombre+
-                '<span>Price: </span>'+data[0].price
+                '<div class="details">'+
+                    '<a id="btnvolver" class="btn btn-danger" href="#">Volver</a>'+
+                    '<img class="details_img" src="'+data[0].imagen+'" alt="picture"">'+
+                    '<div id="infoproduct">'+
+                        '<span>ID:' +data[0].idproduct+'</span>'+
+                        '<span>NAME:'+data[0].nombre+ '</span>'+
+                        '<span>Price:'+data[0].price+' </span>'+
+                    '</div>'+
+                '</div>'
             )
         },
         error: function(){
@@ -311,6 +316,7 @@ function check_checkbox_click(){
         checkbox_filter();
     });
 }
+
 
 
 $(document).ready(function() {

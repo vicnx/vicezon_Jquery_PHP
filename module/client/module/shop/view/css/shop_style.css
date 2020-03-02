@@ -1,4 +1,28 @@
+/* DETAILS */
+#btnvolver{
+    position: absolute;
+    height: 45px;
+    left: 10px;
+    top: 159px;
+}
+.details{
+    display: flex;
+}
+#infoproduct{
+    width: auto;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: x-large;
+}
 /* FILTERS */
+#mapfilter {
+    height: 200px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+}
 .filtersbody{
     display: flex;
     flex-direction: column;

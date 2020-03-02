@@ -10,7 +10,10 @@
             <form class="search">
                 <div class="input-group add-on">
                     <input type="search" placeholder="What're you searching for?" class="form-control">
-                    <button id="button-search" type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                    <a id="button-search" class="btn btn-success"><i class="fa fa-search"></i></a>
+                    <select id="drop_brands_search">
+                        <option value="0">Selecciona Marca</option>
+					</select>
                 </div>
             </form>
         </div>

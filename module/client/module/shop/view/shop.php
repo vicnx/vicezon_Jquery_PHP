@@ -6,6 +6,9 @@
             </div>
             <div class="filter-content">
                 <div id="filters_brand" class="card-body filtersbody custom-checkbox">
+                </div>
+                <div id="mapfilter">
+                    
                 </div> 
             </div>
         </article> 
@@ -30,7 +33,5 @@
 	    </article> -->
     </div>
     <div id="list" class="list">
-    </div>
-    <div id="details_product" class="details">
     </div>
 </div>

@@ -21,6 +21,9 @@
 
 <!-- LANG -->
 <script src="module/client/view/js/lang.js"></script>
+
+<!-- SEARCH -->
+<script src="module/client/module/search/view/js/search.js"></script>
 <!-- PROPIO CLIENT-->
 <link rel="stylesheet" href="module/client/view/css/client_style.css">
 <script type="text/javascript" src="module/client/view/js/client_functions.js"></script>
