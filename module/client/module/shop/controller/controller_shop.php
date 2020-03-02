@@ -21,5 +21,9 @@ switch($_GET['op']){
         $brands=select_all_brands();
         echo json_encode($brands);
         break;
+    case 'order_by_price':
+        $tablets_order=select_products_order($_GET['sentencia']);
+        echo json_encode($tablets_order);
+        break;
 }   
 ?>

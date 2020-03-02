@@ -314,10 +314,59 @@ function check_checkbox_click(){
     //lo cargo en una funciona aparte ya que si no sobrecargaba la pagina
     $('.checkbox_filter').on('click',function(){
         checkbox_filter();
+        order_by_price()
     });
 }
 
-
+function order_by_price(){
+    //esto selecciona el valor del Select actual
+    var order=$("#order_price :selected").val();
+    var brands = localStorage.getItem("brand");
+    var sentencia;
+    console.log("brands====="+brands);
+    if (brands != null){
+        brands=brands.slice(0, -1);
+        sentencia = ("Where marca IN("+brands+") order by price "+order);
+        console.log(sentencia);
+    }else{
+        sentencia = ("order by price "+order);
+    }
+    //console.log(order);
+    $("#list").html(""); 
+    $.ajax({ 
+        type: 'GET', 
+        url: 'module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia,
+        async:false, 
+        dataType: 'json',
+        data:{},
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                $('#list').append(
+                    '<div class="itemlist" id="'+data[i].idproduct+'">'+
+                        '<div class="card">'+
+                            '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                            '<div class="card-body">'+
+                                '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                '<p class="card-text">'+data[i].price+' €</p>'+
+                                '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+                                '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'
+                )
+            } 
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+}
+function order_by_price_change(){
+    //cuando el select de price cambia vuelve a llamar a la funcion
+    $("#order_price").on("change",function(){
+        order_by_price();
+    });
+}
 
 $(document).ready(function() {
     if (localStorage.getItem("product")===null){
@@ -332,4 +381,7 @@ $(document).ready(function() {
     //esto se carga siemrpe
     menu();
     getdetails();
+    // esto carga el order by price y su change
+    order_by_price();
+    order_by_price_change();
 });

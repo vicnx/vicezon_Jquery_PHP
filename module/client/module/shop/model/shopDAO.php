@@ -37,4 +37,11 @@ function select_all_brands(){
     $conn =null;
     return $query;
 }
+function select_products_order($sentencia){
+    $conn = new connection();
+    $sql = "SELECT * FROM Tablets $sentencia";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>
