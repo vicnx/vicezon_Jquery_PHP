@@ -360,6 +360,7 @@ function order_by_price(){
             console.log("error");
         }
     });
+    getdetails();
 }
 function order_by_price_change(){
     //cuando el select de price cambia vuelve a llamar a la funcion
@@ -370,10 +371,13 @@ function order_by_price_change(){
 
 $(document).ready(function() {
     if (localStorage.getItem("product")===null){
-        //si el product es null en local storage cargamos lo siguiente
-        filters();
-        check_checkbox_default_checked();
-        check_checkbox_click();
+    //si el product es null en local storage cargamos lo siguiente
+    filters();
+    check_checkbox_default_checked();
+    check_checkbox_click();
+        // esto carga el order by price y su change
+    order_by_price();
+    order_by_price_change();
     }else{
         //si no es null cargamos ese producto
         details_shop();
@@ -381,7 +385,5 @@ $(document).ready(function() {
     //esto se carga siemrpe
     menu();
     getdetails();
-    // esto carga el order by price y su change
-    order_by_price();
-    order_by_price_change();
+
 });
