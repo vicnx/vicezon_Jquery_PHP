@@ -18,7 +18,7 @@ switch($_GET['op']){
         echo json_encode($tablet);
         break;
     case 'filters_brand':
-        $brands=selectbrands();
+        $brands=select_all_brands();
         echo json_encode($brands);
         break;
 }   

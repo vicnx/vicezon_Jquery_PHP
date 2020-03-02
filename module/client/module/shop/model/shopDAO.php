@@ -30,4 +30,11 @@ function selectbrands(){
     $conn =null;
     return $query;
 }
+function select_all_brands(){
+    $conn = new connection();
+    $sql = "SELECT * FROM brands";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>
