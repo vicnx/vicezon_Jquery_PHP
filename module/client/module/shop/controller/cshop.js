@@ -340,21 +340,25 @@ function order_by_price(){
         dataType: 'json',
         data:{},
         success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                $('#list').append(
-                    '<div class="itemlist" id="'+data[i].idproduct+'">'+
-                        '<div class="card">'+
-                            '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                            '<div class="card-body">'+
-                                '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                '<p class="card-text">'+data[i].price+' €</p>'+
-                                '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-                                '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+            if(data.length == 0){
+                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+            }else{
+                for (var i = 0; i < data.length; i++) {
+                    $('#list').append(
+                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
+                            '<div class="card">'+
+                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                                '<div class="card-body">'+
+                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                    '<p class="card-text">'+data[i].price+' €</p>'+
+                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                '</div>'+
                             '</div>'+
-                        '</div>'+
-                    '</div>'
-                )
-            } 
+                        '</div>'
+                    )
+                } 
+            }
         },
         error: function(){
             console.log("error");
@@ -375,7 +379,7 @@ $(document).ready(function() {
     filters();
     check_checkbox_default_checked();
     check_checkbox_click();
-        // esto carga el order by price y su change
+    // esto carga el order by price y su change
     order_by_price();
     order_by_price_change();
     }else{
