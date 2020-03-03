@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <form class="search">
                 <div class="input-group add-on">
-                    <input type="search" placeholder="What're you searching for?" class="form-control">
+                    <input id="search_bar" type="search" placeholder="What're you searching for?" class="form-control">
                     <a id="button-search" class="btn btn-success"><i class="fa fa-search"></i></a>
                     <select id="drop_brands_search">
                         <option value="0">Selecciona Marca</option>

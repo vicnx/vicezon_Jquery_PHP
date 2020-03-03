@@ -1,3 +1,36 @@
+function ajaxForSearch(durl) {
+    var url=durl;
+    //console.log(url);
+    $.ajax({ 
+        type: 'GET', 
+        url:url,
+        dataType: 'json',
+        success: function (data) { 
+            if(data.length == 0){
+                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+            }else{
+                for (var i = 0; i < data.length; i++) {
+                    $('#list').append(
+                        '<div class="itemlist"id="'+data[i].idproduct+'">'+
+                            '<div class="card">'+
+                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                                '<div class="card-body">'+
+                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                    '<p class="card-text">'+data[i].price+' €</p>'+
+                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'
+                    )
+                 }
+            }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+}
 function menu(){
     $(function menu() {
         var menu = $("#menunav");
@@ -28,74 +61,76 @@ function menu(){
 // }
 function shop_list_all(){
     console.log("shop list all");
-    $.ajax({ 
-        type: 'GET', 
-        url: 'module/client/module/shop/controller/controller_shop.php?op=all',
-        async:false, 
-        dataType: 'json',
-        data:{},
-        success: function (data) { 
-            console.log("dentro shop list all");
-            if(data.length == 0){
-                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-            }else{
-                for (var i = 0; i < data.length; i++) {
-                    $('#list').append(
-                        '<div class="itemlist"id="'+data[i].idproduct+'">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
-                    )
-                 }
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
+    // $.ajax({ 
+    //     type: 'GET', 
+    //     url: 'module/client/module/shop/controller/controller_shop.php?op=all',
+    //     async:false, 
+    //     dataType: 'json',
+    //     data:{},
+    //     success: function (data) { 
+    //         console.log("dentro shop list all");
+    //         if(data.length == 0){
+    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+    //         }else{
+    //             for (var i = 0; i < data.length; i++) {
+    //                 $('#list').append(
+    //                     '<div class="itemlist"id="'+data[i].idproduct+'">'+
+    //                         '<div class="card">'+
+    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+    //                             '<div class="card-body">'+
+    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
+    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+    //                             '</div>'+
+    //                         '</div>'+
+    //                     '</div>'
+    //                 )
+    //              }
+    //         }
+    //     },
+    //     error: function(){
+    //         console.log("error");
+    //     }
+    // });
 }
 
 function shop_list_brands(){
     var brand = localStorage.getItem('brand');
-    $.ajax({ 
-        type: 'GET', 
-        url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand,
-        async:false, 
-        dataType: 'json',
-        data:{},
-        success: function (data) { 
-            console.log(data);
-            if (data.length == 0){
-                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-            }else{
-                for (var i = 0; i < data.length; i++) {
-                    $('#list').append(
-                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
-                    )
-                 }
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
+    // $.ajax({ 
+    //     type: 'GET', 
+    //     url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand,
+    //     async:false, 
+    //     dataType: 'json',
+    //     data:{},
+    //     success: function (data) { 
+    //         console.log(data);
+    //         if (data.length == 0){
+    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+    //         }else{
+    //             for (var i = 0; i < data.length; i++) {
+    //                 $('#list').append(
+    //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
+    //                         '<div class="card">'+
+    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+    //                             '<div class="card-body">'+
+    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
+    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+    //                             '</div>'+
+    //                         '</div>'+
+    //                     '</div>'
+    //                 )
+    //              }
+    //         }
+    //     },
+    //     error: function(){
+    //         console.log("error");
+    //     }
+    // });
 }
 
 function details_shop(){
@@ -176,39 +211,40 @@ function checkbox_filter(){
         $("#list").html("");
         shop_list_all();
     }else{
-    $("#list").html("");    
-        $.ajax({ 
-            type: 'GET', 
-            url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia,
-            async:false, 
-            dataType: 'json',
-            data:{},
-            success: function (data) { 
-                console.log(data);
-                if (data.length == 0){
-                    $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-                }else{
-                    for (var i = 0; i < data.length; i++) {
-                        $('#list').append(
-                            '<div class="itemlist" id="'+data[i].idproduct+'">'+
-                                '<div class="card">'+
-                                    '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                    '<div class="card-body">'+
-                                        '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                        '<p class="card-text">'+data[i].price+' €</p>'+
-                                        '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-                                        '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'
-                        )
-                    }
-                }
-            },
-            error: function(){
-                console.log("error");
-            }
-        });
+    $("#list").html("");
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia);    
+        // $.ajax({ 
+        //     type: 'GET', 
+        //     url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia,
+        //     async:false, 
+        //     dataType: 'json',
+        //     data:{},
+        //     success: function (data) { 
+        //         console.log(data);
+        //         if (data.length == 0){
+        //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+        //         }else{
+        //             for (var i = 0; i < data.length; i++) {
+        //                 $('#list').append(
+        //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
+        //                         '<div class="card">'+
+        //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+        //                             '<div class="card-body">'+
+        //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+        //                                 '<p class="card-text">'+data[i].price+' €</p>'+
+        //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+        //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+        //                             '</div>'+
+        //                         '</div>'+
+        //                     '</div>'
+        //                 )
+        //             }
+        //         }
+        //     },
+        //     error: function(){
+        //         console.log("error");
+        //     }
+        // });
     }
     getdetails();  
 }
@@ -332,38 +368,39 @@ function order_by_price(){
         sentencia = ("order by price "+order);
     }
     //console.log(order);
-    $("#list").html(""); 
-    $.ajax({ 
-        type: 'GET', 
-        url: 'module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia,
-        async:false, 
-        dataType: 'json',
-        data:{},
-        success: function (data) {
-            if(data.length == 0){
-                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-            }else{
-                for (var i = 0; i < data.length; i++) {
-                    $('#list').append(
-                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div>'
-                    )
-                } 
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+    $("#list").html("");
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia); 
+    // $.ajax({ 
+    //     type: 'GET', 
+    //     url: 'module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia,
+    //     async:false, 
+    //     dataType: 'json',
+    //     data:{},
+    //     success: function (data) {
+    //         if(data.length == 0){
+    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
+    //         }else{
+    //             for (var i = 0; i < data.length; i++) {
+    //                 $('#list').append(
+    //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
+    //                         '<div class="card">'+
+    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+    //                             '<div class="card-body">'+
+    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
+    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+    //                             '</div>'+
+    //                         '</div>'+
+    //                     '</div>'
+    //                 )
+    //             } 
+    //         }
+    //     },
+    //     error: function(){
+    //         console.log("error");
+    //     }
+    // });
     getdetails();
 }
 function order_by_price_change(){
@@ -373,19 +410,52 @@ function order_by_price_change(){
     });
 }
 
-$(document).ready(function() {
-    if (localStorage.getItem("product")===null){
-    //si el product es null en local storage cargamos lo siguiente
-    filters();
-    check_checkbox_default_checked();
-    check_checkbox_click();
-    // esto carga el order by price y su change
-    order_by_price();
-    order_by_price_change();
-    }else{
-        //si no es null cargamos ese producto
-        details_shop();
+function controlador(){
+    var brand_selected= sessionStorage.getItem('brand_selected');
+    var busqueda= sessionStorage.getItem('busqueda');
+    if(busqueda === null){
+        busqueda="";
     }
+    if(brand_selected==="0"){
+        brand_selected=null;
+    }
+    if(brand_selected != null && busqueda.length>0){
+        console.log("nada null");
+    }else if(brand_selected === null && (busqueda.length>0)){
+        console.log("brand null busque NO");
+    }else if(brand_selected != null && busqueda.length===0){
+        console.log("brand NO busqueda NULL");
+    }else{
+        if (localStorage.getItem("product")===null){
+            //si el product es null en local storage cargamos lo siguiente
+            check_checkbox_default_checked();
+            check_checkbox_click();
+            // esto carga el order by price y su change
+            order_by_price();
+            order_by_price_change();
+            }else{
+                //si no es null cargamos ese producto
+                details_shop();
+            }
+    }
+}
+
+
+$(document).ready(function() {
+    filters();
+    controlador();
+    // if (localStorage.getItem("product")===null){
+    // //si el product es null en local storage cargamos lo siguiente
+    // filters();
+    // check_checkbox_default_checked();
+    // check_checkbox_click();
+    // // esto carga el order by price y su change
+    // order_by_price();
+    // order_by_price_change();
+    // }else{
+    //     //si no es null cargamos ese producto
+    //     details_shop();
+    // }
     //esto se carga siemrpe
     menu();
     getdetails();

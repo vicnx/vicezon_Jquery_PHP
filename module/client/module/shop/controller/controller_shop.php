@@ -25,5 +25,9 @@ switch($_GET['op']){
         $tablets_order=select_products_order($_GET['sentencia']);
         echo json_encode($tablets_order);
         break;
+    case 'busqueda':
+        $tablets_busqueda="hola";
+        echo json_encode($tablets_busqueda);
+        break;
 }   
 ?>

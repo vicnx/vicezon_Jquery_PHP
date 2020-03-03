@@ -15,14 +15,23 @@ function insert_brands_drop(){
         }
     });
 }
-
+function give_val_search(){
+    var busqueda = $('#search_bar').val();
+    var brand_selected = $('#drop_brands_search').val();
+    console.log(busqueda);
+    sessionStorage.setItem('busqueda', busqueda);
+    window.location.href ='index.php?page=shop';
+    sessionStorage.setItem('brand_selected', brand_selected);
+}
 function btn_search(){
     $('#button-search').on('click', function(){
+        var busqueda = $('#search_bar').val();
         var brand_selected = $('#drop_brands_search').val();
-        if(brand_selected == 0){
-            console.log("Selecciona una marca");
+        if((brand_selected == 0)&&(busqueda==="")){
+            console.log("Selecciona una marca o escribe algo");
         }else{
             console.log(brand_selected);
+            give_val_search();
         }
         // sessionStorage.setItem('brand_search', brand_selected);
     })
