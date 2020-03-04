@@ -26,8 +26,10 @@ switch($_GET['op']){
         echo json_encode($tablets_order);
         break;
     case 'busqueda':
-        $tablets_busqueda="hola";
+        $sentencia=$_GET['sentencia'];
+        $tablets_busqueda=busqueda_nada_null($sentencia);
         echo json_encode($tablets_busqueda);
+        exit;
         break;
 }   
 ?>

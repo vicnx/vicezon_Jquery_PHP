@@ -413,18 +413,27 @@ function order_by_price_change(){
 function controlador(){
     var brand_selected= sessionStorage.getItem('brand_selected');
     var busqueda= sessionStorage.getItem('busqueda');
+    var ok =true;
     if(busqueda === null){
         busqueda="";
+        ok=false;
     }
     if(brand_selected==="0"){
         brand_selected=null;
+        ok=false;
     }
     if(brand_selected != null && busqueda.length>0){
+        var sentencia = "Where nombre LIKE '"+busqueda+"%' AND marca="+brand_selected;
         console.log("nada null");
+        ok=true;
     }else if(brand_selected === null && (busqueda.length>0)){
         console.log("brand null busque NO");
+        var sentencia = "Where nombre LIKE '"+busqueda+"%'";
+        ok=true;
     }else if(brand_selected != null && busqueda.length===0){
         console.log("brand NO busqueda NULL");
+        var sentencia = "Where marca="+brand_selected;
+        ok=true;
     }else{
         if (localStorage.getItem("product")===null){
             //si el product es null en local storage cargamos lo siguiente
@@ -437,6 +446,13 @@ function controlador(){
                 //si no es null cargamos ese producto
                 details_shop();
             }
+    }
+    if(ok===true){
+        ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=busqueda&sentencia='+sentencia);
+        sessionStorage.removeItem('brand_selected');
+        sessionStorage.removeItem('busqueda');
+    }else{
+        console.log("")
     }
 }
 

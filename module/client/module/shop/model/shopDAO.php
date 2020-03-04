@@ -44,4 +44,12 @@ function select_products_order($sentencia){
     $conn =null;
     return $query;
 }
+
+function busqueda_nada_null($sentencia){
+    $conn = new connection();
+    $sql = "SELECT * FROM Tablets $sentencia";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
 ?>
