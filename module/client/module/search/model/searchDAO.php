@@ -10,6 +10,13 @@ class searchDAO{
         $conn =null;
         return $query;
     }
+    function automplete($val){
+        $conn = new connection();
+        $sql = "SELECT * FROM Tablets where nombre LIKE '%$val%'";
+        $query = $conn->query($sql)->fetchAll();
+        $conn =null;
+        return $query;
+    }
 }
 
 ?>

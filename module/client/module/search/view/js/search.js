@@ -36,8 +36,32 @@ function btn_search(){
         // sessionStorage.setItem('brand_search', brand_selected);
     })
 }
+function autocomplete(){
+    $('#search_bar').on('keyup', function(){
+        var busqueda = $('#search_bar').val();
+        var brand_selected = $('#drop_brands_search').val();
+        $.ajax({
+            type: "GET",
+            url: "/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda,  
+            dataType: 'json',
+            success: function (data) { 
+                console.log(data);
+                ///CONTINUAR POR AQUI
+                // $.each(data, function(i, item) {
+                //     $(".automplete").append(
+                //         '<a  class="element" data="'+data['provincia']+'" id="'+data['nombre']+'">'+data['nombre']+'</a>'
+                //     )
+                // });
+            },
+            error: function(){
+                console.log("error "+data);
+            }
+        })
+    })
+}
 
 $(document).ready(function (){
     insert_brands_drop();
     btn_search();
+    autocomplete();
 });

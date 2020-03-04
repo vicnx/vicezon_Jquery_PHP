@@ -5,6 +5,9 @@ html {
     min-height: 100%;
     position: relative;
 }
+.autocomplete{
+    margin-left: 29%;
+}
 .wrapper{
     flex-direction: column;
 	width: 100%;

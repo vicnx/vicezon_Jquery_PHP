@@ -17,5 +17,8 @@
                 </div>
             </form>
         </div>
+        <div class="autocomplete">
+            <p>Producto 1</p>
+        </div>
     </div>
 </header>

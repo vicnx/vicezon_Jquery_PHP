@@ -8,5 +8,12 @@ include($path . "module/client/module/search/model/searchDAO.php");
         echo json_encode($rdo);
         exit;
         break;
+    case 'autocomplete':
+        $valor=$_GET['busqueda'];
+        $searchDAO = new searchDAO();
+        $rdo = $searchDAO->automplete($valor);
+        echo json_encode($rdo);
+        exit;
+        break;
  }
 ?>
