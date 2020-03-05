@@ -19,6 +19,6 @@
         </div>
         <div id="autocomplete" class="autocomplete">
             
-            </div>
+        </div>
     </div>
 </header>
