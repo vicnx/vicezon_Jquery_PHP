@@ -6,6 +6,12 @@ html {
     position: relative;
 }
 .autocomplete{
+    display: flex;
+    z-index: 1;
+    width: 20%;
+    flex-direction: column;
+    left: 57px;
+    position: absolute;
     margin-left: 29%;
     background-color: white;
     color: black;

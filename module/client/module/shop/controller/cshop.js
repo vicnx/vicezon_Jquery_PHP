@@ -423,12 +423,12 @@ function controlador(){
         ok=false;
     }
     if(brand_selected != null && busqueda.length>0){
-        var sentencia = "Where nombre LIKE '"+busqueda+"%' AND marca="+brand_selected;
+        var sentencia = "Where nombre LIKE '%"+busqueda+"%' AND marca="+brand_selected;
         console.log("nada null");
         ok=true;
     }else if(brand_selected === null && (busqueda.length>0)){
         console.log("brand null busque NO");
-        var sentencia = "Where nombre LIKE '"+busqueda+"%'";
+        var sentencia = "Where nombre LIKE '%"+busqueda+"%'";
         ok=true;
     }else if(brand_selected != null && busqueda.length===0){
         console.log("brand NO busqueda NULL");

@@ -18,7 +18,6 @@
             </form>
         </div>
         <div id="autocomplete" class="autocomplete">
-            
         </div>
     </div>
 </header>

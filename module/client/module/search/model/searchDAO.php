@@ -1,7 +1,6 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
 include($path . "model/ConnectionBD.php");
-
 class searchDAO{
     function readbrands(){
         $conn = new connection();
@@ -10,9 +9,13 @@ class searchDAO{
         $conn =null;
         return $query;
     }
-    function automplete($val){
+    function automplete($brand,$valor){
+        if($brand == null){
+            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%'";
+        }else{
+            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%' AND marca=$brand";
+        }
         $conn = new connection();
-        $sql = "SELECT * FROM Tablets where nombre LIKE '%$val%'";
         $query = $conn->query($sql)->fetchAll();
         $conn =null;
         return $query;

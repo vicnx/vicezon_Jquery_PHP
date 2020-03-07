@@ -9,11 +9,16 @@ include($path . "module/client/module/search/model/searchDAO.php");
         exit;
         break;
     case 'autocomplete':
-        $valor=$_GET['busqueda'];
         $searchDAO = new searchDAO();
-        $rdo = $searchDAO->automplete($valor);
+        $valor=$_GET['busqueda'];
+        if(!empty($_GET['brand_selected'])){
+            $brand=$_GET['brand_selected'];
+        }else{
+            $brand=null;
+        }
+        $rdo = $searchDAO->automplete($brand,$valor);
+        // $brand=$_GET['brand_selected'];
         echo json_encode($rdo);
-        exit;
         break;
  }
 ?>

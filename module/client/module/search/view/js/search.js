@@ -36,36 +36,53 @@ function btn_search(){
         // sessionStorage.setItem('brand_search', brand_selected);
     })
 }
+function click_auto_element(){
+    $('#autocomplete').on('click',"a", function(){
+        console.log("click");
+        var idproduct= $(this).attr("id");
+        localStorage.setItem("product", idproduct);
+        window.location.href ='index.php?page=shop';
+    }
+)}
 function autocomplete(){
     $('#search_bar').on('keyup', function(){
         var busqueda = $('#search_bar').val();
         var brand_selected = $('#drop_brands_search').val();
+        console.log("brand_selected"+brand_selected);
+        if (brand_selected == 0){
+            var rurl="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda;
+            console.log(rurl);
+        }else{
+            var rurl ="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda+"&brand_selected="+brand_selected;
+        }
         if(busqueda===""){
             $("#autocomplete").empty();
         }else{
             $.ajax({
                 type: "GET",
-                url: "/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda,  
+                url:rurl,  
                 dataType: 'json',
                 success: function (data) { 
                     console.log(data.length);
                     $("#autocomplete").empty();
                     for (i = 0; i < data.length; i++) {
                         $("#autocomplete").append(
-                            '<a  class="element" data="'+data[i].marca+'" id="'+data[i].idproducto+'">'+data[i].nombre+'</a>'
+                            '<a  class="auto_element" data="'+data[i].marca+'" id="'+data[i].idproduct+'">'+data[i].nombre+'</a>'
                         )
                     }
                 },
                 error: function(){
-                    console.log("error "+data);
+                    console.log("error ");
                 }
             })
         }
     })
+    click_auto_element();
 }
 
 $(document).ready(function (){
     insert_brands_drop();
     btn_search();
     autocomplete();
+    click_auto_element();
 });
