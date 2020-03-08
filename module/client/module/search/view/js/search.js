@@ -46,41 +46,51 @@ function click_auto_element(){
 )}
 function autocomplete(){
     $('#search_bar').on('keyup', function(){
-        var busqueda = $('#search_bar').val();
-        var brand_selected = $('#drop_brands_search').val();
-        console.log("brand_selected"+brand_selected);
-        if (brand_selected == 0){
-            var rurl="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda;
-            console.log(rurl);
-        }else{
-            var rurl ="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda+"&brand_selected="+brand_selected;
-        }
-        if(busqueda===""){
-            $("#autocomplete").empty();
-        }else{
-            $.ajax({
-                type: "GET",
-                url:rurl,  
-                dataType: 'json',
-                success: function (data) { 
-                    console.log(data.length);
-                    $("#autocomplete").empty();
-                    for (i = 0; i < data.length; i++) {
-                        $("#autocomplete").append(
-                            '<a  class="auto_element" data="'+data[i].marca+'" id="'+data[i].idproduct+'">'+data[i].nombre+'</a>'
-                        )
-                    }
-                },
-                error: function(){
-                    console.log("error ");
-                }
-            })
-        }
+        give_values_autocomplete();
     })
     click_auto_element();
 }
 
+function give_values_autocomplete(){
+    var busqueda = $('#search_bar').val();
+    var brand_selected = $('#drop_brands_search').val();
+    console.log("brand_selected"+brand_selected);
+    if (brand_selected == 0){
+        var rurl="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda;
+        console.log(rurl);
+    }else{
+        var rurl ="/vicezon/module/client/module/search/controller/csearch.php?op=autocomplete&busqueda="+busqueda+"&brand_selected="+brand_selected;
+    }
+    if(busqueda===""){
+        $("#autocomplete").empty();
+    }else{
+        $.ajax({
+            type: "GET",
+            url:rurl,  
+            dataType: 'json',
+            success: function (data) { 
+                console.log(data.length);
+                $("#autocomplete").empty();
+                for (i = 0; i < data.length; i++) {
+                    $("#autocomplete").append(
+                        '<a  class="auto_element" data="'+data[i].marca+'" id="'+data[i].idproduct+'">'+data[i].nombre+'</a>'
+                    )
+                }
+            },
+            error: function(){
+                console.log("error ");
+            }
+        })
+    }
+}
+function onchange_brand_search(){
+    $('#drop_brands_search').on('change', function(){
+        console.log("onchange oN");
+        give_values_autocomplete();
+    })
+}
 $(document).ready(function (){
+    onchange_brand_search()
     insert_brands_drop();
     btn_search();
     autocomplete();
