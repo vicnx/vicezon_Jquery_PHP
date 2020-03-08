@@ -11,7 +11,13 @@
             <div id="brands-cards-homepage">
             </div>
         </div>
-    
+    <hr></hr>
+        <div class= "products_view">
+            <h1 id="products_view_title">Products more visited</h1>
+            <div id="products_more_visited">
+            </div>
+            <a class="loadmorebutton">LOAD MORE</a>
+        </div>
     <hr></hr>
     <div class="lroem">
         <h2>Lorem ipsum dolor sit amet.</h2>

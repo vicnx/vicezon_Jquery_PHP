@@ -11,7 +11,7 @@ function ajaxForSearch(durl) {
             }else{
                 for (var i = 0; i < data.length; i++) {
                     $('#list').append(
-                        '<div class="itemlist"id="'+data[i].idproduct+'">'+
+                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
                             '<div class="card">'+
                                 '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
                                 '<div class="card-body">'+
@@ -317,7 +317,8 @@ function checkbox_filter(){
  
 // }
 function getdetails(){
-    $(".itemlist").on('click',function(){
+    console.log("carga");
+    $('#list').on('click','.itemlist',function(){
         var idproduct= $(this).attr("id");
         localStorage.setItem("product", idproduct);
         details_shop();
@@ -370,6 +371,7 @@ function order_by_price(){
     //console.log(order);
     $("#list").html("");
     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia); 
+    getdetails();
     // $.ajax({ 
     //     type: 'GET', 
     //     url: 'module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia,
@@ -401,7 +403,6 @@ function order_by_price(){
     //         console.log("error");
     //     }
     // });
-    getdetails();
 }
 function order_by_price_change(){
     //cuando el select de price cambia vuelve a llamar a la funcion
@@ -460,19 +461,6 @@ function controlador(){
 $(document).ready(function() {
     filters();
     controlador();
-    // if (localStorage.getItem("product")===null){
-    // //si el product es null en local storage cargamos lo siguiente
-    // filters();
-    // check_checkbox_default_checked();
-    // check_checkbox_click();
-    // // esto carga el order by price y su change
-    // order_by_price();
-    // order_by_price_change();
-    // }else{
-    //     //si no es null cargamos ese producto
-    //     details_shop();
-    // }
-    //esto se carga siemrpe
     menu();
     getdetails();
 

@@ -15,5 +15,11 @@ switch($_GET['op']){
         $rank=changerank();
         echo json_encode("success");
         break;
+    case 'view_top':
+        $offset=$_GET['offset'];
+        $tablets=view_top($offset);
+        echo json_encode($tablets);
+        exit;
+        break;
 }
 ?>

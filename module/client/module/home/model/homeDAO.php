@@ -24,4 +24,19 @@ function changerank(){
     $conn = null;
     return $query;
 }
+
+function total_rows(){
+    $conn = new connection();
+    $sql = "SELECT COUNT(*) FROM Tablets";
+    $query = $conn->query($sql)->fetchColumn();
+    $conn =null;
+    return $query;
+}
+function view_top($offset){
+    $conn = new connection();
+    $sql="SELECT * FROM Tablets ORDER BY views DESC LIMIT 4 OFFSET $offset";
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query->fetchAll(PDO::FETCH_OBJ);
+}
 ?>

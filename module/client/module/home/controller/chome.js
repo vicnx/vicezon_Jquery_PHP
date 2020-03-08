@@ -97,9 +97,48 @@ function menu(){
         });
     });
 }
-
+var clicks = 1;
+function get_products_views(offset = 0){
+    console.log(offset);
+    $.ajax({ 
+        type: 'GET', 
+        url: '/vicezon/module/client/module/home/controller/controller_home.php?op=view_top&offset='+offset,
+        async:false, 
+        dataType: 'json',
+        data:{},
+        success: function (data) { 
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                $('#products_more_visited').append(
+                    '<div class="item" id='+data[i].idproduct+'>'+
+                        '<div class="card">'+
+                            '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                            '<div class="card-body">'+
+                                '<h5 class="card-title">'+data[i].nombre+'</h5>'+
+                                '<p class="card-text">'+data[i].price+' €</p>'+
+                                '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'
+                    )
+                 }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+}
+function loadmoreview(){
+    $('.loadmorebutton').on('click', function(){
+        off = clicks * 4
+        get_products_views(off)
+        clicks++;
+    })
+}
 $(document).ready(function() {
     menu();
     carousel();
     topbrands();
+    get_products_views();
+    loadmoreview();
 })

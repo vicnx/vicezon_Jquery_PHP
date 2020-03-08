@@ -64,6 +64,8 @@
     justify-content: center;
 }
 .item{
+    margin-right: 20px;
+    width: 164px;
     margin-bottom: 20px;
 }
 .item:hover{
@@ -75,7 +77,14 @@
     right: 40px;
     cursor: pointer;
 }
-
+/* TOP VIEW */
+#products_more_visited{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
 /* HEADER */
 header{
     color: rgb(255, 255, 255);

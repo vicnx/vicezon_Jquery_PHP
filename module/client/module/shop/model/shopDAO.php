@@ -52,4 +52,11 @@ function busqueda_nada_null($sentencia){
     $conn =null;
     return $query;
 }
+function addview($idproduct){
+    $conn = new connection();
+    $sql="UPDATE Tablets SET views=views+1 WHERE idproduct=$idproduct";
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query;
+}
 ?>
