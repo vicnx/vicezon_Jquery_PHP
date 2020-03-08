@@ -116,6 +116,7 @@ function get_products_views(offset = 0){
                             '<div class="card-body">'+
                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
                                 '<p class="card-text">'+data[i].price+' €</p>'+
+                                '<p class="card-text">Visitas: '+data[i].views+'</p>'+
                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                             '</div>'+
                         '</div>'+
