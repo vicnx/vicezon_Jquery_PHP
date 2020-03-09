@@ -351,7 +351,7 @@ function check_checkbox_click(){
     //lo cargo en una funciona aparte ya que si no sobrecargaba la pagina
     $('.checkbox_filter').on('click',function(){
         checkbox_filter();
-        order_by_price()
+        order_by_price();
     });
 }
 

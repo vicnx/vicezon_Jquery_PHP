@@ -50,6 +50,9 @@ function carousel(){
             }
         }
     })
+    onclick_item();
+}
+function onclick_item(){
     $('.item').on('click',function() {
         var idproduct= $(this).attr("id");
         console.log("product id= "+idproduct);
@@ -128,6 +131,7 @@ function get_products_views(offset = 0){
             console.log("error");
         }
     });
+    onclick_item();
 }
 function loadmoreview(){
     $('.loadmorebutton').on('click', function(){
@@ -142,4 +146,5 @@ $(document).ready(function() {
     topbrands();
     get_products_views();
     loadmoreview();
+    onclick_item();
 })

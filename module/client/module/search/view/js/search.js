@@ -37,7 +37,7 @@ function btn_search(){
     })
 }
 function click_auto_element(){
-    $('#autocomplete').on('click',"a", function(){
+    $('#autocomplete').on('click',"div", function(){
         console.log("click");
         var idproduct= $(this).attr("id");
         localStorage.setItem("product", idproduct);
@@ -73,7 +73,11 @@ function give_values_autocomplete(){
                 $("#autocomplete").empty();
                 for (i = 0; i < data.length; i++) {
                     $("#autocomplete").append(
-                        '<a  class="auto_element" data="'+data[i].marca+'" id="'+data[i].idproduct+'">'+data[i].nombre+'</a>'
+                        '<div class="auto_element" data="'+data[i].marca+'" id="'+data[i].idproduct+'">'+
+                        '<img class="img_auto" src="'+data[i].imagen+'" alt="picture"">'+
+                        '<span>'+data[i].nombre+'</span>'+
+                        '<span class="price_auto">'+data[i].price+' €</span>'+
+                        '</div>'
                     )
                 }
             },

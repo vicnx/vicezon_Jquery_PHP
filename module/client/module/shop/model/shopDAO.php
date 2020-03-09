@@ -52,9 +52,20 @@ function busqueda_nada_null($sentencia){
     $conn =null;
     return $query;
 }
-function addview($idproduct){
+function addview_product($idproduct){
     $conn = new connection();
     $sql="UPDATE Tablets SET views=views+1 WHERE idproduct=$idproduct";
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query;
+}
+function addview_brand($idproduct){
+    $conn = new connection();
+    $sql="Update brands b
+    inner join Tablets t
+    on marca=idbrand
+    Set b.views=b.views+1
+    where idproduct = $idproduct";
     $query = $conn->query($sql);
     $conn = null;
     return $query;

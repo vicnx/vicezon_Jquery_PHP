@@ -11,9 +11,9 @@ class searchDAO{
     }
     function automplete($brand,$valor){
         if($brand == null){
-            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%'";
+            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%' LIMIT 5";
         }else{
-            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%' AND marca=$brand";
+            $sql = "SELECT * FROM Tablets where nombre LIKE '%$valor%' AND marca=$brand LIMIT 5";
         }
         $conn = new connection();
         $query = $conn->query($sql)->fetchAll();

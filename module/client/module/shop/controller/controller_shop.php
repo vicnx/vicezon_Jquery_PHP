@@ -15,7 +15,8 @@ switch($_GET['op']){
         break;
     case 'details':
         $tablet=select_one_product($_GET['idproduct']);
-        addview($_GET['idproduct']);
+        addview_product($_GET['idproduct']);
+        addview_brand($_GET['idproduct']);
         echo json_encode($tablet);
         break;
     case 'filters_brand':
