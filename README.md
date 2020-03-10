@@ -69,6 +69,7 @@ _Herramientas utilizadas para la realización del proyecto_
 * [Material Bootstrap](https://mdbootstrap.com/) - Para mejorar visualmente y rapidamente el Panel Admin.
 * [DataTables](https://datatables.net/) - Las tablas de los productos en el panel Admin.
 * [FontAwesome](https://fontawesome.com/) - Usado para los iconos.
+* [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/index.html) - Usado para el carousel del homepage.
 
 ## Novedades: 📑
 _Aqui estan las novedades más importantes con su fecha de actualización_
