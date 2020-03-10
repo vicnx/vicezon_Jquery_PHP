@@ -27,6 +27,16 @@ https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-
 #### Admin Panel
 ![Image of Admin Panel](https://i.imgur.com/u2nB71P.png)
 
+## Tecnologias
+* [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+
+* [JQuery](https://jquery.com/)
+
+
+* [PHP](https://www.php.net/)
+
+* [MySQL](https://www.mysql.com/)
+
 ## Funcionalidades: ⌨️ 
 _En la aplicación tenemos dos modulos principales y dentro de ellos hay distintos modulos:_
 
