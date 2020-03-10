@@ -7,8 +7,11 @@
     </div>
     <hr></hr>
         <div class= "top-brands">
-            <h1 id="best_brands">BEST BRANDS</h1>
-            <div id="brands-cards-homepage">
+            <h1 id="best_brands">POPULAR BRANDS</h1>
+            <div class="top-brands-carousel">
+                <div id="brands-cards-homepage">
+                </div>
+                <a class="more_brands"><i class="fas fa-arrow-circle-right fa-2x"></i></a>
             </div>
         </div>
     <hr></hr>

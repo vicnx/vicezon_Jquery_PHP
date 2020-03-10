@@ -60,32 +60,32 @@ function onclick_item(){
         window.location.href = "index.php?page=shop";
     });
 }
-function topbrands(){
-    $.ajax({ 
-        type: 'GET', 
-        url: '/vicezon/module/client/module/home/controller/controller_home.php?op=brands_card',
-        async:false, 
-        dataType: 'json',
-        data:{},
-        success: function (data) { 
-                for (var i = 0; i < 6; i++) {
-                    $('#brands-cards-homepage').append(
-                        '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
-                    )
-                 }
+// function topbrands(){
+//     $.ajax({ 
+//         type: 'GET', 
+//         url: '/vicezon/module/client/module/home/controller/controller_home.php?op=brands_card',
+//         async:false, 
+//         dataType: 'json',
+//         data:{},
+//         success: function (data) { 
+//                 for (var i = 0; i < 6; i++) {
+//                     $('#brands-cards-homepage').append(
+//                         '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
+//                     )
+//                  }
 
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
-    $('.brand-card').on('click',function() {
-        var idbrand= $(this).attr("id");
-        console.log(idbrand);
-        localStorage.setItem("brand", idbrand);
-        window.location.href = "index.php?page=shop";
-    });
-}
+//         },
+//         error: function(){
+//             console.log("error");
+//         }
+//     });
+//     $('.brand-card').on('click',function() {
+//         var idbrand= $(this).attr("id");
+//         console.log(idbrand);
+//         localStorage.setItem("brand", idbrand);
+//         window.location.href = "index.php?page=shop";
+//     });
+// }
 function menu(){
     $(function() {
         var menu = $("#menunav");
@@ -100,7 +100,8 @@ function menu(){
         });
     });
 }
-var clicks = 1;
+var clicks_loadmoreview = 1;
+var clicks_more_brands = 0;
 function get_products_views(offset = 0){
     console.log(offset);
     $.ajax({ 
@@ -135,16 +136,65 @@ function get_products_views(offset = 0){
 }
 function loadmoreview(){
     $('.loadmorebutton').on('click', function(){
-        off = clicks * 4
+        off = clicks_loadmoreview * 4
         get_products_views(off)
-        clicks++;
+        clicks_loadmoreview++;
+    })
+}
+
+function get_brands_views(offset = 0){
+    console.log(clicks_more_brands);
+    $.ajax({ 
+        type: 'GET', 
+        url: '/vicezon/module/client/module/home/controller/controller_home.php?op=view_top_brands&offset='+offset,
+        async:false, 
+        dataType: 'json',
+        data:{},
+        success: function (data) {
+            console.log("data lenght: "+data.length); 
+            if(data.length==0){
+                clicks_more_brands=0;
+                off = clicks_more_brands * 4;
+                get_brands_views(off);
+            }else{
+                console.log("dentro fro")
+                $('.more_brands').prop("hidden",false);
+                $('#brands-cards-homepage').empty();
+                for (var i = 0; i < data.length; i++) {
+                    $('#brands-cards-homepage').append(
+                        '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
+                    )
+                 }
+            }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+    onclick_brand_views();
+}
+
+function onclick_brand_views(){
+    $('.brand-card').on('click',function() {
+        var idbrand= $(this).attr("id");
+        console.log(idbrand);
+        localStorage.setItem("brand", idbrand);
+        window.location.href = "index.php?page=shop";
+    });
+}
+function more_brands(){
+    $('.more_brands').on('click', function(){
+        clicks_more_brands++;
+        off = clicks_more_brands * 4
+        get_brands_views(off)
     })
 }
 $(document).ready(function() {
     menu();
     carousel();
-    topbrands();
     get_products_views();
     loadmoreview();
     onclick_item();
+    get_brands_views();
+    more_brands();
 })

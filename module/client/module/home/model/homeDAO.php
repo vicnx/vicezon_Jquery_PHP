@@ -9,13 +9,14 @@ function toptablets(){
     $conn = null;
     return $query->fetchAll(PDO::FETCH_OBJ);
 }
-function selectbrands_card(){
-    $conn = new connection();
-    $sql = "SELECT * FROM brands limit 6";
-    $query = $conn->query($sql)->fetchAll();
-    $conn =null;
-    return $query;
-}
+//ELIMINAR CUANDO FUNCIONE EL TOP BRANDS POR VIEWS
+// function selectbrands_card(){
+//     $conn = new connection();
+//     $sql = "SELECT * FROM brands limit 6";
+//     $query = $conn->query($sql)->fetchAll();
+//     $conn =null;
+//     return $query;
+// }
 
 function changerank(){
     $conn = new connection();
@@ -35,6 +36,13 @@ function total_rows(){
 function view_top($offset){
     $conn = new connection();
     $sql="SELECT * FROM Tablets ORDER BY views DESC LIMIT 4 OFFSET $offset";
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query->fetchAll(PDO::FETCH_OBJ);
+}
+function view_top_brands($offset){
+    $conn = new connection();
+    $sql="SELECT * FROM brands ORDER BY views DESC LIMIT 4 OFFSET $offset";
     $query = $conn->query($sql);
     $conn = null;
     return $query->fetchAll(PDO::FETCH_OBJ);

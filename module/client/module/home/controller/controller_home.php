@@ -21,5 +21,11 @@ switch($_GET['op']){
         echo json_encode($tablets);
         exit;
         break;
+    case 'view_top_brands':
+        $offset=$_GET['offset'];
+        $brands=view_top_brands($offset);
+        echo json_encode($brands);
+        exit;
+        break;
 }
 ?>

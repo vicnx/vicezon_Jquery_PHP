@@ -5,6 +5,11 @@
     flex-direction: column;
     justify-content: center;
 }
+.top-brands-carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #brands-cards-homepage{
     width: 70%;
     display: flex;
@@ -31,7 +36,6 @@
     text-transform: uppercase;
     font-size: 50px;
 }
-
 /* CARROUSEL */
 #number_top_tablets{
     color: white;
