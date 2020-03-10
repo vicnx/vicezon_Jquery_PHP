@@ -11,6 +11,7 @@ Mirar **tienda.sql** para importarla.
 ### Pre-requisitos 📋
 
 _Necesitaras instalar lo siguiente para su correcto funcionamiento_
+
 Aqui hay una guia de como instalar la pila LAMP manualmente:
 ```
 https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-ubuntu/
