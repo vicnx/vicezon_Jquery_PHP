@@ -1,6 +1,6 @@
 # Vicezon
 
-> Proyecto de una tienda online de 1DAW
+> Proyecto de una tienda de tecnologia online realizado 
 
 ## Instrucciones para instalar: 📋
 
