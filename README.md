@@ -61,7 +61,7 @@ _Herramientas utilizadas para la realización del proyecto_
 * [FontAwesome](https://fontawesome.com/) - Usado para los iconos.
 
 ## Novedades: 📑
-_Aqui estan las novedades más importantes con su fecha de creación_
+_Aqui estan las novedades más importantes con su fecha de actualización_
 
 #### 10/03/2020
 ```
