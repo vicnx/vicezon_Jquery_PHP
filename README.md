@@ -16,9 +16,15 @@ Aqui hay una guia de como instalar la pila LAMP manualmente:
 https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-ubuntu/
 ```
 
-## Demo
-
-_Proximamente..._
+## Images
+#### Homepage
+![Image of Client view](https://i.imgur.com/ytT7vZu.jpg)
+#### Shop
+![Image of Shop](https://i.imgur.com/YKTPp3i.png)
+#### Contact
+![Image of Contact](https://i.imgur.com/wrC01mc.png)
+#### Admin Panel
+![Image of Admin Panel](https://i.imgur.com/u2nB71P.png)
 
 ## Funcionalidades más importantes: ⌨️
 
@@ -35,7 +41,7 @@ _Herramientas utilizadas para la realización del proyecto_
 ## Novedades:
 _Aqui estan las novedades más importantes con su fecha de creación_
 
-10/03/2020
+#### 10/03/2020
 ```
 Añadido **Popular Brands** al home
 - Muestra las marcas que más visitas tienen.
