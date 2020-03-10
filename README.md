@@ -2,7 +2,7 @@
 
 _Proyecto de una tienda online de 1DAW_
 
-## 📋 Instrucciones para instalar:
+## Instrucciones para instalar: 📋
 
 _Para instalar el proyecto solo hay que cargar la base de datos que proporciono._
 
@@ -17,7 +17,7 @@ Aqui hay una guia de como instalar la pila LAMP manualmente:
 https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-ubuntu/
 ```
 
-## 📷 Images:
+## Images: 📷
 #### Homepage
 ![Image of Client view](https://i.imgur.com/ytT7vZu.jpg)
 #### Shop
@@ -27,10 +27,10 @@ https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-
 #### Admin Panel
 ![Image of Admin Panel](https://i.imgur.com/u2nB71P.png)
 
-## ⌨️ Funcionalidades:
+## Funcionalidades: ⌨️ 
 _En la aplicación tenemos dos modulos principales y dentro de ellos hay distintos modulos:_
 
-### Admin: 
+#### Admin: 
 
 *Aquí esta el panel de administración donde puedes gestionar los productos y las categorias.*
 
@@ -38,7 +38,7 @@ _En la aplicación tenemos dos modulos principales y dentro de ellos hay distint
 | --- | --- |
 | Dashboard | *Aqui el administrador puede gestionar los productos.* |
 
-### Client:
+#### Client:
 
 *Esta es la vista del cliente, donde pueden comprar, ver productos y valorarlos.*
   
@@ -49,10 +49,10 @@ _En la aplicación tenemos dos modulos principales y dentro de ellos hay distint
 | Contact | *Formulario de contacto y ubicacion de la empresa.* |
 | Search | *Es el modulo de busqueda, que esta situada en todos los modulos de cliente, donde puedes buscar productos en cualquier lugar de la web.* |
 
-## 💻 APIs:
+## APIs: 💻 
 * [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial?hl=es) - Usada para el mapa del modulo *Contact* en la parte cliente.
 
-## 🛠️ Construido con:
+## Construido con: 🛠️ 
 
 _Herramientas utilizadas para la realización del proyecto_
 
@@ -60,7 +60,7 @@ _Herramientas utilizadas para la realización del proyecto_
 * [DataTables](https://datatables.net/) - Las tablas de los productos en el panel Admin.
 * [FontAwesome](https://fontawesome.com/) - Usado para los iconos.
 
-## 📑 Novedades:
+## Novedades: 📑
 _Aqui estan las novedades más importantes con su fecha de creación_
 
 #### 10/03/2020
