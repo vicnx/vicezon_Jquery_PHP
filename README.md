@@ -27,9 +27,28 @@ https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-
 #### Admin Panel
 ![Image of Admin Panel](https://i.imgur.com/u2nB71P.png)
 
-## Funcionalidades más importantes: ⌨️
+## Funcionalidades: ⌨️
+_En la aplicación tenemos dos modulos principales y dentro de ellos hay distintos modulos:_
 
-_Proximamente..._
+### Admin 
+
+*Aquí esta el panel de administración donde puedes gestionar los productos y las categorias.*
+
+| Modulo | Descripción |
+| --- | --- |
+| Dashboard | Aqui el administrador puede gestionar los productos. |
+
+### Client 
+
+*Esta es la vista del cliente, donde pueden comprar, ver productos y valorarlos.*
+  
+| Modulo | Descripción |
+| --- | --- |
+| Homepage | Es donde el cliente puede visualizar lo más destacado de la web. |
+| Shop | Aqui es donde el cliente puede ver todos los productos o filtrarlos. |
+| Contact | Formulario de contacto y ubicacion de la empresa. |
+| Search | Es el modulo de busqueda, que esta situada en todos los modulos de cliente, donde puedes buscar productos en cualquier lugar de la web. |
+
 
 ## Construido con 🛠️
 
