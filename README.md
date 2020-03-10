@@ -1,6 +1,6 @@
 # Vicezon
 
-> Proyecto de una tienda de tecnologia online realizado 
+> Proyecto de una tienda de tecnologia online
 
 ## Instrucciones para instalar: 📋
 
