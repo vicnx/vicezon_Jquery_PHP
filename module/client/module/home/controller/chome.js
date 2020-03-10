@@ -162,7 +162,11 @@ function get_brands_views(offset = 0){
                 $('#brands-cards-homepage').empty();
                 for (var i = 0; i < data.length; i++) {
                     $('#brands-cards-homepage').append(
-                        '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
+                        '<div class="brand-card" id='+data[i].idbrand+'>'+
+                        '<span>'+data[i].namebrand+'</span>'+
+                        '</br>'+
+                        '<span>'+data[i].views+'</span>'+
+                        '</div>'
                     )
                  }
             }
