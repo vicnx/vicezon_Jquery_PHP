@@ -83,3 +83,9 @@ Añadido **Popular Brands** al home
 Añadida nueva copia de seguridad de la BD.
 -con las nuevas columnas views tanto en brands como en Tablets.
 ```
+
+#### 12/03/2020
+```
+- Añadida la paginacion funcionando con promesas y con todos los filtros.
+- Arreeglado el shop ya que repetia productos.
+```
