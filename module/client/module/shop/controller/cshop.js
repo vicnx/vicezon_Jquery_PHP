@@ -1,113 +1,89 @@
 function ajaxForSearch(durl) {
+    //realizado con promesas
+    var get_products = function(url) {
+        return new Promise(function(resolve, reject) {
+         $.ajax({ 
+                  type: 'GET', 
+                  url: url, 
+                  dataType: 'json',
+              })
+              .done(function( data) {
+                  resolve(data);
+              })
+              .fail(function(textStatus) {
+                  if ( console && console.log ) {
+                      console.log( "La solicitud a fallado: " +  textStatus);
+                      reject("Error");
+                  }
+              });
+        });
+      }
     var url=durl;
-    //console.log(url);
-    $.ajax({ 
-        type: 'GET', 
-        url:url,
-        dataType: 'json',
-        success: function (data) { 
-            if(data.length == 0){
-                $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-            }else{
-                for (var i = 0; i < data.length; i++) {
-                    $('#list').append(
-                        '<div class="itemlist" id="'+data[i].idproduct+'">'+
+    console.log("URL = "+url)
+    get_products(url)
+      .then(function(total_productos){
+        var total_pages=Math.ceil(total_productos.length/5);
+        console.log(total_pages)
+        var url2=(url+'&page='+(0));
+        console.log("url2:  "+ url2)
+        get_products(url2)
+            .then(function(result){
+                console.log(result)
+                $('#list').empty();
+                console.log(result);
+                result.forEach(element =>
+                    $('#list').append( 
+                        '<div class="itemlist" id="'+element.idproduct+'">'+
                             '<div class="card">'+
-                                '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
+                                '<img class="card-img-top" src="'+element.imagen+'" alt="picture"">'+
                                 '<div class="card-body">'+
-                                    '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-                                    '<p class="card-text">'+data[i].price+' €</p>'+
-                                    '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
+                                    '<h5 class="card-title">'+element.nombre+'</h5>'+
+                                    '<p class="card-text">'+element.price+' €</p>'+
+                                    '<p class="card-text">MARCA: '+element.marca+'</p>'+
                                     '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'
-                    )
-                 }
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
-}
-function menu(){
-    $(function menu() {
-        var menu = $("#menunav");
-        $(window).scroll(function() {    
-            var scroll = $(window).scrollTop();
-        
-            if (scroll >= 100) {
-                menu.removeClass('transparent').addClass("bg-dark");
-            } else {
-                menu.removeClass("bg-dark").addClass('transparent');
-            }
-        });
-    });
-}
-// function shop_general(){
-//     if (localStorage.getItem("brand") === null) {
-//         if(localStorage.getItem("product") != null){
-//             console.log("product not null");
-//             details_shop();
-//         }else{
-//             console.log("brand null");
-//             shop_list_all();
-//         }
-//     }else if (localStorage.getItem("brand") != null){
-//         console.log("brand not null");
-//         shop_list_brands();
-//     }
-// }
-function shop_list_all(){
-    console.log("shop list all");
-    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
-    // $.ajax({ 
-    //     type: 'GET', 
-    //     url: 'module/client/module/shop/controller/controller_shop.php?op=all',
-    //     async:false, 
-    //     dataType: 'json',
-    //     data:{},
-    //     success: function (data) { 
-    //         console.log("dentro shop list all");
-    //         if(data.length == 0){
-    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-    //         }else{
-    //             for (var i = 0; i < data.length; i++) {
-    //                 $('#list').append(
-    //                     '<div class="itemlist"id="'+data[i].idproduct+'">'+
-    //                         '<div class="card">'+
-    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-    //                             '<div class="card-body">'+
-    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
-    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-    //                             '</div>'+
-    //                         '</div>'+
-    //                     '</div>'
-    //                 )
-    //              }
-    //         }
-    //     },
-    //     error: function(){
-    //         console.log("error");
-    //     }
-    // });
-}
+                    )                      
+                );
+            })
 
-function shop_list_brands(){
-    var brand = localStorage.getItem('brand');
-    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
+            $(".pagination").bootpag({
+                total: total_pages,
+                page: 1,
+                maxVisible: 5,
+                next: 'next',
+                prev: 'prev'
+            }).on("page", function (e, num) {
+                var url3=(url+'&page='+(num-1));
+                get_products(url3)
+                    .then(function(result){
+                        console.log(url3)
+                        $('#list').empty();
+                        result.forEach(element =>
+                            $('#list').append( 
+                                '<div class="itemlist" id="'+element.idproduct+'">'+
+                                    '<div class="card">'+
+                                        '<img class="card-img-top" src="'+element.imagen+'" alt="picture"">'+
+                                        '<div class="card-body">'+
+                                            '<h5 class="card-title">'+element.nombre+'</h5>'+
+                                            '<p class="card-text">'+element.price+' €</p>'+
+                                            '<p class="card-text">MARCA: '+element.marca+'</p>'+
+                                            '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'
+                            )                      
+                        );
+                    })
+            });
+      })
     // $.ajax({ 
     //     type: 'GET', 
-    //     url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand,
-    //     async:false, 
+    //     url:url,
     //     dataType: 'json',
-    //     data:{},
     //     success: function (data) { 
-    //         console.log(data);
-    //         if (data.length == 0){
+    //         if(data.length == 0){
     //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
     //         }else{
     //             for (var i = 0; i < data.length; i++) {
@@ -131,6 +107,31 @@ function shop_list_brands(){
     //         console.log("error");
     //     }
     // });
+}
+function menu(){
+    $(function menu() {
+        var menu = $("#menunav");
+        $(window).scroll(function() {    
+            var scroll = $(window).scrollTop();
+        
+            if (scroll >= 100) {
+                menu.removeClass('transparent').addClass("bg-dark");
+            } else {
+                menu.removeClass("bg-dark").addClass('transparent');
+            }
+        });
+    });
+}
+function shop_list_all(){
+    console.log("shop list all");
+    $("#list").html("");
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
+}
+
+function shop_list_brands(){
+    var brand = localStorage.getItem('brand');
+    console.log("brand: "+brand)
+    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
 }
 
 function details_shop(){
@@ -204,118 +205,16 @@ function checkbox_filter(){
         //Añade todas las marcas checkeadas a local storage
         localStorage.setItem("brand", checked);
     });
-    checked = checked.slice(0, -1);
-    sentencia="Where marca IN("+checked+")";
-    console.log(sentencia);
-    if(sentencia.length<17){
-        $("#list").html("");
-        shop_list_all();
-    }else{
-    $("#list").html("");
-    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia);    
-        // $.ajax({ 
-        //     type: 'GET', 
-        //     url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia,
-        //     async:false, 
-        //     dataType: 'json',
-        //     data:{},
-        //     success: function (data) { 
-        //         console.log(data);
-        //         if (data.length == 0){
-        //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-        //         }else{
-        //             for (var i = 0; i < data.length; i++) {
-        //                 $('#list').append(
-        //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
-        //                         '<div class="card">'+
-        //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-        //                             '<div class="card-body">'+
-        //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-        //                                 '<p class="card-text">'+data[i].price+' €</p>'+
-        //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-        //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-        //                             '</div>'+
-        //                         '</div>'+
-        //                     '</div>'
-        //                 )
-        //             }
-        //         }
-        //     },
-        //     error: function(){
-        //         console.log("error");
-        //     }
-        // });
-    }
+    //Esto esta comentado porque no hace falta, lo que hacia era duplicar los resultados
+    // if(sentencia.length<17){
+    //     $("#list").html("");
+    //     shop_list_all();
+    // }else{
+    // $("#list").html("");
+    // ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia);    
+    // }
     getdetails();  
 }
-//FILTROS CHECK CON ARRAY(Si quitas el check borra el ultimo check que has hecho (no funciona bien))
-// function checkbox_brands_checked(){
-//     var checks=[];
-//     var count = 0;
-//     $('input').on('click',function(){  
-//         var idbrand= $(this).attr("id");
-//         console.log(idbrand);
-//         if($(this).is(':checked')){
-//             if (count==0){
-//                 checks.push("Where marca = "+idbrand);
-//                 count=count+1;
-//             }else{
-//                 count=count+1;
-//                 checks.push(" OR marca = "+idbrand);
-//             }
-//         }else{
-//             checks.pop();
-//             count=count-1;
-//         }
-//         console.log("count"+count)
-//         console.log(checks);
-//         if (!count==0){
-//             var arrayfinal = checks.toString();
-//             arrayfinal=arrayfinal.replace(/,/g, "");
-//             console.log(arrayfinal);
-//             $("#list").html("");    
-//             $.ajax({ 
-//                 type: 'GET', 
-//                 url: 'module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+arrayfinal,
-//                 async:false, 
-//                 dataType: 'json',
-//                 data:{},
-//                 success: function (data) { 
-//                     console.log(data);
-//                     if (data.length == 0){
-//                         $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-//                     }else{
-//                         for (var i = 0; i < data.length; i++) {
-//                             $('#list').append(
-//                                 '<div class="itemlist" id="'+data[i].idproduct+'">'+
-//                                     '<div class="card">'+
-//                                         '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-//                                         '<div class="card-body">'+
-//                                             '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-//                                             '<p class="card-text">'+data[i].price+' €</p>'+
-//                                             '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-//                                         '</div>'+
-//                                     '</div>'+
-//                                 '</div>'
-//                             )
-//                          }
-//                     }
-//                 },
-//                 error: function(){
-//                     console.log("error");
-//                 }
-//             });
-//         }else if($("input").is(':checked')<1){
-//             shop_list_all();
-//         }
-//         getdetails();
-//         // localStorage.setItem("filters", idbrand);
-//         // checkbox_brands_checked();
-//     })
-//     // var brand = localStorage.getItem('filters');
-//     // localStorage.removeItem('brand');
- 
-// }
 function getdetails(){
     console.log("carga");
     $('#list').on('click','.itemlist',function(){
@@ -327,7 +226,6 @@ function getdetails(){
 
 function check_checkbox_default_checked(){
     // esto es una especie de segundo controlador para que funcione correctamente
-    var idbrand = localStorage.getItem("brand");
         console.log("product is null")
         if(localStorage.getItem("brand")=== null){
             checkbox_filter();
@@ -354,55 +252,48 @@ function check_checkbox_click(){
         order_by_price();
     });
 }
-
+function shop_general(){
+    if (localStorage.getItem("brand") === null) {
+        if(localStorage.getItem("product") != null){
+            console.log("product not null");
+            details_shop();
+        }else{
+            console.log("brand null");
+            shop_list_all();
+        }
+    }else if (localStorage.getItem("brand") != null){
+        console.log("brand not null");
+        shop_list_brands();
+    }
+}
 function order_by_price(){
     //esto selecciona el valor del Select actual
     var order=$("#order_price :selected").val();
     var brands = localStorage.getItem("brand");
     var sentencia;
-    console.log("brands====="+brands);
-    if (brands != null){
-        brands=brands.slice(0, -1);
-        sentencia = ("Where marca IN("+brands+") order by price "+order);
-        console.log(sentencia);
+    //El primer if es por si el sort esta desactivado que los ordene por nombre ( es un pequeño controlador)
+    if(order == "disable"){
+        if (brands != null){
+            brands=brands.slice(0, -1);
+            sentencia = ("Where marca IN("+brands+") order by nombre ASC ");
+            console.log(sentencia);
+        }else{
+            sentencia = ("order by nombre ASC");
+        }
     }else{
-        sentencia = ("order by price "+order);
+        console.log("brands====="+brands);
+        if (brands != null){
+            brands=brands.slice(0, -1);
+            sentencia = ("Where marca IN("+brands+") order by price "+order);
+            console.log(sentencia);
+        }else{
+            sentencia = ("order by price "+order);
+        }
     }
-    //console.log(order);
+    console.log(order);
     $("#list").html("");
     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia); 
     getdetails();
-    // $.ajax({ 
-    //     type: 'GET', 
-    //     url: 'module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia,
-    //     async:false, 
-    //     dataType: 'json',
-    //     data:{},
-    //     success: function (data) {
-    //         if(data.length == 0){
-    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-    //         }else{
-    //             for (var i = 0; i < data.length; i++) {
-    //                 $('#list').append(
-    //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
-    //                         '<div class="card">'+
-    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-    //                             '<div class="card-body">'+
-    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
-    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-    //                             '</div>'+
-    //                         '</div>'+
-    //                     '</div>'
-    //                 )
-    //             } 
-    //         }
-    //     },
-    //     error: function(){
-    //         console.log("error");
-    //     }
-    // });
 }
 function order_by_price_change(){
     //cuando el select de price cambia vuelve a llamar a la funcion

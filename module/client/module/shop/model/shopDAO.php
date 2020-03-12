@@ -4,7 +4,7 @@ include($path . "model/ConnectionBD.php");
 
 function select_all_tablets_shop(){ //USE IN LIST DATATABLES FULL
     $conn = new connection();
-    $sql = "SELECT * FROM Tablets ORDER BY idproduct ASC";
+    $sql = "SELECT * FROM Tablets ORDER BY nombre ASC";
     $query = $conn->query($sql)->fetchAll();
     $conn =null;
     return $query;
@@ -37,9 +37,13 @@ function select_all_brands(){
     $conn =null;
     return $query;
 }
-function select_products_order($sentencia){
+function select_products_order($sentencia,$page){
+    if($page == "null"){
+        $sql = "SELECT * FROM Tablets $sentencia";
+    }else{
+        $sql = "SELECT * FROM Tablets $sentencia LIMIT 5 OFFSET $page";
+    }
     $conn = new connection();
-    $sql = "SELECT * FROM Tablets $sentencia";
     $query = $conn->query($sql)->fetchAll();
     $conn =null;
     return $query;
@@ -68,6 +72,14 @@ function addview_brand($idproduct){
     where idproduct = $idproduct";
     $query = $conn->query($sql);
     $conn = null;
+    return $query;
+}
+
+function pagination($page){
+    $conn = new connection();
+    $sql = "SELECT * FROM Tablets ORDER BY nombre ASC LIMIT $page,5";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
     return $query;
 }
 ?>

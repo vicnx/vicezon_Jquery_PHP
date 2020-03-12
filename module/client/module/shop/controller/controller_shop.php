@@ -24,8 +24,18 @@ switch($_GET['op']){
         echo json_encode($brands);
         break;
     case 'order_by_price':
-        $tablets_order=select_products_order($_GET['sentencia']);
-        echo json_encode($tablets_order);
+        $sentencia=$_GET['sentencia'];
+        if (isset($_GET['page'])){
+            $page=$_GET['page'];
+            if($page == 0){
+                echo json_encode($tablets_order=select_products_order($sentencia,$page));
+            }else{
+                echo json_encode($tablets_order=select_products_order($sentencia,$page*5));
+            }
+            
+        }else{
+            echo json_encode($tablets_order=select_products_order($sentencia,"null"));
+        }
         break;
     case 'busqueda':
         $sentencia=$_GET['sentencia'];
@@ -33,5 +43,11 @@ switch($_GET['op']){
         echo json_encode($tablets_busqueda);
         exit;
         break;
-}   
+    case 'pagination':
+        $page=$_GET['page'];
+        $tablets=pagination($page);
+        echo json_encode($tablets);
+        exit;
+        break;
+} 
 ?>

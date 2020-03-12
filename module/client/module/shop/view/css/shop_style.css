@@ -37,6 +37,10 @@
     height: auto;
 }
 /* SHOP */
+.list_shop{
+    display: flex;
+    flex-direction: column;
+}
 .itemlistempty{
     font-family: monospace;
     width: 80%;

@@ -22,6 +22,9 @@
 <!-- LANG -->
 <script src="module/client/view/js/lang.js"></script>
 
+<!-- BOTTPAGE -->
+<script src="module/client/view/libraries/Jquery/bootpage/jquery.bootpag.min.js"></script>
+
 <!-- SEARCH -->
 <script src="module/client/module/search/view/js/search.js"></script>
 <!-- PROPIO CLIENT-->
