@@ -11,10 +11,7 @@ function ajaxForSearch(durl) {
                   resolve(data);
               })
               .fail(function(textStatus) {
-                  if ( console && console.log ) {
-                      console.log( "La solicitud a fallado: " +  textStatus);
-                      reject("Error");
-                  }
+                    console.log("Error en la promesa" + textStatus);
               });
         });
       }
