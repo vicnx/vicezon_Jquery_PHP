@@ -25,6 +25,9 @@
 <!-- BOTTPAGE -->
 <script src="module/client/view/libraries/Jquery/bootpage/jquery.bootpag.min.js"></script>
 
+
+<!-- APIS -->
+<script src="module/client/view/js/APIS.js"></script>
 <!-- SEARCH -->
 <script src="module/client/module/search/view/js/search.js"></script>
 <!-- PROPIO CLIENT-->
