@@ -62,6 +62,8 @@ _En la aplicación tenemos dos modulos principales y dentro de ellos hay distint
 ## APIs: 💻 
 * [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial?hl=es) - Usada para el mapa del modulo *Contact* en la parte cliente.
 
+* [NEWSAPI](http://newsapi.org/) - Usada en el homepage para cargar noticias sobre tablets.
+
 ## Construido con: 🛠️ 
 
 _Herramientas utilizadas para la realización del proyecto_
@@ -88,4 +90,14 @@ Añadida nueva copia de seguridad de la BD.
 ```
 - Añadida la paginacion funcionando con promesas y con todos los filtros.
 - Arreeglado el shop ya que repetia productos.
+```
+#### 15/03/2020
+```
+- CSS del pager propio ( ya que yo uso mdbootstrap y no tiene uno predefinido)
+- Añadida function en el top_page del modulo contact para cargar la API y ponerla en el SRC.
+- Añadido el .gitignore funcionando con las dos APIs
+- Añadida la API Noticias sobre tablets con css propio en el Home.
+- Añadido boton Load more y reset news.
+- Boton "Load more news": Cada vez que apretas carga 4 noticias más.
+- Boton "Reset News": Cuando lo apretas vuelve la seccion NEWS a su estado principal.
 ```
