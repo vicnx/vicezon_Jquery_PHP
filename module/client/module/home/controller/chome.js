@@ -60,32 +60,6 @@ function onclick_item(){
         window.location.href = "index.php?page=shop";
     });
 }
-// function topbrands(){
-//     $.ajax({ 
-//         type: 'GET', 
-//         url: '/vicezon/module/client/module/home/controller/controller_home.php?op=brands_card',
-//         async:false, 
-//         dataType: 'json',
-//         data:{},
-//         success: function (data) { 
-//                 for (var i = 0; i < 6; i++) {
-//                     $('#brands-cards-homepage').append(
-//                         '<div class="brand-card" id='+data[i].idbrand+'>'+'<span>'+data[i].namebrand+'</span></div>'
-//                     )
-//                  }
-
-//         },
-//         error: function(){
-//             console.log("error");
-//         }
-//     });
-//     $('.brand-card').on('click',function() {
-//         var idbrand= $(this).attr("id");
-//         console.log(idbrand);
-//         localStorage.setItem("brand", idbrand);
-//         window.location.href = "index.php?page=shop";
-//     });
-// }
 function menu(){
     $(function() {
         var menu = $("#menunav");
@@ -193,6 +167,48 @@ function more_brands(){
         get_brands_views(off)
     })
 }
+var clicks_more_news=1;
+function news_home(for_lenght = 4){
+    $("#news_home_content").empty();
+    $.ajax({
+        url: Apis.news,
+        success(json) {
+            console.log(json.articles)
+            for (var i = 0; i < for_lenght; i++) {
+                $("#news_home_content").append(
+                    "<div class='news_tablet'>"+
+                        "<div class='img_news_tablet'>"+
+                            "<img src='" + json.articles[i].urlToImage + "'>"+
+                        "</div>"+
+                        "<div class='content_news_text'>"+
+                            "<div class='title_news_tablet'>"+
+                                "<h6> " + json.articles[i].title + "</h6>"+
+                            "</div>"+
+                            "<div class='description_news_tablet'>"+
+                                "<p> " + json.articles[i].description +"</p>"+
+                            "</div>" +
+                            "<div class='data_news_tablet'>"+
+                                "<p>" + json.articles[i].publishedAt + "</p>"+
+                            "</div>"+
+                        "</div>"+
+                        "<a href='"+json.articles[i].url+"' class='view_more_news' target='_blank'>VIEW MORE</a>"+
+                    "</div>"
+                );
+            };
+        }
+      })
+}
+function clicks_news_home(){
+    $('.load_more_news').on('click',function(){
+        clicks_more_news++;
+        for_lenght=clicks_more_news*4;
+        news_home(for_lenght);
+    })
+    $('.reset_news').on('click', function(){
+        clicks_more_news=1;
+        news_home();
+    })
+}
 $(document).ready(function() {
     menu();
     carousel();
@@ -201,4 +217,6 @@ $(document).ready(function() {
     onclick_item();
     get_brands_views();
     more_brands();
+    news_home();
+    clicks_news_home();
 })

@@ -23,6 +23,16 @@
 
         </div>
     <hr></hr>
+    <div class="news_home" id="news_home">
+        <h1>TABLETS NEWS</h1>
+        <div class="news_home_content" id="news_home_content">
+        </div>
+        <div class="buttonloadmore">
+            <a class="load_more_news">LOAD MORE NEWS</a>
+            <a class="reset_news">RESET NEWS</a>
+        </div>
+    </div>
+    <hr></hr>
     <div class="lroem">
         <h2>Lorem ipsum dolor sit amet.</h2>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aut harum eligendi 
