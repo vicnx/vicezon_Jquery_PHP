@@ -12,6 +12,12 @@
 			case "shop";
 				include("module/client/module/shop/view/shop.php");
 				break;
+			case "login";
+				include("module/login/login.html");
+				break;
+			case "register";
+				include("module/login/register.html");
+				break;
 			default;
 				include("module/admin/view/inc/error/404.php");
 				break;
