@@ -101,3 +101,14 @@ Añadida nueva copia de seguridad de la BD.
 - Boton "Load more news": Cada vez que apretas carga 4 noticias más.
 - Boton "Reset News": Cuando lo apretas vuelve la seccion NEWS a su estado principal.
 ```
+
+#### 16/03/2020
+```
+- creada estructura del login.
+- en el client_pages añadidas las redirecciones.
+- reorganizado client_functions.js en funciones.
+- form register creado con su css propio usando mdbootstrap ( Se accede desde el menu/register)
+-form register validacion js completada.
+- form register llega al controlador php y a la validacion en BD con los datos del formulario.
+[CONTINUAR CREANDO LA TABLA EN BD, ACABAR LA VALIDACION PHP]
+```
