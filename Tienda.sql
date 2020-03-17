@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2020 a las 13:35:16
+-- Tiempo de generación: 17-03-2020 a las 10:02:06
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -39,11 +39,11 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`idbrand`, `namebrand`, `views`) VALUES
-(1, 'samsung', 0),
+(1, 'samsung', 6),
 (2, 'xiaomi', 1),
-(3, 'iphone', 0),
-(4, 'sony', 1),
-(5, 'motorola', 0),
+(3, 'iphone', 13),
+(4, 'sony', 2),
+(5, 'motorola', 3),
 (6, 'Oppo', 0),
 (7, 'redmi', 0),
 (8, 'hola', 0);
@@ -90,11 +90,11 @@ CREATE TABLE `tablets` (
 --
 
 INSERT INTO `tablets` (`idproduct`, `nombre`, `price`, `marca`, `fpublic`, `colores`, `sim`, `rating`, `imagen`, `views`) VALUES
-(1, 'Oppo B', 2215, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.97, 'module/admin/module/tablets/view/img/7.jpg', 0),
-(2, 'Nokia B', 943, 1, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 1.73, 'module/admin/module/tablets/view/img/12.jpg', 0),
-(3, 'Alcatel A', 8693, 4, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.43, 'module/admin/module/tablets/view/img/4.jpg', 3),
-(4, 'Honor note', 4081, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 9.84, 'module/admin/module/tablets/view/img/4.jpg', 0),
-(5, 'Cubot air', 2931, 5, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 4.13, 'module/admin/module/tablets/view/img/7.jpg', 0),
+(1, 'Oppo B', 2215, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.97, 'module/admin/module/tablets/view/img/7.jpg', 7),
+(2, 'Nokia B', 943, 1, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 1.73, 'module/admin/module/tablets/view/img/12.jpg', 6),
+(3, 'Alcatel A', 8693, 4, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.43, 'module/admin/module/tablets/view/img/4.jpg', 4),
+(4, 'Honor note', 4081, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 9.84, 'module/admin/module/tablets/view/img/4.jpg', 6),
+(5, 'Cubot air', 2931, 5, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 4.13, 'module/admin/module/tablets/view/img/7.jpg', 3),
 (6, 'huaweiZ', 477, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 8.46, 'module/admin/module/tablets/view/img/2.jpg', 1),
 (7, 'Umidgi J', 5126, 5, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 0.87, 'module/admin/module/tablets/view/img/2.jpg', 0),
 (8, 'Xtrem A', 231, 2, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 5.02, 'module/admin/module/tablets/view/img/11.jpg', 0),
@@ -111,6 +111,29 @@ INSERT INTO `tablets` (`idproduct`, `nombre`, `price`, `marca`, `fpublic`, `colo
 (19, 'Meizu air', 9491, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 4.53, 'module/admin/module/tablets/view/img/1.jpg', 0),
 (20, 'IPad G', 2709, 2, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 9.76, 'module/admin/module/tablets/view/img/18.jpg', 0),
 (21, 'pili', 20000, 2, '03/01/2020', 'Blanco:', 'Yes', 2, 'module/admin/module/tablets/view/img/18.jpg', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `username` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `avatar` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`username`, `first_name`, `last_name`, `email`, `password`, `type`, `avatar`) VALUES
+('test', 'test', 'test', 'test@test.com', '$2y$10$k/nYlqB7K7MOn1pm/SLYhuDnG331f3OwlGqqhfGs5eQ0DinDxSlfe', 'client', 'https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=40&d=identicon');
 
 --
 -- Índices para tablas volcadas

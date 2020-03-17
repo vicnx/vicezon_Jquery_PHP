@@ -114,7 +114,6 @@ function form_register_submit(){
     $("#form_register").submit(function(e){
         e.preventDefault();
         var register_serialized = $("#form_register").serialize();
-        console.log(register_serialized);
         if(validate_register()){
             $.ajax({
 				type : 'POST',
@@ -122,12 +121,12 @@ function form_register_submit(){
 				data : register_serialized,
 				success: function(response){			
 			   		console.log(response)		
-					if(response){
-						// setTimeout(' window.location.href = "index.php?page=login";',1000);
-					}else{
-						$("#error_login").fadeIn(1000, function(){						
-							$("#error_login").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+response+' !</div>');
-						});
+					if(response=="Registrado correctamente"){					
+						$("#error_login").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
+                        setTimeout(' window.location.href = "index.php?page=login";',1000);
+                        console.log(response);
+					}else{					
+						$("#error_login").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
 					}
 				}
 			});
