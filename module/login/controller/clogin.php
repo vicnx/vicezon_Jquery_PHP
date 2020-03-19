@@ -21,5 +21,42 @@ switch($_GET['op']){
             exit;
         }
         break;
+    case 'login':
+        try{
+            $username = $_POST['login_username'];
+            $password = $_POST['login_password'];
+            $loginDAO = new loginDAO();
+            $res = $loginDAO -> login_select_password($username);
+        } catch (Exception $e){
+            echo "error al obtener";
+        }
+        if(!$res){
+            echo 'user no existe';
+        }else{
+            if(password_verify($password,$res->password)){
+                echo "vale";
+                session_start();
+                $_SESSION['username'] = $res->username;
+                $_SESSION['type'] = $res->type;
+                $_SESSION['avatar'] = $res->avatar;
+                $_SESSION['email'] = $res->email;
+                $_SESSION['first_name'] = $res->first_name;
+                $_SESSION['last_name'] = $res->email;
+            }else{
+                echo "contrasena incorrecta";
+            }
+        }
+        break;
+    case 'check_login':
+        session_start();
+        $username=$_SESSION['username'];
+        echo $username;
+        break;
+    case 'logout':
+        session_start();
+        session_destroy();
+        session_unset();
+        echo "destroy";
+        break;
 }
 ?>

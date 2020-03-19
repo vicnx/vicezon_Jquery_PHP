@@ -19,6 +19,15 @@ class loginDAO{
         $conn = null;
         return $res;
     }
+
+    function login_select_password(){
+        $username= $_POST['login_username'];
+        $conn= new connection();
+        $sql="SELECT * FROM users where username='$username'";
+        $query = $conn->query($sql)->fetchObject();
+        $conn=null;
+        return $query;
+    }
 }
 function findEmail($email){
     $conn = new connection();        

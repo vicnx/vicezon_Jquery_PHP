@@ -150,11 +150,11 @@ function form_register_submit(){
 				success: function(response){			
 			   		console.log(response)		
 					if(response=="Registrado correctamente"){					
-						$("#error_login").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
+						$("#register_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
                         setTimeout(' window.location.href = "index.php?page=login";',1000);
                         console.log(response);
 					}else{					
-						$("#error_login").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
+						$("#register_msg").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
 					}
 				}
 			});
@@ -167,23 +167,24 @@ function form_login_submit(){
         e.preventDefault();
         console.log(validate_login());
         var login_serialized = $("#form_login").serialize();
-        // if(validate_login()){
-        //     $.ajax({
-		// 		type : 'POST',
-		// 		url  : 'module/login/controller/clogin.php?&op=login&' + login_serialized,
-		// 		data : login_serialized,
-		// 		success: function(response){			
-		// 	   		console.log(response)		
-		// 			if(response=="Registrado correctamente"){					
-		// 				$("#error_login").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
-        //                 setTimeout(' window.location.href = "index.php?page=login";',1000);
-        //                 console.log(response);
-		// 			}else{					
-		// 				$("#error_login").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
-		// 			}
-		// 		}
-		// 	});
-        // }
+        console.log(login_serialized);
+        if(validate_login()){
+            $.ajax({
+				type : 'POST',
+				url  : 'module/login/controller/clogin.php?&op=login&' + login_serialized,
+				data : login_serialized,
+				success: function(response){			
+			   		console.log(response)		
+					if(response=="vale"){					
+						$("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
+                        setTimeout(' window.location.href = "index.php";',1000);
+                        console.log(response);
+                    }else{					
+						$("#login_msg").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>COMPRUEBA LOS DATOS INTRODUCIDOS</div>');
+					}
+				}
+			});
+        }
         
     });
 }

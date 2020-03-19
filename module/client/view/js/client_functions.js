@@ -1,4 +1,18 @@
 function menu_clicks(){
+    //boton logout va al controlador del login
+    $("#logout").on("click",function(){
+        $.ajax({ 
+            type: 'GET', 
+            url: 'module/login/controller/clogin.php?op=logout',
+            success: function (data) { 
+                console.log(data);
+                location.href = "index.php";
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
+    })
     $("#login").on("click",function(){
         location.href = "index.php?page=login";
     })
@@ -38,8 +52,22 @@ function adminpanel(){
     });
 }
 
-// SELECT ADMIN OR CLIENT
+function client_check(){
+    $.ajax({ 
+        type: 'GET', 
+        url: 'module/login/controller/clogin.php?op=check_login',
+        success: function (data) { 
+            $("#username").html(data);
+            $("#type").html(data);
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+}
+
 $(document).ready(function() {
+    client_check();
     adminpanel();
     menu_clicks();
 });

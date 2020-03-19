@@ -17,12 +17,11 @@
 			}else{
 				include("module/client/module/home/view/inc/home_top_page.php");
 			}
-			session_start();
 		?>
 	</head>
 	<body>
 		<div id="menu">
-			<?php include("module/client/view/inc/client_menu.php"); ?>
+			<?php include("module/client/view/inc/controller_menus.php"); ?>
 		</div>
 		<div class="wrapper">  	
 			<?php include("module/client/view/inc/client_header.php"); ?>
