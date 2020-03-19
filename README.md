@@ -112,3 +112,11 @@ Añadida nueva copia de seguridad de la BD.
 - form register llega al controlador php y a la validacion en BD con los datos del formulario.
 [CONTINUAR CREANDO LA TABLA EN BD, ACABAR LA VALIDACION PHP]
 ```
+
+#### 19/03/2020
+```
+Simplificado (mas info ver commits):
+- register funcionando.
+- actualizada base de datos.
+- login funcionando.
+```
