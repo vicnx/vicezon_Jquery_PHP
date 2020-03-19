@@ -1,3 +1,31 @@
+//validar login
+function validate_login(){
+    var result = true;
+    //form variables
+    var username=$("#login_username");
+    var e_username=$("#e_username");
+    var password=$("#login_password");
+    var e_password=$("#e_password");
+    //Username login Validate
+    if(!username.val()){
+        username.focus();
+        e_username.html("Ingresa tu usuario");
+        e_username.attr("hidden", false);
+        result=false;
+    }else{
+        e_username.attr("hidden", true);
+    }
+    //Password login validate
+    if(!password.val()){
+        password.focus();
+        e_password.html("Ingresa tu contraseña");
+        e_password.attr("hidden", false);
+        result=false;
+    }else{
+        e_password.attr("hidden", true);
+    }
+    return result;
+}
 // VALIDAR REGISTRO
 function validate_register(){
     // FORM VARIABLES
@@ -134,8 +162,34 @@ function form_register_submit(){
         
     });
 }
+function form_login_submit(){
+    $("#form_login").submit(function(e){
+        e.preventDefault();
+        console.log(validate_login());
+        var login_serialized = $("#form_login").serialize();
+        // if(validate_login()){
+        //     $.ajax({
+		// 		type : 'POST',
+		// 		url  : 'module/login/controller/clogin.php?&op=login&' + login_serialized,
+		// 		data : login_serialized,
+		// 		success: function(response){			
+		// 	   		console.log(response)		
+		// 			if(response=="Registrado correctamente"){					
+		// 				$("#error_login").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
+        //                 setTimeout(' window.location.href = "index.php?page=login";',1000);
+        //                 console.log(response);
+		// 			}else{					
+		// 				$("#error_login").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>'+response+'</div>');
+		// 			}
+		// 		}
+		// 	});
+        // }
+        
+    });
+}
 
 //READY
 $(document).ready(function(){
     form_register_submit();
+    form_login_submit()
 });

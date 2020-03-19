@@ -1,4 +1,7 @@
 function menu_clicks(){
+    $("#login").on("click",function(){
+        location.href = "index.php?page=login";
+    })
     $("#register").on("click",function(){
         location.href = "index.php?page=register";
     })
