@@ -135,6 +135,7 @@ function details_shop(){
     //se carga el producto desde localStorage.
     var idproduct=localStorage.getItem("product");
     $('#filters').hide();
+    $('.pagination').hide();
     $("#list").html("");
     $.ajax({ 
         type: 'GET', 

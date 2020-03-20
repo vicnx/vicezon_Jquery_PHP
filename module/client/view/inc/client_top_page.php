@@ -33,3 +33,6 @@
 <!-- PROPIO CLIENT-->
 <link rel="stylesheet" href="module/client/view/css/client_style.css">
 <script type="text/javascript" src="module/client/view/js/client_functions.js"></script>
+
+<!-- ACTIVITY LOGIN -->
+<script type="text/javascript" src="module/login/view/js/user_control.js"></script>

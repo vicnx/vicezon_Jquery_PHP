@@ -2,7 +2,7 @@
 $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
 include($path . "module/login/model/loginDAO.php");
 include($path . "module/login/model/loginVALIDATE.php");
-
+session_start();
 switch($_GET['op']){
     case 'register':
         $validar_php = validate_username_registered();
@@ -35,28 +35,72 @@ switch($_GET['op']){
         }else{
             if(password_verify($password,$res->password)){
                 echo "vale";
-                session_start();
+                //session_start();
                 $_SESSION['username'] = $res->username;
                 $_SESSION['type'] = $res->type;
                 $_SESSION['avatar'] = $res->avatar;
                 $_SESSION['email'] = $res->email;
                 $_SESSION['first_name'] = $res->first_name;
                 $_SESSION['last_name'] = $res->email;
+                $_SESSION['time'] = time();
             }else{
                 echo "contrasena incorrecta";
             }
         }
         break;
     case 'check_login':
-        session_start();
+        //session_start();
         $username=$_SESSION['username'];
         echo $username;
         break;
     case 'logout':
-        session_start();
+        //session_start();
         session_destroy();
         session_unset();
         echo "destroy";
+        break;
+    case 'actividad':
+        if(!isset($_SESSION['time'])){
+            echo 'on';
+        }else{
+            $actividad_login=$_SESSION['time'];
+            if((time()-$actividad_login) >900){ //15 minutes
+                echo 'off';
+            }else{
+                echo 'on';
+                echo time()-$actividad_login;
+                $_SESSION['time'] = time();
+            }
+        }
+        break;
+    case 'check_bd_type':
+        //session_start();
+        if(!isset($_SESSION['username'])){
+            echo 'nada';
+        }else{
+            $username=$_SESSION['username'];
+            $type=$_SESSION['type'];
+            check_bd_type($username,$type);
+            if(check_bd_type($username,$type)){
+                echo 'typeok';
+            }else{
+                echo 'typeno';
+            }
+        }
+        break;
+    case 'regenerar_id':
+    	$old_id = session_id();
+        session_regenerate_id(false);
+        
+        $new_session = session_id();
+        session_write_close();
+        
+        session_id($new_session);
+        
+		session_start();
+		$new_id = session_id();
+    	echo "old session: $old_id<br />";
+    	echo "new session: $new_id<br />";
         break;
 }
 ?>

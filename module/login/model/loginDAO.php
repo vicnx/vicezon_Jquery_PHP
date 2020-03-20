@@ -61,4 +61,21 @@ function findUsername($username){
         return false;
     }
 }
+
+function check_bd_type($username,$type){
+    $conn = new connection();        
+    $sql="SELECT username FROM users WHERE username='$username' and type='$type'";
+    $result=$conn->prepare($sql);//prepara la query con la connexion
+    // echo $sql;
+    $result->execute();//ejecuta la query
+    //var_dump($result);
+    $rows=$result->rowCount(); //cuenta las filas que ha sacado
+    $conn=null;
+    //echo $rows;
+    if ($rows>0){
+        return true;
+    }else{
+        return false;
+    }
+}
 ?>
