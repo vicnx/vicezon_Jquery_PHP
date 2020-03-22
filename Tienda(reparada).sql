@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-03-2020 a las 10:02:06
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Servidor: localhost:3306
+-- Tiempo de generación: 22-03-2020 a las 11:59:15
+-- Versión del servidor: 5.7.29-0ubuntu0.18.04.1
+-- Versión de PHP: 7.2.24-0ubuntu0.18.04.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tienda`
+-- Base de datos: `Tienda`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `brands` (
   `idbrand` int(30) NOT NULL,
   `namebrand` varchar(255) NOT NULL,
-  `views` int(11) NOT NULL DEFAULT 0
+  `views` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -69,10 +67,10 @@ INSERT INTO `loginusers` (`iduser`, `rankuser`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tablets`
+-- Estructura de tabla para la tabla `Tablets`
 --
 
-CREATE TABLE `tablets` (
+CREATE TABLE `Tablets` (
   `idproduct` int(255) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `price` int(255) NOT NULL,
@@ -80,16 +78,16 @@ CREATE TABLE `tablets` (
   `fpublic` varchar(255) DEFAULT NULL,
   `colores` varchar(255) NOT NULL,
   `sim` varchar(255) DEFAULT NULL,
-  `rating` double NOT NULL DEFAULT 0,
+  `rating` double NOT NULL DEFAULT '0',
   `imagen` varchar(255) NOT NULL DEFAULT 'module/admin/module/tablets/view/img/default.png',
-  `views` int(11) NOT NULL DEFAULT 0
+  `views` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `tablets`
+-- Volcado de datos para la tabla `Tablets`
 --
 
-INSERT INTO `tablets` (`idproduct`, `nombre`, `price`, `marca`, `fpublic`, `colores`, `sim`, `rating`, `imagen`, `views`) VALUES
+INSERT INTO `Tablets` (`idproduct`, `nombre`, `price`, `marca`, `fpublic`, `colores`, `sim`, `rating`, `imagen`, `views`) VALUES
 (1, 'Oppo B', 2215, 3, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.97, 'module/admin/module/tablets/view/img/7.jpg', 7),
 (2, 'Nokia B', 943, 1, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 1.73, 'module/admin/module/tablets/view/img/12.jpg', 6),
 (3, 'Alcatel A', 8693, 4, '12/02/2019', 'Azul:Negro:Blanco:Rojo:', 'Yes', 3.43, 'module/admin/module/tablets/view/img/4.jpg', 4),
@@ -133,7 +131,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `first_name`, `last_name`, `email`, `password`, `type`, `avatar`) VALUES
-('test', 'test', 'test', 'test@test.com', '$2y$10$k/nYlqB7K7MOn1pm/SLYhuDnG331f3OwlGqqhfGs5eQ0DinDxSlfe', 'client', 'https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=40&d=identicon');
+('test', 'test', 'test', 'test@test.com', '$2y$10$k/nYlqB7K7MOn1pm/SLYhuDnG331f3OwlGqqhfGs5eQ0DinDxSlfe', 'client', 'https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=40&d=identicon'),
+('admin', 'test', 'test', 'admin@gmail.com', '$2y$10$4/Xu/DfPGxwUJrN1k/ItregSg/1nDUPk2T0Td7Ce.ojCoWbees54G', 'admin', 'https://www.gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30?s=40&d=identicon');
 
 --
 -- Índices para tablas volcadas
@@ -146,9 +145,9 @@ ALTER TABLE `brands`
   ADD PRIMARY KEY (`idbrand`);
 
 --
--- Indices de la tabla `tablets`
+-- Indices de la tabla `Tablets`
 --
-ALTER TABLE `tablets`
+ALTER TABLE `Tablets`
   ADD PRIMARY KEY (`idproduct`),
   ADD UNIQUE KEY `nombre` (`nombre`);
 
@@ -161,14 +160,11 @@ ALTER TABLE `tablets`
 --
 ALTER TABLE `brands`
   MODIFY `idbrand` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
--- AUTO_INCREMENT de la tabla `tablets`
+-- AUTO_INCREMENT de la tabla `Tablets`
 --
-ALTER TABLE `tablets`
+ALTER TABLE `Tablets`
   MODIFY `idproduct` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
