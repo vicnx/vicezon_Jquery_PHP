@@ -28,21 +28,26 @@ function ajaxForSearch(durl) {
                 console.log(result)
                 $('#list').empty();
                 console.log(result);
-                result.forEach(element =>
-                    $('#list').append( 
-                        '<div class="itemlist" id="'+element.idproduct+'">'+
-                            '<div class="card">'+
-                                '<img class="card-img-top" src="'+element.imagen+'" alt="picture"">'+
-                                '<div class="card-body">'+
-                                    '<h5 class="card-title">'+element.nombre+'</h5>'+
-                                    '<p class="card-text">'+element.price+' €</p>'+
-                                    '<p class="card-text">MARCA: '+element.marca+'</p>'+
-                                    '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                if(result == 0){
+                    $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>');
+                    $('.pagination').hide();
+                }else{
+                    result.forEach(element =>
+                        $('#list').append( 
+                            '<div class="itemlist" id="'+element.idproduct+'">'+
+                                '<div class="card">'+
+                                    '<img class="card-img-top" src="'+element.imagen+'" alt="picture"">'+
+                                    '<div class="card-body">'+
+                                        '<h5 class="card-title">'+element.nombre+'</h5>'+
+                                        '<p class="card-text">'+element.price+' €</p>'+
+                                        '<p class="card-text">MARCA: '+element.marca+'</p>'+
+                                        '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                    '</div>'+
                                 '</div>'+
-                            '</div>'+
-                        '</div>'
-                    )                      
-                );
+                            '</div>'
+                        )                      
+                    );
+                }
             })
 
             $(".pagination").bootpag({
