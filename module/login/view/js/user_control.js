@@ -1,4 +1,5 @@
 function time_activity(){
+    console.log("time_activity load");
     var checks = function(url) {
         return new Promise(function(resolve, reject) {
             $.ajax({ 
@@ -18,9 +19,10 @@ function time_activity(){
     var check_bd_type='module/login/controller/clogin.php?&op=check_bd_type';
     var actividad_url='module/login/controller/clogin.php?&op=actividad';
     var destroy_session='module/login/controller/clogin.php?&op=logout';
-    var regenerate = 'module/login/controller/clogin.php?&op=regenerar_id'
+    var regenerate = 'module/login/controller/clogin.php?&op=regenerar_id';
     checks(check_bd_type)
     .then(function(type_check){
+        console.log("check_bd_type load");
         if(type_check != 'nada'){
             if(type_check != 'typeok'){
                 checks(destroy_session)
@@ -31,6 +33,7 @@ function time_activity(){
             }else{
                 checks(actividad_url)
                 .then(function(response){
+                    console.log("actividad_url load");
                     if(response=="off"){
                         alert("Se ha cerrado la session por estar más de 15 minutos inactivo");
                         checks(destroy_session)
@@ -41,9 +44,9 @@ function time_activity(){
                     }else{
                         checks(regenerate)
                         .then(function(ids){
+                            console.log("regenerate load");
                             console.log(ids);
                         })
-                        console.log('activo');
                     }
                 })
             }

@@ -1,6 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ViceZon</title>
-
 <!-- MATERIAL Bootstrap-->
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -25,7 +24,8 @@
 <!-- BOTTPAGE -->
 <script src="module/client/view/libraries/Jquery/bootpage/jquery.bootpag.min.js"></script>
 
-
+<!-- ACTIVITY LOGIN -->
+<script type="text/javascript" src="module/login/view/js/user_control.js"></script>
 <!-- APIS -->
 <script src="module/client/view/js/APIS.js"></script>
 <!-- SEARCH -->
@@ -33,6 +33,3 @@
 <!-- PROPIO CLIENT-->
 <link rel="stylesheet" href="module/client/view/css/client_style.css">
 <script type="text/javascript" src="module/client/view/js/client_functions.js"></script>
-
-<!-- ACTIVITY LOGIN -->
-<script type="text/javascript" src="module/login/view/js/user_control.js"></script>

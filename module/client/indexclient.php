@@ -14,6 +14,8 @@
 				include("module/login/view/inc/register_top_page.php");
 			}else if((isset($_GET['page'])) && ($_GET['page']=="login") ){
 				include("module/login/view/inc/login_top_page.php");
+			}else if((isset($_GET['page'])) && ($_GET['page']=="profile") ){
+				include("module/client/module/profile/view/inc/profile_top_page.php");
 			}else{
 				include("module/client/module/home/view/inc/home_top_page.php");
 			}

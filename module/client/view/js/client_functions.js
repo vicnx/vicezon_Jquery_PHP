@@ -1,4 +1,8 @@
 function menu_clicks(){
+    //boton profile\
+    $("#profile").on("click",function(){
+        location.href = "index.php?page=profile";
+    })
     //boton logout va al controlador del login
     $("#logout").on("click",function(){
         $.ajax({ 

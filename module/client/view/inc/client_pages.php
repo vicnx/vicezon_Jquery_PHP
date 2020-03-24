@@ -18,6 +18,9 @@
 			case "register";
 				include("module/login/register.html");
 				break;
+			case "profile";
+				include("module/client/module/profile/view/profile.html");
+				break;
 			default;
 				include("module/admin/view/inc/error/404.php");
 				break;
