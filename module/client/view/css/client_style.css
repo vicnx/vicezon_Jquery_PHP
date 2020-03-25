@@ -81,3 +81,12 @@ html {
 .bg-dark{
     transition: all 0.5s;
 }
+/* MENU */
+.menu_avatar{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    margin-right: 5px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 50%;
+}

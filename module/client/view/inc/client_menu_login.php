@@ -27,7 +27,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user"></i><span id='username'></span>
+              <img id="menu_avatar" class="menu_avatar" src="" alt=""><span id='username'></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right bg-dark"
                 aria-labelledby="navbarDropdownMenuLink-333">
