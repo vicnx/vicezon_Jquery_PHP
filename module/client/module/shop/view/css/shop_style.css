@@ -93,3 +93,18 @@
 .itemlist:hover{
     margin-top: -5px;
 }
+.fa-shopping-cart{
+    float: left;
+}
+.fa-heart{
+    float: right;
+}
+.fa-heart:hover{
+    color:red;
+}
+.liked{
+    color:red;
+}
+.liked:hover{
+    color:black;
+}

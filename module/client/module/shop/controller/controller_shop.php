@@ -1,6 +1,7 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
 include($path . "module/client/module/shop/model/shopDAO.php");
+session_start();
 switch($_GET['op']){
     case 'all':
         $alltablets=select_all_tablets_shop();
@@ -49,5 +50,42 @@ switch($_GET['op']){
         echo json_encode($tablets);
         exit;
         break;
+    case 'do_like':
+        if(!isset($_SESSION['username'])){
+            echo "no-login";
+        }else{
+            $username=$_SESSION['username'];
+            $idproduct=$_GET['idproduct'];
+            $rdo=do_like($idproduct,$username);
+            if(!$rdo){
+                echo 'Already exists';
+            }else{
+                echo 'rdo working';
+            }
+        }
+        echo "dentro de do like $";
+        break;
+    case 'check_likes':
+        $username=$_SESSION['username'];
+        $rdo=check_likes($username);
+        echo json_encode($rdo);
+        break;
+    case "check_like_click":
+        $product=$_GET['idproduct'];
+        $username=$_SESSION["username"];
+        $rdo=check_like_click($username,$product);
+        echo json_encode($rdo);
+        break;
+    case "delete_like":
+        $product=$_GET['idproduct'];
+        $username=$_SESSION["username"];
+        $rdo_delete=delete_like($username,$product);
+        if(!$rdo_delete){
+            echo "no-deleted";
+        }else{
+            echo "deleted";
+        }
+        break;
+
 } 
 ?>

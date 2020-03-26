@@ -82,4 +82,43 @@ function pagination($page){
     $conn =null;
     return $query;
 }
+
+function do_like($idproduct,$username){
+    $sql = "INSERT INTO likes (username,idproduct) values ('$username','$idproduct')";
+    $conn = new connection();
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query;
+}
+
+function check_likes($username){
+    $conn = new connection();
+    $sql = "SELECT * FROM likes where username='$username'";
+    $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
+function check_like_click($username,$idproduct){
+    $conn = new connection();        
+    $sql="SELECT * FROM likes WHERE username='$username' and idproduct='$idproduct'";
+    $result=$conn->prepare($sql);//prepara la query con la connexion
+    // echo $sql;
+    $result->execute();//ejecuta la query
+    //var_dump($result);
+    $rows=$result->rowCount(); //cuenta las filas que ha sacado
+    $conn=null;
+    //echo $rows;
+    if ($rows>0){
+        return true;
+    }else{
+        return false;
+    }
+}
+function delete_like($username,$idproduct){
+    $sql = "DELETE FROM likes where username='$username' and idproduct='$idproduct'";
+    $conn = new connection();
+    $query = $conn->query($sql);
+    $conn = null;
+    return $query;
+}
 ?>

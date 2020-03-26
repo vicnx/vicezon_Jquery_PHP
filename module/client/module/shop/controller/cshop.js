@@ -27,7 +27,6 @@ function ajaxForSearch(durl) {
             .then(function(result){
                 console.log(result)
                 $('#list').empty();
-                console.log(result);
                 if(result == 0){
                     $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>');
                     $('.pagination').hide();
@@ -41,15 +40,20 @@ function ajaxForSearch(durl) {
                                         '<h5 class="card-title">'+element.nombre+'</h5>'+
                                         '<p class="card-text">'+element.price+' €</p>'+
                                         '<p class="card-text">MARCA: '+element.marca+'</p>'+
+                                        '<p class="card-text">id: '+element.idproduct+'</p>'+
                                         '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                        '<i id="like" class="fas fa-heart"></i>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>'
                         )                      
                     );
                 }
+                getdetails();
             })
-
+            .then(function(likes){
+                send_likes();
+            })
             $(".pagination").bootpag({
                 total: total_pages,
                 page: 1,
@@ -72,43 +76,16 @@ function ajaxForSearch(durl) {
                                             '<p class="card-text">'+element.price+' €</p>'+
                                             '<p class="card-text">MARCA: '+element.marca+'</p>'+
                                             '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                            '<i id="like" class="fas fa-heart"></i>'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>'
                             )                      
                         );
+                        send_likes();
                     })
-            });
+            });    
       })
-    // $.ajax({ 
-    //     type: 'GET', 
-    //     url:url,
-    //     dataType: 'json',
-    //     success: function (data) { 
-    //         if(data.length == 0){
-    //             $('#list').append('<div class="itemlistempty">NO PRODUCTS</div>')
-    //         }else{
-    //             for (var i = 0; i < data.length; i++) {
-    //                 $('#list').append(
-    //                     '<div class="itemlist" id="'+data[i].idproduct+'">'+
-    //                         '<div class="card">'+
-    //                             '<img class="card-img-top" src="'+data[i].imagen+'" alt="picture"">'+
-    //                             '<div class="card-body">'+
-    //                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
-    //                                 '<p class="card-text">'+data[i].price+' €</p>'+
-    //                                 '<p class="card-text">MARCA: '+data[i].marca+'</p>'+
-    //                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
-    //                             '</div>'+
-    //                         '</div>'+
-    //                     '</div>'
-    //                 )
-    //              }
-    //         }
-    //     },
-    //     error: function(){
-    //         console.log("error");
-    //     }
-    // });
 }
 function menu(){
     $(function menu() {
@@ -124,17 +101,17 @@ function menu(){
         });
     });
 }
-function shop_list_all(){
-    console.log("shop list all");
-    $("#list").html("");
-    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
-}
+// function shop_list_all(){
+//     console.log("shop list all");
+//     $("#list").html("");
+//     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
+// }
 
-function shop_list_brands(){
-    var brand = localStorage.getItem('brand');
-    console.log("brand: "+brand)
-    ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
-}
+// function shop_list_brands(){
+//     var brand = localStorage.getItem('brand');
+//     console.log("brand: "+brand)
+//     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
+// }
 
 function details_shop(){
     //se carga el producto desde localStorage.
@@ -207,24 +184,19 @@ function checkbox_filter(){
         checked=checked+$(this).attr("id")+",";
         //Añade todas las marcas checkeadas a local storage
         localStorage.setItem("brand", checked);
-    });
-    //Esto esta comentado porque no hace falta, lo que hacia era duplicar los resultados
-    // if(sentencia.length<17){
-    //     $("#list").html("");
-    //     shop_list_all();
-    // }else{
-    // $("#list").html("");
-    // ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&checks='+sentencia);    
-    // }
-    getdetails();  
+    }); 
 }
 function getdetails(){
     console.log("carga");
-    $('#list').on('click','.itemlist',function(){
-        var idproduct= $(this).attr("id");
-        localStorage.setItem("product", idproduct);
-        details_shop();
-})
+    $('#list').on('click','.itemlist',function(event){
+        if($(event.target).is('.fa-heart')){
+            favs_control($(this));
+        }else{
+            var idproduct= $(this).attr("id");
+            localStorage.setItem("product", idproduct);
+            details_shop();
+        }
+    })
 }
 
 function check_checkbox_default_checked(){
@@ -296,7 +268,6 @@ function order_by_price(){
     console.log(order);
     $("#list").html("");
     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=order_by_price&sentencia='+sentencia); 
-    getdetails();
 }
 function order_by_price_change(){
     //cuando el select de price cambia vuelve a llamar a la funcion
@@ -351,11 +322,11 @@ function controlador(){
     }
 }
 
-
 $(document).ready(function() {
     filters();
     controlador();
     menu();
-    getdetails();
+    // getdetails();
+
 
 });
