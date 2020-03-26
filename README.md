@@ -120,3 +120,10 @@ Simplificado (mas info ver commits):
 - actualizada base de datos.
 - login funcionando.
 ```
+
+#### 26/03/2020
+```
+Simplificado (mas info ver commits):
+- favoritos en el shop completo.
+- actualizada base de datos.
+```
