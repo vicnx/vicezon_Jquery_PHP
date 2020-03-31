@@ -21,6 +21,9 @@
 			case "profile";
 				include("module/client/module/profile/view/profile.html");
 				break;
+			case "cart";
+				include("module/client/module/cart/view/cart.html");
+				break;
 			default;
 				include("module/admin/view/inc/error/404.php");
 				break;
