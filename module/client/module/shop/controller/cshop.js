@@ -101,17 +101,6 @@ function menu(){
         });
     });
 }
-// function shop_list_all(){
-//     console.log("shop list all");
-//     $("#list").html("");
-//     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=all');
-// }
-
-// function shop_list_brands(){
-//     var brand = localStorage.getItem('brand');
-//     console.log("brand: "+brand)
-//     ajaxForSearch('module/client/module/shop/controller/controller_shop.php?op=getinfobd&brand='+brand)
-// }
 
 function details_shop(){
     //se carga el producto desde localStorage.
@@ -130,10 +119,11 @@ function details_shop(){
                 '<div class="details">'+
                     '<a id="btnvolver" class="btn btn-danger" href="#">Volver</a>'+
                     '<img class="details_img" src="'+data[0].imagen+'" alt="picture"">'+
-                    '<div id="infoproduct">'+
+                    '<div class="infoproduct" id="' +data[0].idproduct+'">'+
                         '<span>ID:' +data[0].idproduct+'</span>'+
                         '<span>NAME:'+data[0].nombre+ '</span>'+
                         '<span>Price:'+data[0].price+' </span>'+
+                        '<i id="like" class="fas fa-heart"></i>'+
                     '</div>'+
                 '</div>'
             )
@@ -142,6 +132,8 @@ function details_shop(){
             console.log("error");
         }
     });
+    click_like_details();
+    check_likes_details(idproduct);
     //este boton lo que hace es borrar el localstorage y actualziar la pagina
     $('#btnvolver').on('click',function() {
         localStorage.removeItem("product");
@@ -190,12 +182,19 @@ function getdetails(){
     console.log("carga");
     $('#list').on('click','.itemlist',function(event){
         if($(event.target).is('.fa-heart')){
-            favs_control($(this));
+            console.log($(this).closest('.itemlist').attr("id"),$(this));
+            favs_control($(this),$(this).closest('.itemlist').attr("id"));
         }else{
             var idproduct= $(this).attr("id");
             localStorage.setItem("product", idproduct);
             details_shop();
         }
+    })
+}
+function click_like_details(){
+    $('.infoproduct').on('click','#like',function(event){
+        var idproduct=($(this).parent().attr('id'));
+        favs_control($(this).closest('.infoproduct'),idproduct);
     })
 }
 

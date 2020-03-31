@@ -66,26 +66,47 @@ switch($_GET['op']){
         echo "dentro de do like $";
         break;
     case 'check_likes':
-        $username=$_SESSION['username'];
-        $rdo=check_likes($username);
-        echo json_encode($rdo);
-        break;
-    case "check_like_click":
-        $product=$_GET['idproduct'];
-        $username=$_SESSION["username"];
-        $rdo=check_like_click($username,$product);
-        echo json_encode($rdo);
-        break;
-    case "delete_like":
-        $product=$_GET['idproduct'];
-        $username=$_SESSION["username"];
-        $rdo_delete=delete_like($username,$product);
-        if(!$rdo_delete){
-            echo "no-deleted";
+        if(!isset($_SESSION['username'])){
+            echo json_encode("no-login");
         }else{
-            echo "deleted";
+            $username=$_SESSION['username'];
+            $rdo=check_likes($username);
+            echo json_encode($rdo);
         }
         break;
-
+    case "check_like_click":
+        if(!isset($_SESSION['username'])){
+            echo "no-login";
+        }else{
+            $product=$_GET['idproduct'];
+            $username=$_SESSION["username"];
+            $rdo=check_like_click($username,$product);
+            echo json_encode($rdo);
+        }
+        break;
+    case "delete_like":
+        if(!isset($_SESSION['username'])){
+            echo "no-login";
+        }else{
+            $product=$_GET['idproduct'];
+            $username=$_SESSION["username"];
+            $rdo_delete=delete_like($username,$product);
+            if(!$rdo_delete){
+                echo "no-deleted";
+            }else{
+                echo "deleted";
+            }
+        }
+        break;
+    case "check_likes_details":
+        if(!isset($_SESSION['username'])){
+            echo "no-login";
+        }else{
+            $username=$_SESSION["username"];
+            $idproduct=$_GET['idproduct'];
+            $rdo=check_like_click($username,$idproduct);
+            echo json_encode($rdo);
+        }
+        break;
 } 
 ?>

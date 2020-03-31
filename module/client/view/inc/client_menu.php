@@ -36,6 +36,9 @@
                 <a id="admin_panel" class="nav-link" href="index.php">Admin Panel</a>
             </div>
         </li>
+        <li id="cart">
+          <i id="cart_menu" class="fas fa-shopping-cart"></i>
+        </li>
         <li>
           <div id="lang" >
             <select id="la" class="form-control form-control-sm">

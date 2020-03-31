@@ -24,25 +24,28 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-              <img id="menu_avatar" class="menu_avatar" src="" alt=""><span id='username'></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right bg-dark"
-                aria-labelledby="navbarDropdownMenuLink-333">
-                <a id="profile" class="dropdown-item">Perfil</a>
-                <a id="logout" class="dropdown-item">Desconectar</a>
-            </div>
-        </li>
-        <li>
-          <div id="lang" >
-            <select id="la" class="form-control form-control-sm">
-                <option id="en" value="en" data-tr="English"></option>
-                <option  id="es" value="es" data-tr="Spanish"></option>
-                <option  id="de" value="de" data-tr="German"></option>
-            </select>
-          </div>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+          <img id="menu_avatar" class="menu_avatar" src="" alt=""><span id='username'></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right bg-dark"
+            aria-labelledby="navbarDropdownMenuLink-333">
+            <a id="profile" class="dropdown-item">Perfil</a>
+            <a id="logout" class="dropdown-item">Desconectar</a>
+        </div>
+      </li>
+      <li id="cart">
+        <i id="cart_menu" class="fas fa-shopping-cart"></i>
+      </li>
+      <li>
+        <div id="lang" >
+          <select id="la" class="form-control form-control-sm">
+              <option id="en" value="en" data-tr="English"></option>
+              <option  id="es" value="es" data-tr="Spanish"></option>
+              <option  id="de" value="de" data-tr="German"></option>
+          </select>
+        </div>
       </li>
     </ul>
   </div>
