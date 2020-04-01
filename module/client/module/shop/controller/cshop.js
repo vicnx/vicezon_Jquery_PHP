@@ -49,7 +49,7 @@ function ajaxForSearch(durl) {
                         )                      
                     );
                 }
-                getdetails();
+                // getdetails();
             })
             .then(function(likes){
                 send_likes();
@@ -75,6 +75,7 @@ function ajaxForSearch(durl) {
                                             '<h5 class="card-title">'+element.nombre+'</h5>'+
                                             '<p class="card-text">'+element.price+' €</p>'+
                                             '<p class="card-text">MARCA: '+element.marca+'</p>'+
+                                            '<p class="card-text">id: '+element.idproduct+'</p>'+
                                             '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                                             '<i id="like" class="fas fa-heart"></i>'+
                                         '</div>'+
@@ -181,9 +182,13 @@ function checkbox_filter(){
 function getdetails(){
     console.log("carga");
     $('#list').on('click','.itemlist',function(event){
+        var idproductthis=$(this).closest('.itemlist').attr("id");
         if($(event.target).is('.fa-heart')){
-            console.log($(this).closest('.itemlist').attr("id"),$(this));
             favs_control($(this),$(this).closest('.itemlist').attr("id"));
+        }else if($(event.target).is('.fa-shopping-cart')){
+            console.log(idproductthis,$(this));
+            // save_product_on_cart("2");
+            save_product_on_cart(idproductthis);
         }else{
             var idproduct= $(this).attr("id");
             localStorage.setItem("product", idproduct);
@@ -325,7 +330,7 @@ $(document).ready(function() {
     filters();
     controlador();
     menu();
-    // getdetails();
+    getdetails();
 
 
 });

@@ -28,13 +28,17 @@
 .details{
     display: flex;
 }
-#infoproduct{
+.infoproduct{
     width: auto;
     margin-left: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: x-large;
+}
+.details_img{
+    width: 200px;
+    height: auto;
 }
 /* FILTERS */
 #mapfilter {
@@ -51,11 +55,7 @@
 .brandtext{
     text-transform: uppercase;
 }
-/* DETAILS */
-.details_img{
-    width: 200px;
-    height: auto;
-}
+
 /* SHOP */
 .list_shop{
     display: flex;
@@ -96,10 +96,19 @@
 .fa-shopping-cart{
     float: left;
 }
+.fa-shopping-cart:hover{
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    color: #0277BD;
+}
 .fa-heart{
     float: right;
 }
 .fa-heart:hover{
+    -webkit-transition: all 300ms ease-out;
+    -moz-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
     color:red;
 }
 .liked{

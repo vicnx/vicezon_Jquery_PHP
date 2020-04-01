@@ -1,4 +1,8 @@
 function menu_clicks(){
+    //boton cart
+    $("#cart_menu").on("click",function(){
+        location.href = "index.php?page=cart";
+    })
     //boton profile\
     $("#profile").on("click",function(){
         location.href = "index.php?page=profile";

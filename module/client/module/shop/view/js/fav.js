@@ -62,7 +62,7 @@ function favs_control(element,idproduct){
               });
         });
       }
-    likes('module/client/module/shop/controller/controller_shop.php?op=check_like_click&idproduct='+idproduct)
+    likes('module/client/module/shop/controller/controller_shop.php?op=get_product&idproduct='+idproduct)
     .then(function(data){
         console.log(data);
         if(data=="no-login"){

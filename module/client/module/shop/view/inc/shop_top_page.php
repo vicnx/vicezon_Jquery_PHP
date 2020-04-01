@@ -9,3 +9,4 @@
 <script type="text/javascript" src="module/client/module/shop/controller/cshop.js"></script>
 <script type="text/javascript" src="module/client/view/js/client_functions.js"></script>
 <script type="text/javascript" src="module/client/module/shop/view/js/fav.js"></script>
+<script type="text/javascript" src="module/client/module/cart/view/js/cart.js"></script>
