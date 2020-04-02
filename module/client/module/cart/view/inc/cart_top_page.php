@@ -5,3 +5,4 @@
 
 <!-- Scripts -->
 <script src="module/client/module/cart/controller/ccart.js"></script>
+<script src="module/client/module/cart/view/js/cart.js"></script>
