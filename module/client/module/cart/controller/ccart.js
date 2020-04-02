@@ -60,21 +60,21 @@ function load_cart_local(){
 }
 
 function add_qty_click(){
-    var count=0
-    count++;
-    console.log("carga: "+count)
     $('.fa-plus-square').on('click',function(event){
         id=$(this).attr("id");
         console.log(id);
-        save_qty(id);//le pasamos id al save_qty
+        add_qty(id);//le pasamos id al save_qty
         load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
     })
 }
 
 function rest_qty_click(){
-    $('.fa-rest-square').on('click',function(event){
+    console.log("rest load")
+    $('.fa-minus-square').on('click',function(event){
         console.log("rest");
         id=$(this).attr("id");
+        rest_qty(id);
+        load_cart_local();
     })
 }
 function delete_product_click(){

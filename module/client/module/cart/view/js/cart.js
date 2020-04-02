@@ -18,7 +18,7 @@ function save_cart_local(){
     localStorage.cart = JSON.stringify(cart);
 }
 
-function save_qty(idproduct){
+function add_qty(idproduct){
     // console.log("id save_qty: "+idproduct)
     cart=JSON.parse(localStorage.cart);//pasamos el local storage a json
     for (var i in cart){//hacemos un bucle para buscar ese id
@@ -32,8 +32,22 @@ function save_qty(idproduct){
 }
 
 function rest_qty(idproduct){
-    cart[i].qty=cart[i].qty+0;
-    save_cart_local();
+    // console.log("id save_qty: "+idproduct)
+    cart=JSON.parse(localStorage.cart);//pasamos el local storage a json
+    for (var i in cart){//hacemos un bucle para buscar ese id
+        //si el producto existe en local storage, suma 1 a la cantidad y sale de toda la funcion.
+        if(cart[i].id==idproduct){//si el id es el proporcionado añadimos 1
+            // console.log("dentro if save")
+            if(cart[i].qty===1){
+                console.log("CANTIDAD ES 1 AQUI SE BORRA "+cart[i].qty);
+                delete_product(idproduct);
+            }else{
+                console.log("cantidad es mayor que uno "+cart[i].qty)
+                cart[i].qty=cart[i].qty-1;
+                localStorage.cart = JSON.stringify(cart);//guardamos el nuevo carrito
+            }
+        }
+    }
 }
 
 function delete_product(idproduct){
