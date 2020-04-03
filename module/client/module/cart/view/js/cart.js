@@ -1,4 +1,5 @@
 function save_product_on_cart(idproduct){
+    console.log("save_product_on_cart")
     for (var i in cart){
         //si el producto existe en local storage, suma 1 a la cantidad y sale de toda la funcion.
         if(cart[i].id==idproduct){
@@ -60,6 +61,7 @@ function delete_product(idproduct){
     localStorage.cart = JSON.stringify(jsoncart);//guardamos el nuevo carrito
 
 }
+
 $(document).ready(function() {
     if(localStorage.cart){
         cart=JSON.parse(localStorage.cart);

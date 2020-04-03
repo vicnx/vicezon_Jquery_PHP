@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="module/client/module/home/view/css/home_style.css">
 <script type="text/javascript" src="module/client/module/home/controller/chome.js"></script>
 <script type="text/javascript" src="module/client/view/js/client_functions.js"></script>
+<script type="text/javascript" src="module/client/module/shop/view/js/fav.js"></script>
+<script type="text/javascript" src="module/client/module/cart/view/js/cart.js"></script>

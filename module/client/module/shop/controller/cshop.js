@@ -124,6 +124,7 @@ function details_shop(){
                         '<span>ID:' +data[0].idproduct+'</span>'+
                         '<span>NAME:'+data[0].nombre+ '</span>'+
                         '<span>Price:'+data[0].price+' </span>'+
+                        '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
                         '<i id="like" class="fas fa-heart"></i>'+
                     '</div>'+
                 '</div>'
@@ -133,7 +134,8 @@ function details_shop(){
             console.log("error");
         }
     });
-    click_like_details();
+    console.log("carga details")
+    clicks_details();
     check_likes_details(idproduct);
     //este boton lo que hace es borrar el localstorage y actualziar la pagina
     $('#btnvolver').on('click',function() {
@@ -180,7 +182,7 @@ function checkbox_filter(){
     }); 
 }
 function getdetails(){
-    console.log("carga");
+    console.log("carga get details clicks");
     $('#list').on('click','.itemlist',function(event){
         var idproductthis=$(this).closest('.itemlist').attr("id");
         if($(event.target).is('.fa-heart')){
@@ -196,10 +198,16 @@ function getdetails(){
         }
     })
 }
-function click_like_details(){
+function clicks_details(){
+    //click fav
     $('.infoproduct').on('click','#like',function(event){
         var idproduct=($(this).parent().attr('id'));
         favs_control($(this).closest('.infoproduct'),idproduct);
+    })
+    //click cart
+    $('.infoproduct').on('click','.fa-shopping-cart',function(event){
+        var idproduct=($(this).parent().attr('id'));
+        save_product_on_cart(idproduct);
     })
 }
 

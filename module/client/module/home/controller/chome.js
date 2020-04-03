@@ -15,6 +15,7 @@ function carousel(){
                                 '<h5 class="card-title">'+data[i].nombre+'</h5>'+
                                 '<p class="card-text">'+data[i].price+' €</p>'+
                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                '<i id="like" class="fas fa-heart"></i>'+
                             '</div>'+
                         '</div>'+
                     '</div>'
@@ -50,15 +51,31 @@ function carousel(){
             }
         }
     })
-    onclick_item();
+    // onclick_item();
 }
+
 function onclick_item(){
-    $('.item').on('click',function() {
-        var idproduct= $(this).attr("id");
-        console.log("product id= "+idproduct);
-        localStorage.setItem("product", idproduct);
-        window.location.href = "index.php?page=shop";
-    });
+    $('.item').on('click',function(event){
+        var idproductthis=$(this).attr("id");
+        console.log(idproductthis);
+        if($(event.target).is('.fa-heart')){
+            favs_control($(this),$(this).closest('.itemlist').attr("id"));
+        }else if($(event.target).is('.fa-shopping-cart')){
+            console.log(idproductthis,$(this));
+            // save_product_on_cart("2");
+            save_product_on_cart(idproductthis);
+        }else{
+            var idproduct= $(this).attr("id");
+            localStorage.setItem("product", idproduct);
+            details_shop();
+        }
+    })
+    // $('.item').on('click',function() {
+    //     var idproduct= $(this).attr("id");
+    //     console.log("product id= "+idproduct);
+    //     localStorage.setItem("product", idproduct);
+    //     window.location.href = "index.php?page=shop";
+    // });
 }
 function menu(){
     $(function() {
@@ -96,6 +113,7 @@ function get_products_views(offset = 0){
                                 '<p class="card-text">'+data[i].price+' €</p>'+
                                 '<p class="card-text">Visitas: '+data[i].views+'</p>'+
                                 '<i id="shopping_cart_top_tablets" class="fas fa-shopping-cart"></i>'+
+                                '<i id="like" class="fas fa-heart"></i>'+
                             '</div>'+
                         '</div>'+
                     '</div>'
@@ -107,6 +125,7 @@ function get_products_views(offset = 0){
         }
     });
     onclick_item();
+    send_likes_home();
 }
 function loadmoreview(){
     $('.loadmorebutton').on('click', function(){
@@ -214,7 +233,6 @@ $(document).ready(function() {
     carousel();
     get_products_views();
     loadmoreview();
-    onclick_item();
     get_brands_views();
     more_brands();
     news_home();

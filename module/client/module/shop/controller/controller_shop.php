@@ -108,5 +108,15 @@ switch($_GET['op']){
             echo json_encode($rdo);
         }
         break;
+    case "get_product":
+        if(!isset($_SESSION['username'])){
+            echo "no-login";
+        }else{
+            $product=$_GET['idproduct'];
+            $username=$_SESSION["username"];
+            $rdo=check_like_click($username,$product);
+            echo json_encode($rdo);
+        }
+        break;
 } 
 ?>

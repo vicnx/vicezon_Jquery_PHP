@@ -45,6 +45,27 @@ function send_likes(){
           console.log("Error");
     });
 }
+function send_likes_home(){
+    $.ajax({ 
+        type: 'GET', 
+        url: 'module/client/module/shop/controller/controller_shop.php?op=check_likes', 
+        dataType: 'json',
+    })
+    .done(function( data) {
+        if(data=="no-login"){
+            console.log("no-login");
+        }else{
+            data.forEach(element => {
+                // $(".itemlist").is('#'+element.idproduct).find("#like").addClass("liked");
+                id=$("#"+element.idproduct+'.item').find("#like").addClass("liked");
+            });
+        }
+
+    })
+    .fail(function(textStatus) {
+          console.log("Error");
+    });
+}
 function favs_control(element,idproduct){
     console.log(element);
     const boton= element;
@@ -66,9 +87,13 @@ function favs_control(element,idproduct){
     .then(function(data){
         console.log(data);
         if(data=="no-login"){
+            console.log("dentro no-login");
             location.href = "index.php?page=login";
         }else{
+            console.log("dentro no-login else");
+            console.log(data);
             if(data==="true"){
+                console.log("dentro no-login else true");
                 likes('module/client/module/shop/controller/controller_shop.php?op=delete_like&idproduct='+idproduct)
                 .then(function(data){
                     if(data=="deleted"){

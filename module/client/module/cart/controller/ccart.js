@@ -1,7 +1,7 @@
 function load_cart_local(){
     //Si en local storage no hay nada, el carrito aparecerá vacio.
     if (!localStorage.cart || localStorage.cart === '[]') {
-        $("#cart_table").html('<span id="cart_empty">The cart is empty</span>');
+        $(".carrito").html('<span id="cart_empty">The cart is empty</span>');
         localStorage.removeItem('cart');//borramos por si acaso
       return;
     }
@@ -37,24 +37,33 @@ function load_cart_local(){
         .then(function(productos){
             $("#cart_table > tbody").html(''); // se limpia la tabla para que se actualize al sumar o restar
             var number=0;
+            total=0;
+            console.log(productos)
             productos.forEach(p => {
+                qtyproduct=cart.find(x =>x.id===p.idproduct).qty;
+                totalproducto=(parseInt(p.price)*parseInt(qtyproduct));
+                total=total+totalproducto;
                 $('#cart_table > tbody').append(
-                    '<tr>'+
+                '<tr>'+
                     '<th scope="row">'+number+'</th>'+
-                    '<td>'+p.idproduct+'</td>'+
+                    '<td><img class="cimagen" src="'+p.imagen+'">IDPRODUCT: '+p.idproduct+'</td>'+
+                    '<td>'+p.nombre+'</td>'+
                     '<td>'+p.price+'</td>'+
                     //lo siguiente sirve para obtener la cantidad del producto que esta actualmente en el bucle (buscando por su id en local storage)
                     '<td>'+
                     '<i id="'+p.idproduct+'" class="fas fa-minus-square fa-lg"></i>'+
-                    '<span class="qty-text">'+cart.find(x =>x.id===p.idproduct).qty+'</span>'+
+                    '<span class="qty-text">'+qtyproduct+'</span>'+
                     '<i id="'+p.idproduct+'" class="fas fa-plus-square fa-lg" > </i>'+
                     '</td>'+
-                    '<td>total</td>'+
+                    '<td>'+totalproducto+'</td>'+
                     '<td><i id="'+p.idproduct+'" class="fas fa-trash-alt fa-lg"></i></td>'+
                 '</tr>'
                 )
                 number=number+1;
             });
+            $('.price_total_cart').html(
+                'TOTAL = '+total
+            )
             load_clicks();//cargamos los clicks al cargar todos los productos
         })
 }
