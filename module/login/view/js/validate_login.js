@@ -179,7 +179,19 @@ function form_login_submit(){
 						$("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
                         setTimeout(' window.location.href = "index.php";',1000);
                         console.log(response);
-                    }else{					
+                    }else if(response=="carrito"){
+                        $("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
+                        setTimeout(' window.location.href = "index.php?page=cart";',1000);
+                        $.ajax({ 
+                                type: 'GET', 
+                                url: 'module/client/module/cart/controller/ccart.php?op=destroy_cart_session',
+                            })
+                            .done(function( data) {
+                                console.log("data");
+                            });
+                        console.log("va al carrito");
+                    }
+                    else{					
 						$("#login_msg").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span>COMPRUEBA LOS DATOS INTRODUCIDOS</div>');
 					}
 				}

@@ -34,7 +34,11 @@ switch($_GET['op']){
             echo 'user no existe';
         }else{
             if(password_verify($password,$res->password)){
-                echo "vale";
+                if(isset($_SESSION['carrito'])&& $_SESSION['carrito'] === 'on'){
+                    echo "carrito";
+                }else{
+                    echo "vale";
+                }
                 //session_start();
                 $_SESSION['username'] = $res->username;
                 $_SESSION['type'] = $res->type;
@@ -43,6 +47,9 @@ switch($_GET['op']){
                 $_SESSION['first_name'] = $res->first_name;
                 $_SESSION['last_name'] = $res->email;
                 $_SESSION['time'] = time();
+                // if(isset($_SESSION['carrito']){
+                //     echo "carrito";
+                // })
             }else{
                 echo "contrasena incorrecta";
             }

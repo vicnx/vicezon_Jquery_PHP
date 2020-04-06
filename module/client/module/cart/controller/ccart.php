@@ -8,5 +8,16 @@ switch($_GET['op']){
         $productos=select_one_product($ids);
         echo json_encode($productos);
         break;
+    case 'checkout':
+        if(!isset($_SESSION['username'])){
+            echo 'no-login';
+            $_SESSION['carrito']="on";
+        }else{
+            echo 'login';
+        }
+        break;
+    case 'destroy_cart_session':
+        unset($_SESSION["carrito"]);
+        break;
 }
 ?>

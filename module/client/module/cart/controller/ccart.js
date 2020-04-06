@@ -68,38 +68,63 @@ function load_cart_local(){
         })
 }
 
-function add_qty_click(){
+function load_clicks(){
+    //click delete producto
+    $('.fa-trash-alt').on('click',function(event){
+        id=$(this).attr("id");
+        delete_product(id);//pasamos la id de ese boton (que es la del producto)
+        load_cart_local();//recarmamos el carrito
+    })
+    //add qty click
     $('.fa-plus-square').on('click',function(event){
         id=$(this).attr("id");
         console.log(id);
         add_qty(id);//le pasamos id al save_qty
         load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
     })
-}
-
-function rest_qty_click(){
-    console.log("rest load")
+    //rest qyty click
     $('.fa-minus-square').on('click',function(event){
         console.log("rest");
         id=$(this).attr("id");
         rest_qty(id);
         load_cart_local();
     })
-}
-function delete_product_click(){
-    $('.fa-trash-alt').on('click',function(event){
-        id=$(this).attr("id");
-        delete_product(id);//pasamos la id de ese boton (que es la del producto)
-        load_cart_local();//recarmamos el carrito
+    //click checkout
+    $('#checkout').on('click',function(event){
+        console.log("compra");
+        checkout();//cargamos la funcion checkout
     })
 }
 
+function checkout(){
+    var checkout_promise = function(url) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({ 
+                  type: 'GET', 
+                  url: url,
+              })
+              .done(function( data) {
+                  resolve(data);
+              })
+              .fail(function(textStatus) {
+                    console.log("Error en la promesa" + textStatus);
+              });
+            });
+        }
+    checkout_promise('module/client/module/cart/controller/ccart.php?op=checkout')
+    .then(function(login){
+        console.log(login);
+        if(login == "no-login"){ // si el user no esta login
+            location.href = "index.php?page=login";
+        }else{ //si ya esta login
+            $(".carrito").html('<span id="cart_empty">Compra realizado con exito</span>');
+            setTimeout(' window.location.href = "index.php";',1000);
+            localStorage.removeItem('cart');//borramos el carrito
 
-function load_clicks(){
-    delete_product_click();
-    add_qty_click();
-    rest_qty_click();
+        }
+    })
 }
+
 $(document).ready(function() {
     load_cart_local();
 });
