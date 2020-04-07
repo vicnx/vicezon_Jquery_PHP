@@ -19,5 +19,10 @@ switch($_GET['op']){
     case 'destroy_cart_session':
         unset($_SESSION["carrito"]);
         break;
+    case 'comprobar_stock':
+        $id=$_GET['idproduct'];
+        $product=select_one_product($id);
+        echo json_encode($product);
+        break;
 }
 ?>

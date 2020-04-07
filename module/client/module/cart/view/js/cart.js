@@ -1,35 +1,79 @@
+var promise_stock = function(url) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({ 
+              type: 'GET', 
+              url: url,
+              dataType: 'json', 
+          })
+          .done(function( data) {
+              resolve(data);
+          })
+          .fail(function(textStatus) {
+                console.log("Error en la promesa" + textStatus);
+          });
+        });
+    }
 function save_product_on_cart(idproduct){
-    console.log("save_product_on_cart")
+    // console.log("save_product_on_cart")
     for (var i in cart){
         //si el producto existe en local storage, suma 1 a la cantidad y sale de toda la funcion.
         if(cart[i].id==idproduct){
-            cart[i].qty=cart[i].qty+1;
-            save_cart_local();
-            return
+            promise_stock('module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct)
+            .then(function(product){
+                console.log("stock: "+product[0].stock);
+                if((cart[i].qty+1) > product[0].stock){//comprobamos que uno mas de lo que hay en local storage no será mayor que el stock.
+                    console.log("maximo stock");
+                    cart[i].qty=product[0].stock;//si es mayor ponemos el stock como cantidad
+                }else{
+                    console.log("se suma 1 stock");
+                    cart[i].qty=cart[i].qty+1;//si no es mayor, se suma uno a cantidad
+                }
+            })
+            .then(function(){
+                save_cart_local();//se guarda el carrito
+            })
+            // cart[i].qty=cart[i].qty+1;
+            // save_cart_local();
+            return //se sale de la funcion
         }
     }
     //esto solo lo hace la primera vez que se añade al carrito ese producto.
-    console.log("test1")
-    var producto = {id: idproduct,qty: 1};
-    cart.push(producto);
-    console.log("CART: "+JSON.stringify(cart));
-    save_cart_local();
+    promise_stock('module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct)
+    .then(function(product){
+        if(product[0].stock > 0){// si el stock es mayor a 0 lo añade
+            var producto = {id: idproduct,qty: 1};
+            cart.push(producto);
+            console.log("CART: "+JSON.stringify(cart));
+        }else{
+            console.log("no hay stock de este producto");
+        }
+    })
+    .then(function(){
+        save_cart_local();
+    })
+
 }
 function save_cart_local(){
     localStorage.cart = JSON.stringify(cart);
 }
 
 function add_qty(idproduct){
-    // console.log("id save_qty: "+idproduct)
-    cart=JSON.parse(localStorage.cart);//pasamos el local storage a json
-    for (var i in cart){//hacemos un bucle para buscar ese id
-        //si el producto existe en local storage, suma 1 a la cantidad y sale de toda la funcion.
-        if(cart[i].id==idproduct){//si el id es el proporcionado añadimos 1
-            // console.log("dentro if save")
-            cart[i].qty=cart[i].qty+1;
-            localStorage.cart = JSON.stringify(cart);//guardamos el nuevo carrito
+    console.log("add_qty:"+idproduct);
+    jsoncartadd=JSON.parse(localStorage.cart);//pasamos el local storage a json
+    json_product=(jsoncartadd.find(x =>x.id===idproduct))
+    promise_stock('module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct)
+    .then(function(product){
+        if((json_product.qty+1) > product[0].stock){//comprobamos que uno mas de lo que hay en local storage no será mayor que el stock.
+            console.log("maximo stock de "+json_product.id);
+            json_product.qty=product[0].stock;//si es mayor ponemos el stock como cantidad
+        }else{
+            console.log("se suma 1 stock a "+json_product.id);
+            json_product.qty=json_product.qty+1;//si no es mayor, se suma uno a cantidad
         }
-    }
+    })
+    .then(function(){
+        localStorage.cart = JSON.stringify(jsoncartadd);//guardamos el nuevo carrito
+    })
 }
 
 function rest_qty(idproduct){
@@ -61,6 +105,23 @@ function delete_product(idproduct){
     localStorage.cart = JSON.stringify(jsoncart);//guardamos el nuevo carrito
 
 }
+
+// function comprobar_stock(idproduct){
+//     $.ajax({ 
+//         type: 'GET', 
+//         url: 'module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct,
+//         dataType: 'json', 
+//     })
+//     .done(function( data) {
+//         jsoncart=JSON.parse(localStorage.cart);//pasamos el carrito de local storage a json
+//         qtyproduct=jsoncart.find(x =>x.id===idproduct).qty;//cogemos la cantidad de ese producto
+//         if(qtyproduct>data[0].stock){
+//             return false;
+//         }else{
+//             return true;
+//         }
+//     });
+// }
 
 $(document).ready(function() {
     if(localStorage.cart){

@@ -80,14 +80,19 @@ function load_clicks(){
         id=$(this).attr("id");
         console.log(id);
         add_qty(id);//le pasamos id al save_qty
-        load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
+        setTimeout(function(){ //hacemos un set time para que primero haga la promesa y seguidamente vuelva a cargar el carrito
+            load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
+        }, 150);
+        
     })
     //rest qyty click
     $('.fa-minus-square').on('click',function(event){
         console.log("rest");
         id=$(this).attr("id");
         rest_qty(id);
-        load_cart_local();
+        setTimeout(function(){ //hacemos un set time para que primero haga la promesa y seguidamente vuelva a cargar el carrito
+            load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
+        }, 150);
     })
     //click checkout
     $('#checkout').on('click',function(event){
