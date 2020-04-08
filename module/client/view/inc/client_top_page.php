@@ -23,7 +23,9 @@
 
 <!-- BOTTPAGE -->
 <script src="module/client/view/libraries/Jquery/bootpage/jquery.bootpag.min.js"></script>
-
+<!-- CART -->
+<!-- solo lo necesario -->
+<script src="module/client/module/cart/view/js/cart.js"></script>
 <!-- ACTIVITY LOGIN -->
 <script type="text/javascript" src="module/login/view/js/user_control.js"></script>
 <!-- APIS -->

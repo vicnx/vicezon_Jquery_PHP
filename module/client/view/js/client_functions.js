@@ -9,17 +9,22 @@ function menu_clicks(){
     })
     //boton logout va al controlador del login
     $("#logout").on("click",function(){
-        $.ajax({ 
-            type: 'GET', 
-            url: 'module/login/controller/clogin.php?op=logout',
-            success: function (data) { 
-                console.log(data);
-                location.href = "index.php";
-            },
-            error: function(){
-                console.log("error");
-            }
-        });
+        carrito=localStorage.cart;
+        console.log(carrito);
+        insert_cart(carrito)
+        .then(function(data){
+            $.ajax({ 
+                type: 'GET', 
+                url: 'module/login/controller/clogin.php?op=logout',
+                success: function (data) { 
+                    location.href = "index.php";
+                },
+                error: function(){
+                    console.log("error");
+                }
+            });
+        })
+
     })
     $("#login").on("click",function(){
         location.href = "index.php?page=login";

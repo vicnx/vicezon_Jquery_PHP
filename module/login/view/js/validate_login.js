@@ -175,10 +175,14 @@ function form_login_submit(){
 				data : login_serialized,
 				success: function(response){			
 			   		console.log(response)		
-					if(response=="vale"){					
-						$("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
-                        setTimeout(' window.location.href = "index.php";',1000);
-                        console.log(response);
+					if(response=="vale"){	
+                        coger_carrito_bd()//busca el carrito en bd de ese usuario
+                        .then(function(data){
+                            console.log(data);
+                            $("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
+                            setTimeout(' window.location.href = "index.php";',1000);
+                            console.log(response);
+                        })				
                     }else if(response=="carrito"){
                         $("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
                         setTimeout(' window.location.href = "index.php?page=cart";',1000);

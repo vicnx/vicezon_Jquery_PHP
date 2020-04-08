@@ -24,5 +24,35 @@ switch($_GET['op']){
         $product=select_one_product($id);
         echo json_encode($product);
         break;
+    case 'insert_cart_bd':
+        if(!isset($_SESSION['username'])){
+            echo json_encode("no-login");
+        }else{
+            $username=$_SESSION['username'];
+            if ($_POST['cart']=="no-cart"){
+                $only_delete=only_delete_cart($username);
+                echo json_encode($only_delete);
+            }else{
+                $only_delete=only_delete_cart($username);
+                $cart=$_POST['cart'];
+                foreach ($cart as $product){
+                    $idproduct=$product['id'];
+                    $qty=$product['qty'];
+                    $insert=insert_cart($idproduct,$qty,$username);
+                }
+                echo json_encode($insert);
+            }
+        }
+        break;
+    case 'coger_carrito_bd':
+        if(!isset($_SESSION['username'])){
+            echo json_encode("no-login");
+        }else{
+            $username=$_SESSION['username'];
+            $carrito=select_cart($username);
+            echo json_encode($carrito);
+        }
+
+        break;
 }
 ?>

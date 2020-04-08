@@ -55,14 +55,14 @@ function load_cart_local(){
                     '<span class="qty-text">'+qtyproduct+'</span>'+
                     '<i id="'+p.idproduct+'" class="fas fa-plus-square fa-lg" > </i>'+
                     '</td>'+
-                    '<td>'+totalproducto+'</td>'+
+                    '<td>'+totalproducto+' €</td>'+
                     '<td><i id="'+p.idproduct+'" class="fas fa-trash-alt fa-lg"></i></td>'+
                 '</tr>'
                 )
                 number=number+1;
             });
             $('.price_total_cart').html(
-                'TOTAL = '+total
+                'TOTAL = '+total+" €"
             )
             load_clicks();//cargamos los clicks al cargar todos los productos
         })

@@ -36,10 +36,15 @@ function time_activity(){
                     console.log("actividad_url load");
                     if(response=="off"){
                         alert("Se ha cerrado la session por estar más de 15 minutos inactivo");
-                        checks(destroy_session)
+                        carrito=localStorage.cart;
+                        //primero inserta el carrito y despues cierra la session
+                        insert_cart(carrito)
                         .then(function(data){
-                            console.log(data);
-                            location.href = "index.php?page=login";
+                            checks(destroy_session)
+                            .then(function(data){
+                                console.log(data);
+                                location.href = "index.php?page=login";
+                            })
                         })
                     }else{
                         checks(regenerate)

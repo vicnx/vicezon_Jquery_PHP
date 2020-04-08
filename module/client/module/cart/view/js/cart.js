@@ -105,24 +105,52 @@ function delete_product(idproduct){
     localStorage.cart = JSON.stringify(jsoncart);//guardamos el nuevo carrito
 
 }
-
-// function comprobar_stock(idproduct){
-//     $.ajax({ 
-//         type: 'GET', 
-//         url: 'module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct,
-//         dataType: 'json', 
-//     })
-//     .done(function( data) {
-//         jsoncart=JSON.parse(localStorage.cart);//pasamos el carrito de local storage a json
-//         qtyproduct=jsoncart.find(x =>x.id===idproduct).qty;//cogemos la cantidad de ese producto
-//         if(qtyproduct>data[0].stock){
-//             return false;
-//         }else{
-//             return true;
-//         }
-//     });
-// }
-
+//promesa para guardar el carrito
+var insert_cart = function(carrito) {
+    if(!carrito){
+        json_cart="no-cart";
+    }else{
+        json_cart=JSON.parse(carrito);
+    }
+    return new Promise(function(resolve, reject) {
+        $.ajax({ 
+                type: 'POST', 
+                url: 'module/client/module/cart/controller/ccart.php?op=insert_cart_bd',
+                data: {cart: json_cart},
+                dataType: 'json', 
+            })
+            .done(function( data) {
+                cart = []; //limpia el carrito de bd
+                save_cart_local();// y lo guarda vacio
+                resolve(data);
+            })
+            .fail(function(textStatus) {
+                console.log("Error en la promesa insert_cart" + textStatus);
+            });
+        });
+    }
+//promesa para coger_carrito_bd
+var coger_carrito_bd = function(){
+    return new Promise(function(resolve, reject) {
+        $.ajax({ 
+                type: 'GET', 
+                url: 'module/client/module/cart/controller/ccart.php?op=coger_carrito_bd',
+                dataType: 'json', 
+            })
+            .done(function( data) {
+                cart = [];
+                data.forEach(p =>{
+                    var producto = {id: p.idproduct, qty: p.qty};
+                    cart.push(producto);
+                })
+                save_cart_local();
+                resolve(cart);
+            })
+            .fail(function(textStatus) {
+                console.log("Error en la promesa coger_carrito" + textStatus);
+            });
+        });
+}
 $(document).ready(function() {
     if(localStorage.cart){
         cart=JSON.parse(localStorage.cart);
