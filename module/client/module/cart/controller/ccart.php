@@ -52,7 +52,32 @@ switch($_GET['op']){
             $carrito=select_cart($username);
             echo json_encode($carrito);
         }
-
+        break;
+    case 'checkout_check_stock':
+        $ok=true;
+        $carrito=$_POST['cart'];
+        // echo json_encode($cart);
+        if(!isset($_SESSION['username'])){
+            echo json_encode("no-login");
+        }else{
+            $username=$_SESSION['username'];
+            if($carrito == "no-cart"){
+                echo json_encode("no-cart");
+            }else{
+                foreach ($carrito as $product){
+                    $idproduct=$product['id'];
+                    $qty=$product['qty'];
+                    $check_stock=check_stock($idproduct);
+                    if($qty > $check_stock[0]){
+                        $ok=false;
+                        break;
+                    }else{
+                        $ok=true;
+                    }
+                }
+                echo json_encode($ok);
+            }
+        }
         break;
 }
 ?>

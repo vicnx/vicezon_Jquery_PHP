@@ -100,6 +100,28 @@ function load_clicks(){
         checkout();//cargamos la funcion checkout
     })
 }
+//promesa para comprobar el stock de ese producto antes de hacer la compra.
+var check_stock_buy_promise = function(carrito) {
+    if(!carrito){
+        json_cart="no-cart";
+    }else{
+        json_cart=JSON.parse(carrito);
+    }
+    return new Promise(function(resolve, reject) {
+        $.ajax({ 
+                type: 'POST', 
+                url: 'module/client/module/cart/controller/ccart.php?op=checkout_check_stock',
+                data: {cart: json_cart},
+                dataType: 'json', 
+            })
+            .done(function( data) {
+                resolve(data);
+            })
+            .fail(function(textStatus) {
+                console.log("Error en la promesa check_stock_buy_promise" + textStatus);
+            });
+        });
+    }
 
 function checkout(){
     var checkout_promise = function(url) {
@@ -122,9 +144,21 @@ function checkout(){
         if(login == "no-login"){ // si el user no esta login
             location.href = "index.php?page=login";
         }else{ //si ya esta login
-            $(".carrito").html('<span id="cart_empty">Compra realizado con exito</span>');
-            setTimeout(' window.location.href = "index.php";',1000);
-            localStorage.removeItem('cart');//borramos el carrito
+            carrito= localStorage.cart;
+            console.log(carrito);
+            //primero comprobamos el stock de cada producto, si uno no tiene stock no se realiza la compra.
+            check_stock_buy_promise(carrito)
+            .then(function(data){
+                console.log(data);
+                if(data==true){
+                    $(".carrito").html('<span id="cart_empty">Compra realizado con exito</span>');
+                    setTimeout(' window.location.href = "index.php";',1000);
+                    localStorage.removeItem('cart');//borramos el carrito
+                }else{
+                    $(".carrito").html('<span id="cart_empty">Revisa el carrito, hay algun producto sin stock!</span>');
+                    setTimeout(' window.location.href = "index.php";',1000);
+                }
+            })
 
         }
     })

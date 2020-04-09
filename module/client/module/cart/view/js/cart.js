@@ -61,6 +61,7 @@ function add_qty(idproduct){
     console.log("add_qty:"+idproduct);
     jsoncartadd=JSON.parse(localStorage.cart);//pasamos el local storage a json
     json_product=(jsoncartadd.find(x =>x.id===idproduct))
+    console.log("qty: "+json_product.qty+1)
     promise_stock('module/client/module/cart/controller/ccart.php?op=comprobar_stock&idproduct='+idproduct)
     .then(function(product){
         if((json_product.qty+1) > product[0].stock){//comprobamos que uno mas de lo que hay en local storage no será mayor que el stock.
@@ -140,7 +141,7 @@ var coger_carrito_bd = function(){
             .done(function( data) {
                 cart = [];
                 data.forEach(p =>{
-                    var producto = {id: p.idproduct, qty: p.qty};
+                    var producto = {id: p.idproduct, qty: parseInt(p.qty)};
                     cart.push(producto);
                 })
                 save_cart_local();

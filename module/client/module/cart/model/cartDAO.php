@@ -3,7 +3,7 @@ $path = $_SERVER['DOCUMENT_ROOT'] . '/vicezon/';
 include($path . "model/ConnectionBD.php");
 function select_one_product($id){
     $conn = new connection();
-    $sql = "SELECT * FROM Tablets Where idproduct in ($id)";
+    $sql = "SELECT * FROM Tablets Where idproduct in ($id) ORDER BY idproduct ASC";
     $query = $conn->query($sql)->fetchAll();
     $conn =null;
     return $query;
@@ -38,6 +38,14 @@ function select_cart($username){
     $conn = new connection();
     $sql = "SELECT * FROM cart Where username='$username'";
     $query = $conn->query($sql)->fetchAll();
+    $conn =null;
+    return $query;
+}
+
+function check_stock($idproduct){
+    $conn = new connection();
+    $sql = "SELECT stock FROM Tablets Where idproduct='$idproduct'";
+    $query = $conn->query($sql)->fetch();
     $conn =null;
     return $query;
 }
