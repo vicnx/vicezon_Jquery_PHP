@@ -38,6 +38,7 @@
         </li>
         <li id="cart">
           <i id="cart_menu" class="fas fa-shopping-cart"></i>
+          <span class="counter_cart"></span>
         </li>
         <li>
           <div id="lang" >

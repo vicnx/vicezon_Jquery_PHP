@@ -94,11 +94,6 @@ function load_clicks(){
             load_cart_local();//recargamos el carrito sin necesidad de actualziar la pagina
         }, 150);
     })
-    //click checkout
-    $('#checkout').on('click',function(event){
-        console.log("compra");
-        checkout();//cargamos la funcion checkout
-    })
 }
 //promesa para comprobar el stock de ese producto antes de hacer la compra.
 var check_stock_buy_promise = function(carrito) {
@@ -138,7 +133,28 @@ function checkout(){
               });
             });
         }
-    checkout_promise('module/client/module/cart/controller/ccart.php?op=checkout')
+        var checkout_promise_buy = function(total,carrito_buy) {
+            json_cart=JSON.parse(carrito_buy);
+            var parametros = {
+                "carrito" : json_cart,
+                "total": total
+            }
+            return new Promise(function(resolve, reject) {
+                $.ajax({ 
+                    type: 'POST', 
+                    url: 'module/client/module/cart/controller/ccart.php?op=checkout_buy',
+                    data: parametros,
+                    dataType: 'json', 
+                })
+                .done(function( data) {
+                    resolve(data);
+                })
+                .fail(function(textStatus) {
+                    console.log("Error en la promesa checkout_promise_buy" + textStatus);
+                });
+            });
+            }
+    checkout_promise('module/client/module/cart/controller/ccart.php?op=checkout_login_check')
     .then(function(login){
         console.log(login);
         if(login == "no-login"){ // si el user no esta login
@@ -151,9 +167,20 @@ function checkout(){
             .then(function(data){
                 console.log(data);
                 if(data==true){
-                    $(".carrito").html('<span id="cart_empty">Compra realizado con exito</span>');
-                    setTimeout(' window.location.href = "index.php";',1000);
-                    localStorage.removeItem('cart');//borramos el carrito
+                    carrito2=localStorage.cart;
+                    checkout_promise_buy(total,carrito2)
+                    .then(function(se_puede){
+                        if(se_puede==="se_puede"){//si es mayor, se resta el salario y se actualiza el user. Se redirecciona al home
+                            console.log(se_puede);
+                            $(".carrito").html('<span id="cart_empty">Compra realizado con exito</span>');
+                            setTimeout(' window.location.href = "index.php";',1000);
+                            localStorage.removeItem('cart');//borramos el carrito
+                        }else{// si es menor, se redirecciona al profile (donde se podra añadir saldo)
+                            console.log(se_puede);
+                            $(".carrito").html('<span id="cart_empty">Hay un problema con la compra, añade más saldo!</span>');
+                            setTimeout(' window.location.href = "index.php?page=profile";',1000);
+                        }
+                    })
                 }else{
                     $(".carrito").html('<span id="cart_empty">Revisa el carrito, hay algun producto sin stock!</span>');
                     setTimeout(' window.location.href = "index.php";',1000);
@@ -166,4 +193,9 @@ function checkout(){
 
 $(document).ready(function() {
     load_cart_local();
+    //click checkout
+    $('#checkout').on('click',function(event){
+        console.log("compra");
+        checkout();//cargamos la funcion checkout
+    })
 });

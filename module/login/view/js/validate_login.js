@@ -184,8 +184,13 @@ function form_login_submit(){
                             console.log(response);
                         })				
                     }else if(response=="carrito"){
-                        $("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
-                        setTimeout(' window.location.href = "index.php?page=cart";',1000);
+                        coger_carrito_bd()//busca el carrito en bd de ese usuario
+                        .then(function(data){
+                            console.log(data);
+                            $("#login_msg").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span>LOGEADO CORRECTAMENTE</div>');
+                            setTimeout(' window.location.href = "index.php?page=cart";',1000);
+                            console.log(response);
+                        })
                         $.ajax({ 
                                 type: 'GET', 
                                 url: 'module/client/module/cart/controller/ccart.php?op=destroy_cart_session',

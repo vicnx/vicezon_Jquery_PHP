@@ -67,7 +67,7 @@ function onclick_item(){
         }else{
             var idproduct= $(this).attr("id");
             localStorage.setItem("product", idproduct);
-            details_shop();
+            window.location.href = "index.php?page=shop";
         }
     })
     // $('.item').on('click',function() {

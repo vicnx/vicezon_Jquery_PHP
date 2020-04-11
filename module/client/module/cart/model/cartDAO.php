@@ -49,4 +49,29 @@ function check_stock($idproduct){
     $conn =null;
     return $query;
 }
+
+function check_saldo($username){
+    $conn = new connection();
+    $sql = "SELECT saldo FROM `users` WHERE username='$username'";
+    $query = $conn->query($sql)->fetch();
+    $conn =null;
+    return $query;
+}
+
+function update_saldo($username,$saldo){
+    $conn= new connection();
+    $sql_update="UPDATE users SET saldo='$saldo' where username='$username'";
+    $conn = new connection;
+    $query = $conn->query($sql_update)->fetchObject();
+    $conn = null;
+    return $query;
+}
+function update_stock($idproduct,$stock){
+    $conn= new connection();
+    $sql_update="UPDATE tablets SET stock='$stock' where idproduct='$idproduct'";
+    $conn = new connection;
+    $query = $conn->query($sql_update)->fetchObject();
+    $conn = null;
+    return $query;
+}
 ?>

@@ -8,7 +8,7 @@ switch($_GET['op']){
         $productos=select_one_product($ids);
         echo json_encode($productos);
         break;
-    case 'checkout':
+    case 'checkout_login_check':
         if(!isset($_SESSION['username'])){
             echo 'no-login';
             $_SESSION['carrito']="on";
@@ -77,6 +77,31 @@ switch($_GET['op']){
                 }
                 echo json_encode($ok);
             }
+        }
+        break;
+    case 'checkout_buy':
+        if(!isset($_SESSION['username'])){
+            echo json_encode("no-login");
+        }else{
+            $username=$_SESSION['username'];
+            $saldo=check_saldo($username);
+            $total_gastado=$_POST['total'];
+            $carrito_buy=$_POST['carrito'];
+            if($saldo[0] > $total_gastado){
+                $new_saldo=($saldo[0]-$total_gastado);
+                update_saldo($username,$new_saldo);
+                foreach($carrito_buy as $product){
+                    $idproduct=$product['id'];
+                    $qty=$product['qty'];
+                    $check_stock=check_stock($idproduct);
+                    $new_stock=($check_stock[0]-$qty);
+                    update_stock($idproduct,$new_stock);
+                }
+                echo json_encode("se_puede");
+            }else{
+                echo json_encode("no_se_puede");
+            }
+            
         }
         break;
 }
