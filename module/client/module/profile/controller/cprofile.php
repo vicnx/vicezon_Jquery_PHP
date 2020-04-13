@@ -19,5 +19,24 @@ switch($_GET['op']){
         }
     }
     break;
+    case 'facturas':
+        if(!isset($_SESSION['username'])){ // si no hay usuario login fail.
+            echo json_encode("no-login");
+        }else{ // si hay login envia datos
+            $username=$_SESSION['username'];
+            $data = select_factura($username);
+            echo json_encode($data);
+        }
+        break;
+    case 'more_facturas':
+        $idfac=$_POST['idfac'];
+        $lines=select_fact_lines($idfac);
+        echo json_encode($lines);
+        break;
+    case 'product_data':
+        $idproduct=$_POST['idproduct'];
+        $product=get_product($idproduct);
+        echo json_encode($product);
+        break;
 }
 ?>

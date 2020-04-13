@@ -112,10 +112,15 @@ function delete_product(idproduct){
 }
 //promesa para guardar el carrito
 var insert_cart = function(carrito) {
+    console.log(carrito);
     if(!carrito){
         json_cart="no-cart";
     }else{
-        json_cart=JSON.parse(carrito);
+        if(carrito=="[]"){//si el carrito esta vacio
+            json_cart="no-cart";
+        }else{
+            json_cart=JSON.parse(carrito);
+        }
     }
     return new Promise(function(resolve, reject) {
         $.ajax({ 

@@ -74,4 +74,37 @@ function update_stock($idproduct,$stock){
     $conn = null;
     return $query;
 }
+
+function add_fac($username,$total,$fecha){
+    $conn= new connection();
+    $sql_update="INSERT INTO facturas (username,total_factura,fecha) VALUES ('$username','$total','$fecha')";
+    $conn = new connection;
+    $query = $conn->query($sql_update)->fetchObject();
+    $conn = null;
+    return $query;
+}
+
+function get_fac_id($username,$fecha){
+    $conn = new connection();
+    $sql = "SELECT idfactura FROM `facturas` WHERE username='$username' AND fecha='$fecha'";
+    $query = $conn->query($sql)->fetch();
+    $conn =null;
+    return $query;
+}
+function add_line_fac($idfac,$idproduct,$qty,$cost){
+    $conn= new connection();
+    $sql_update="INSERT INTO factura_linea (idfactura,idproduct,qty,cost) VALUES ('$idfac','$idproduct','$qty','$cost')";
+    $conn = new connection;
+    $query = $conn->query($sql_update)->fetchObject();
+    $conn = null;
+    return $sql_update;
+}
+
+function get_price_product($idproduct){
+    $conn = new connection();
+    $sql = "SELECT price FROM `tablets` WHERE idproduct='$idproduct'";
+    $query = $conn->query($sql)->fetch();
+    $conn =null;
+    return $query;
+}
 ?>

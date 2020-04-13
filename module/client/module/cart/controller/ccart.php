@@ -89,13 +89,19 @@ switch($_GET['op']){
             $carrito_buy=$_POST['carrito'];
             if($saldo[0] > $total_gastado){
                 $new_saldo=($saldo[0]-$total_gastado);
+                $fecha=date("Y-m-d H:i:s");
                 update_saldo($username,$new_saldo);
+                add_fac($username,$total_gastado,$fecha);
+                $fac_id=get_fac_id($username,$fecha);
                 foreach($carrito_buy as $product){
                     $idproduct=$product['id'];
                     $qty=$product['qty'];
+                    $price_product=get_price_product($idproduct);
+                    $cost=$price_product[0]*$qty;
                     $check_stock=check_stock($idproduct);
                     $new_stock=($check_stock[0]-$qty);
                     update_stock($idproduct,$new_stock);
+                    $test=add_line_fac($fac_id[0],$idproduct,$qty,$cost);
                 }
                 echo json_encode("se_puede");
             }else{
