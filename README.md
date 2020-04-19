@@ -26,12 +26,17 @@ https://www.alvarolara.com/2013/06/14/instalar-apache-php-mysql-y-phpmyadmin-en-
 ![Image of Contact](https://i.imgur.com/wrC01mc.png)
 #### Admin Panel
 ![Image of Admin Panel](https://i.imgur.com/u2nB71P.png)
+#### Favoritos
+![Image of Favorites](https://i.imgur.com/GUrwVs3.gif)
+#### Carrito
+![Image of Cart](https://i.imgur.com/kfyJUI9.gif)
+#### Profile
+![Image of Cart](https://i.imgur.com/bzDSuvf.gif)
 
 ## Tecnologias
 * [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
 
 * [JQuery](https://jquery.com/)
-
 
 * [PHP](https://www.php.net/)
 
@@ -58,6 +63,8 @@ _En la aplicación tenemos dos modulos principales y dentro de ellos hay distint
 | Shop | *Aqui es donde el cliente puede ver todos los productos o filtrarlos.* |
 | Contact | *Formulario de contacto y ubicacion de la empresa.* |
 | Search | *Es el modulo de busqueda, que esta situada en todos los modulos de cliente, donde puedes buscar productos en cualquier lugar de la web.* |
+| Cart | *Aqui esta el carrito, donde peudes añádir productos y realizar la compra (te crea una factura)* |
+| Profile | *Aqui puedes ver tus ultimas compras, tus datos de interes y el saldo que te queda!* |
 
 ## APIs: 💻 
 * [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial?hl=es) - Usada para el mapa del modulo *Contact* en la parte cliente.
@@ -126,4 +133,14 @@ Simplificado (mas info ver commits):
 Simplificado (mas info ver commits):
 - favoritos en el shop completo.
 - actualizada base de datos.
+```
+
+#### 19/04/2020
+```
+Simplificado (mas info ver commits):
+- favoritos funcionando en toda la web
+- actualizada base de datos.
+- carrito funcionando en toda la web.
+- los usuarios tiene saldo, al comprar un producto se resta del stock y del saldo de ese producto.
+- profile, ahi pueden ver las ultimas compras (las facturas)
 ```
